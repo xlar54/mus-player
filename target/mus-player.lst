@@ -1,0 +1,1448 @@
+
+; 64tass Turbo Assembler Macro V1.53.1515 listing file
+; 64tass -a -l ./target/mus-player.lbl -L ./target/mus-player.lst -o ./target/mus-player ./src/mus-player.asm
+; Sat Apr 20 15:20:34 2019
+
+;Offset	;Hex		;Monitor	;Source
+
+;******  Processing input file: ./src/mus-player.asm
+
+=$61					FAC1		= $61
+=$0314					IRQVECT 	= $0314
+=$d400					SID_BASE	= $D400
+=$dc00					CIA1_BASE	= $DC00
+=$d000					VICII_BASE	= $D000
+=$ffd2					CHROUT		= $FFD2
+=$ffba					SETLFS		= $FFBA
+=$ffbd					SETNAM		= $FFBD
+=$ffd5					LOAD		= $FFD5
+=$ffc3					CLOSE		= $FFC3
+=$ffe1					STOP		= $FFE1
+.c000					data:
+>c000	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c00f
+>c008	00 00 00 00 00 00 00 00
+>c010	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c01f
+>c018	00 00 00 00 00 00 00 00
+>c020	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c02f
+>c028	00 00 00 00 00 00 00 00
+>c030	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c03f
+>c038	00 00 00 00 00 00 00 00
+>c040	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c04f
+>c048	00 00 00 00 00 00 00 00
+>c050	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c05f
+>c058	00 00 00 00 00 00 00 00
+>c060	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c06f
+>c068	00 00 00 00 00 00 00 00
+>c070	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c07f
+>c078	00 00 00 00 00 00 00 00
+>c080	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c08f
+>c088	00 00 00 00 00 00 00 00
+>c090	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c09f
+>c098	00 00 00 00 00 00 00 00
+>c0a0	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c0af
+>c0a8	00 00 00 00 00 00 00 00
+>c0b0	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c0bf
+>c0b8	00 00 00 00 00 00 00 00
+>c0c0	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c0cf
+>c0c8	00 00 00 00 00 00 00 00
+>c0d0	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c0df
+>c0d8	00 00 00 00 00 00 00 00
+>c0e0	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c0ef
+>c0e8	00 00 00 00 00 00 00 00
+>c0f0	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c0ff
+>c0f8	00 00 00 00 00 00 00 00
+>c100	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c10f
+>c108	00 00 00 00 00 00 00 00
+>c110	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c11f
+>c118	00 00 00 00 00 00 00 00
+>c120	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c12f
+>c128	00 00 00 00 00 00 00 00
+>c130	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c13f
+>c138	00 00 00 00 00 00 00 00
+>c140	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c14f
+>c148	00 00 00 00 00 00 00 00
+>c150	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $61 ; c15f
+>c158	00 00 00 00 00 00 00 61
+>c160	c1 60 01 02 04 00 07 0e		.byte $c1, $60, $01, $02, $04, $00, $07, $0e, $02, $02, $fe, $02, $02, $fe, $fe, $00 ; c16f
+>c168	02 02 fe 02 02 fe fe 00
+>c170	01 00 ff 00 02 04 05 07		.byte $01, $00, $ff, $00, $02, $04, $05, $07, $09, $0b, $1e, $18, $8b, $7e, $fa, $06 ; c17f
+>c178	09 0b 1e 18 8b 7e fa 06
+>c180	ac f3 e6 8f f8 2e 86 8e		.byte $ac, $f3, $e6, $8f, $f8, $2e, $86, $8e, $96, $9f, $a8, $b3, $bd, $c8, $d4, $e1 ; c18f
+>c188	96 9f a8 b3 bd c8 d4 e1
+>c190	ee fd 8c 78 64 50 3c 28		.byte $ee, $fd, $8c, $78, $64, $50, $3c, $28, $14, $00, $00, $02, $03, $05, $07, $08 ; c19f
+>c198	14 00 00 02 03 05 07 08
+>c1a0	0a 0c 0d 0f 11 12 00 e0		.byte $0a, $0c, $0d, $0f, $11, $12, $00, $e0, $00, $05, $0a, $0f, $f9, $00, $f5, $00 ; c1af
+>c1a8	00 05 0a 0f f9 00 f5 00
+>c1b0	00 00 10 00 00 20 00 00		.byte $00, $00, $10, $00, $00, $20, $00, $00, $30, $00, $00, $40, $00, $00, $50, $00 ; c1bf
+>c1b8	30 00 00 40 00 00 50 00
+>c1c0	00 60 00 00 70 00 00 80		.byte $00, $60, $00, $00, $70, $00, $00, $80, $00, $00, $90, $00, $00				 ; c1cc
+>c1c8	00 00 90 00 00
+.c1cd	a0 00		ldy #$00			ldy #$00
+.c1cf					Lc1cf:
+.c1cf	a9 00		lda #$00	hook:	lda #$00
+.c1d1	8d 00 c0	sta $c000			sta data
+.c1d4	a2 95		ldx #$95			ldx #$95
+.c1d6	a0 42		ldy #$42			ldy #$42
+.c1d8	ad a6 02	lda $02a6			lda $02a6
+.c1db	f0 04		beq $c1e1			beq Lc1e1
+.c1dd	a2 25		ldx #$25			ldx #$25
+.c1df	a0 40		ldy #$40			ldy #$40
+.c1e1	8e 5b c1	stx $c15b	Lc1e1:	stx data + $15b
+.c1e4	8c 5c c1	sty $c15c			sty data + $15c
+.c1e7	ad 14 03	lda $0314			lda IRQVECT
+.c1ea	8d 5d c1	sta $c15d			sta data + $15d
+.c1ed	ad 15 03	lda $0315			lda IRQVECT+1
+.c1f0	8d 5e c1	sta $c15e			sta data + $15e
+.c1f3	78		sei				sei
+.c1f4	a9 26		lda #$26			lda #$26
+.c1f6	8d 14 03	sta $0314			sta IRQVECT
+.c1f9	a9 c3		lda #$c3			lda #$c3
+.c1fb	8d 15 03	sta $0315			sta IRQVECT+1
+.c1fe	58		cli				cli
+.c1ff	60		rts				rts
+.c200					Lc200:
+.c200	a9 00		lda #$00	set:	lda #$00
+.c202	8d 00 c0	sta $c000			sta data
+.c205	86 61		stx $61				stx FAC1
+.c207	84 62		sty $62				sty FAC1 + 1
+.c209	a0 bc		ldy #$bc			ldy #$bc
+.c20b	99 00 c0	sta $c000,y	Lc20b:	sta data,y
+.c20e	88		dey				dey
+.c20f	d0 fa		bne $c20b			bne Lc20b
+.c211	a0 72		ldy #$72			ldy #$72
+.c213	99 bc c0	sta $c0bc,y	Lc213:	sta data + $bc,y
+.c216	88		dey				dey
+.c217	d0 fa		bne $c213			bne Lc213
+.c219	8d 15 d4	sta $d415			sta SID_BASE + $15
+.c21c	8d 16 d4	sta $d416			sta SID_BASE + $16
+.c21f	a9 08		lda #$08			lda #$08
+.c221	8d 25 c0	sta $c025			sta data + $25
+.c224	8d 17 d4	sta $d417			sta SID_BASE + $17
+.c227	8d 26 c0	sta $c026			sta data + $26
+.c22a	8d 18 d4	sta $d418			sta SID_BASE + $18
+.c22d	a9 90		lda #$90			lda #$90
+.c22f	8d 27 c0	sta $c027			sta data + $27
+.c232	a9 60		lda #$60			lda #$60
+.c234	8d 28 c0	sta $c028			sta data + $28
+.c237	a9 0c		lda #$0c			lda #$0c
+.c239	8d 29 c0	sta $c029			sta data + $29
+.c23c	ad 5b c1	lda $c15b			lda data + $15b
+.c23f	8d 2d c0	sta $c02d			sta data + $2d
+.c242	ad 5c c1	lda $c15c			lda data + $15c
+.c245	8d 2e c0	sta $c02e			sta data + $2e
+.c248	a9 ff		lda #$ff			lda #$ff
+.c24a	8d cc c0	sta $c0cc			sta data + $cc
+.c24d	a9 d4		lda #$d4			lda #$d4
+.c24f	85 64		sta $64				sta FAC1+3
+.c251	a2 02		ldx #$02			ldx #$02
+.c253	a9 ff		lda #$ff	Lc253:	lda #$ff
+.c255	9d 0b c0	sta $c00b,x			sta data + $0b,x
+.c258	a9 01		lda #$01			lda #$01
+.c25a	9d 30 c0	sta $c030,x			sta data + $30,x
+.c25d	9d 2a c0	sta $c02a,x			sta data + $2a,x
+.c260	8a		txa				txa
+.c261	9d 33 c0	sta $c033,x			sta data + $33,x
+.c264	9d ae c0	sta $c0ae,x			sta data + $ae,x
+.c267	a9 04		lda #$04			lda #$04
+.c269	9d 39 c0	sta $c039,x			sta data + $39,x
+.c26c	bd a8 c1	lda $c1a8,x			lda data + $1a8,x
+.c26f	9d ba c0	sta $c0ba,x			sta data + $ba,x
+.c272	a9 5b		lda #$5b			lda #$5b
+.c274	9d 7e c0	sta $c07e,x			sta data + $7e,x
+.c277	bd 65 c1	lda $c165,x			lda data + $165,x
+.c27a	85 63		sta $63				sta FAC1+2
+.c27c	a9 00		lda #$00			lda #$00
+.c27e	a8		tay				tay
+.c27f	91 63		sta ($63),y			sta (FAC1+2),y
+.c281	c8		iny				iny
+.c282	91 63		sta ($63),y			sta (FAC1+2),y
+.c284	c8		iny				iny
+.c285	91 63		sta ($63),y			sta (FAC1+2),y
+.c287	a9 08		lda #$08			lda #$08
+.c289	9d 17 c0	sta $c017,x			sta data + $17,x
+.c28c	9d 9c c0	sta $c09c,x			sta data + $9c,x
+.c28f	c8		iny				iny
+.c290	91 63		sta ($63),y			sta (FAC1+2),y
+.c292	c8		iny				iny
+.c293	91 63		sta ($63),y			sta (FAC1+2),y
+.c295	a9 40		lda #$40			lda #$40
+.c297	9d 1a c0	sta $c01a,x			sta data + $1a,x
+.c29a	91 63		sta ($63),y			sta (FAC1+2),y
+.c29c	a9 20		lda #$20			lda #$20
+.c29e	9d 1d c0	sta $c01d,x			sta data + $1d,x
+.c2a1	c8		iny				iny
+.c2a2	91 63		sta ($63),y			sta (FAC1+2),y
+.c2a4	a9 f5		lda #$f5			lda #$f5
+.c2a6	9d 20 c0	sta $c020,x			sta data + $20,x
+.c2a9	c8		iny				iny
+.c2aa	91 63		sta ($63),y			sta (FAC1+2),y
+.c2ac	ca		dex				dex
+.c2ad	10 a4		bpl $c253			bpl Lc253
+.c2af	8a		txa				txa
+.c2b0	a2 17		ldx #$17			ldx #$17
+.c2b2	9d 3e c1	sta $c13e,x	Lc2b2:	sta data + $13e,x
+.c2b5	ca		dex				dex
+.c2b6	10 fa		bpl $c2b2			bpl Lc2b2
+.c2b8	a5 61		lda $61				lda FAC1
+.c2ba	18		clc				clc
+.c2bb	69 06		adc #$06			adc #$06
+.c2bd	85 63		sta $63				sta FAC1+2
+.c2bf	a9 00		lda #$00			lda #$00
+.c2c1	aa		tax				tax
+.c2c2	a8		tay				tay
+.c2c3	65 62		adc $62				adc FAC1+1
+.c2c5	85 64		sta $64		Lc2c5:	sta FAC1+3
+.c2c7	9d ab c0	sta $c0ab,x			sta data + $ab,x
+.c2ca	9d b4 c0	sta $c0b4,x			sta data + $b4,x
+.c2cd	a5 63		lda $63				lda FAC1+2
+.c2cf	9d a8 c0	sta $c0a8,x			sta data + $a8,x
+.c2d2	9d b1 c0	sta $c0b1,x			sta data + $b1,x
+.c2d5	18		clc				clc
+.c2d6	71 61		adc ($61),y			adc (FAC1),y
+.c2d8	85 63		sta $63				sta FAC1+2
+.c2da	a5 64		lda $64				lda FAC1+3
+.c2dc	c8		iny				iny
+.c2dd	71 61		adc ($61),y			adc (FAC1),y
+.c2df	c8		iny				iny
+.c2e0	e8		inx				inx
+.c2e1	e0 03		cpx #$03			cpx #$03
+.c2e3	d0 e0		bne $c2c5			bne Lc2c5
+.c2e5	a6 63		ldx $63				ldx FAC1+2
+.c2e7	a8		tay				tay
+.c2e8	60		rts				rts
+.c2e9					stopplaying:
+.c2e9	a9 00		lda #$00			lda #$00
+.c2eb	8d 04 d4	sta $d404			sta SID_BASE + $04
+.c2ee	8d 0b d4	sta $d40b			sta SID_BASE + $0b
+.c2f1	8d 12 d4	sta $d412			sta SID_BASE + $12
+.c2f4	8d 01 d4	sta $d401			sta SID_BASE + $01
+.c2f7	8d 08 d4	sta $d408			sta SID_BASE + $08
+.c2fa	8d 0f d4	sta $d40f			sta SID_BASE + $0f
+.c2fd	a9 08		lda #$08			lda #$08
+.c2ff	8d 17 d4	sta $d417			sta SID_BASE + $17
+.c302	ad 5b c1	lda $c15b			lda data + $15b
+.c305	8d 04 dc	sta $dc04			sta CIA1_BASE + $04
+.c308	ad 5c c1	lda $c15c			lda data + $15c
+.c30b	8d 05 dc	sta $dc05			sta CIA1_BASE + $05
+.c30e	60		rts				rts
+.c30f					restore:
+.c30f	78		sei				sei
+.c310	ad 5d c1	lda $c15d			lda data + $15d
+.c313	8d 14 03	sta $0314			sta IRQVECT
+.c316	ad 5e c1	lda $c15e			lda data + $15e
+.c319	8d 15 03	sta $0315			sta IRQVECT + 1
+.c31c	58		cli				cli
+.c31d	60		rts				rts
+.c31e	a9 08		lda #$08	Lc31e:	lda #$08
+.c320	8d 00 c0	sta $c000			sta data
+.c323	6c 5d c1	jmp ($c15d)	cback:	jmp (data + $15d)
+.c326	ad 0d dc	lda $dc0d	Lc326:	lda CIA1_BASE + $0d		; new interrupt
+.c329	ad 00 c0	lda $c000			lda data
+.c32c	30 f0		bmi $c31e			bmi Lc31e
+.c32e	09 80		ora #$80			ora #$80
+.c330	a8		tay				tay
+.c331	29 07		and #$07			and #$07
+.c333	f0 ee		beq $c323			beq cback
+.c335	d8		cld				cld
+.c336	8c 00 c0	sty $c000			sty data
+.c339	58		cli				cli
+.c33a	a5 fb		lda $fb				lda $fb
+.c33c	8d 56 c1	sta $c156			sta data + $156
+.c33f	a5 fc		lda $fc				lda $fc
+.c341	8d 57 c1	sta $c157			sta data + $157
+.c344	a5 fd		lda $fd				lda $fd
+.c346	8d 58 c1	sta $c158			sta data + $158
+.c349	a5 fe		lda $fe				lda $fe
+.c34b	8d 59 c1	sta $c159			sta data + $159
+.c34e	a5 ff		lda $ff				lda $ff
+.c350	8d 5a c1	sta $c15a			sta data + $15a
+.c353	ad 23 c0	lda $c023			lda data + $23
+.c356	18		clc				clc
+.c357	6d d9 c0	adc $c0d9			adc data + $d9
+.c35a	48		pha				pha
+.c35b	29 07		and #$07			and #$07
+.c35d	a8		tay				tay
+.c35e	ad dc c0	lda $c0dc			lda data + $dc
+.c361	69 00		adc #$00			adc #$00
+.c363	85 ff		sta $ff				sta $ff
+.c365	68		pla				pla
+.c366	46 ff		lsr $ff				lsr $ff
+.c368	6a		ror a				ror a
+.c369	46 ff		lsr $ff				lsr $ff
+.c36b	6a		ror a				ror a
+.c36c	46 ff		lsr $ff				lsr $ff
+.c36e	6a		ror a				ror a
+.c36f	18		clc				clc
+.c370	6d 24 c0	adc $c024			adc data + $24
+.c373	8c 15 d4	sty $d415			sty SID_BASE + $15
+.c376	8d 16 d4	sta $d416			sta SID_BASE + $16
+.c379	ad 25 c0	lda $c025			lda data + $25
+.c37c	8d 17 d4	sta $d417			sta SID_BASE + $17
+.c37f	ad 26 c0	lda $c026			lda data + $26
+.c382	8d 18 d4	sta $d418			sta SID_BASE + $18
+.c385	a9 d4		lda #$d4			lda #$d4
+.c387	85 fc		sta $fc				sta $fc
+.c389	a2 00		ldx #$00			ldx #$00
+.c38b	ad 00 c0	lda $c000	Lc38b:	lda data
+.c38e	3d 62 c1	and $c162,x			and data + $162,x
+.c391	f0 51		beq $c3e4			beq Lc3e4
+.c393	bd 65 c1	lda $c165,x			lda data + $165,x
+.c396	85 fb		sta $fb				sta $fb
+.c398	bd 0e c0	lda $c00e,x			lda data + $0e,x
+.c39b	18		clc				clc
+.c39c	7d 51 c0	adc $c051,x			adc data + $51,x
+.c39f	a8		tay				tay
+.c3a0	bd 11 c0	lda $c011,x			lda data + $11,x
+.c3a3	7d 54 c0	adc $c054,x			adc data + $54,x
+.c3a6	48		pha				pha
+.c3a7	98		tya				tya
+.c3a8	18		clc				clc
+.c3a9	7d cd c0	adc $c0cd,x			adc data + $cd,x
+.c3ac	a0 00		ldy #$00			ldy #$00
+.c3ae	91 fb		sta ($fb),y			sta ($fb),y
+.c3b0	68		pla				pla
+.c3b1	7d d0 c0	adc $c0d0,x			adc data + $d0,x
+.c3b4	c8		iny				iny
+.c3b5	91 fb		sta ($fb),y			sta ($fb),y
+.c3b7	bd 14 c0	lda $c014,x			lda data + $14,x
+.c3ba	18		clc				clc
+.c3bb	7d 69 c0	adc $c069,x			adc data + $69,x
+.c3be	85 ff		sta $ff				sta $ff
+.c3c0	bd 17 c0	lda $c017,x			lda data + $17,x
+.c3c3	7d 6c c0	adc $c06c,x			adc data + $6c,x
+.c3c6	48		pha				pha
+.c3c7	a5 ff		lda $ff				lda $ff
+.c3c9	18		clc				clc
+.c3ca	7d d3 c0	adc $c0d3,x			adc data + $d3,x
+.c3cd	c8		iny				iny
+.c3ce	91 fb		sta ($fb),y			sta ($fb),y
+.c3d0	68		pla				pla
+.c3d1	7d d6 c0	adc $c0d6,x			adc data + $d6,x
+.c3d4	c8		iny				iny
+.c3d5	91 fb		sta ($fb),y			sta ($fb),y
+.c3d7	bd 1d c0	lda $c01d,x			lda data + $1d,x
+.c3da	c8		iny				iny
+.c3db	c8		iny				iny
+.c3dc	91 fb		sta ($fb),y			sta ($fb),y
+.c3de	bd 20 c0	lda $c020,x			lda data + $20,x
+.c3e1	c8		iny				iny
+.c3e2	91 fb		sta ($fb),y			sta ($fb),y
+.c3e4	e8		inx		Lc3e4:	inx
+.c3e5	e0 03		cpx #$03			cpx #$03
+.c3e7	d0 a2		bne $c38b			bne Lc38b
+.c3e9	ac 1a c0	ldy $c01a			ldy data + $1a
+.c3ec	ae 1b c0	ldx $c01b			ldx data + $1b
+.c3ef	ad 1c c0	lda $c01c			lda data + $1c
+.c3f2	8c 04 d4	sty $d404			sty SID_BASE + $04
+.c3f5	8e 0b d4	stx $d40b			stx SID_BASE + $0b
+.c3f8	8d 12 d4	sta $d412			sta SID_BASE + $12
+.c3fb	ae 2d c0	ldx $c02d			ldx data + $2d
+.c3fe	ac 2e c0	ldy $c02e			ldy data + $2e
+.c401	8e 04 dc	stx $dc04			stx CIA1_BASE + $04
+.c404	8c 05 dc	sty $dc05			sty CIA1_BASE + $05
+.c407	ad 1b d4	lda $d41b			lda SID_BASE + $1b
+.c40a	8d be c0	sta $c0be			sta data + $be
+.c40d	ad 1c d4	lda $d41c			lda SID_BASE + $1c
+.c410	8d bf c0	sta $c0bf			sta data + $bf
+.c413	a2 00		ldx #$00			ldx #$00
+.c415	ad 00 c0	lda $c000	Lc415:	lda data
+.c418	3d 62 c1	and $c162,x			and data + $162,x
+.c41b	f0 10		beq $c42d			beq Lc42d
+.c41d	8e 2f c0	stx $c02f			stx data + $2f
+.c420	20 36 c5	jsr $c536			jsr Lc536
+.c423	ad 00 c0	lda $c000			lda data
+.c426	29 78		and #$78			and #$78
+.c428	f0 03		beq $c42d			beq Lc42d
+.c42a	4c 0c c5	jmp $c50c			jmp Lc50c
+.c42d	e8		inx		Lc42d:	inx
+.c42e	e0 03		cpx #$03			cpx #$03
+.c430	d0 e3		bne $c415			bne Lc415
+.c432	ad c9 c0	lda $c0c9			lda data + $c9
+.c435	d0 52		bne $c489			bne Lc489
+.c437	ad ca c0	lda $c0ca			lda data + $ca
+.c43a	0d cb c0	ora $c0cb			ora data + $cb
+.c43d	f0 78		beq $c4b7			beq Lc4b7
+.c43f	ad df c0	lda $c0df			lda data + $df
+.c442	d0 28		bne $c46c			bne Lc46c
+.c444	ad ca c0	lda $c0ca	Lc444:	lda data + $ca
+.c447	f0 28		beq $c471			beq Lc471
+.c449	18		clc				clc
+.c44a	6d bd c0	adc $c0bd			adc data + $bd
+.c44d	b0 07		bcs $c456			bcs Lc456
+.c44f	cd cc c0	cmp $c0cc			cmp data + $cc
+.c452	90 60		bcc $c4b4			bcc Lc4b4
+.c454	f0 5e		beq $c4b4			beq Lc4b4
+.c456	a9 00		lda #$00	Lc456:	lda #$00
+.c458	8d df c0	sta $c0df			sta data + $df
+.c45b	ad cb c0	lda $c0cb			lda data + $cb
+.c45e	f0 54		beq $c4b4			beq Lc4b4
+.c460	ee df c0	inc $c0df			inc data + $df
+.c463	ad bd c0	lda $c0bd			lda data + $bd
+.c466	ed cb c0	sbc $c0cb			sbc data + $cb
+.c469	4c b4 c4	jmp $c4b4			jmp Lc4b4
+.c46c	ad cb c0	lda $c0cb	Lc46c:	lda data + $cb
+.c46f	f0 d3		beq $c444			beq Lc444
+.c471	ad bd c0	lda $c0bd	Lc471:	lda data + $bd
+.c474	38		sec				sec
+.c475	ed cb c0	sbc $c0cb			sbc data + $cb
+.c478	b0 3a		bcs $c4b4			bcs Lc4b4
+.c47a	a9 00		lda #$00			lda #$00
+.c47c	8d df c0	sta $c0df			sta data + $df
+.c47f	ad ca c0	lda $c0ca			lda data + $ca
+.c482	d0 30		bne $c4b4			bne Lc4b4
+.c484	ee df c0	inc $c0df			inc data + $df
+.c487	d0 28		bne $c4b1			bne Lc4b1
+.c489	ce e0 c0	dec $c0e0	Lc489:	dec data + $e0
+.c48c	d0 29		bne $c4b7			bne Lc4b7
+.c48e	ad df c0	lda $c0df			lda data + $df
+.c491	d0 11		bne $c4a4			bne Lc4a4
+.c493	ee df c0	inc $c0df			inc data + $df
+.c496	ad cb c0	lda $c0cb			lda data + $cb
+.c499	d0 02		bne $c49d			bne Lc49d
+.c49b	a9 20		lda #$20			lda #$20
+.c49d	8d e0 c0	sta $c0e0	Lc49d:	sta data + $e0
+.c4a0	a9 00		lda #$00			lda #$00
+.c4a2	f0 10		beq $c4b4			beq Lc4b4
+.c4a4	ce df c0	dec $c0df	Lc4a4:	dec data + $df
+.c4a7	ad ca c0	lda $c0ca			lda data + $ca
+.c4aa	d0 02		bne $c4ae			bne Lc4ae
+.c4ac	a9 20		lda #$20			lda #$20
+.c4ae	8d e0 c0	sta $c0e0	Lc4ae:	sta data + $e0
+.c4b1	ad cc c0	lda $c0cc	Lc4b1:	lda data + $cc
+.c4b4	8d bd c0	sta $c0bd	Lc4b4:	sta data + $bd
+.c4b7	a2 00		ldx #$00	Lc4b7:	ldx #$00
+.c4b9	bd c3 c0	lda $c0c3,x	Lc4b9:	lda data + $c3,x
+.c4bc	f0 44		beq $c502			beq Lc502
+.c4be	a9 00		lda #$00			lda #$00
+.c4c0	85 ff		sta $ff				sta $ff
+.c4c2	bc c0 c0	ldy $c0c0,x			ldy data + $c0,x
+.c4c5	b9 bd c0	lda $c0bd,y			lda data + $bd,y
+.c4c8	bc c6 c0	ldy $c0c6,x			ldy data + $c6,x
+.c4cb	f0 0e		beq $c4db			beq Lc4db
+.c4cd	30 08		bmi $c4d7			bmi Lc4d7
+.c4cf	0a		asl a		Lc4cf:	asl a
+.c4d0	26 ff		rol $ff				rol $ff
+.c4d2	88		dey				dey
+.c4d3	d0 fa		bne $c4cf			bne Lc4cf
+.c4d5	f0 04		beq $c4db			beq Lc4db
+.c4d7	4a		lsr a		Lc4d7:	lsr a
+.c4d8	c8		iny				iny
+.c4d9	d0 fc		bne $c4d7			bne Lc4d7
+.c4db	bc c3 c0	ldy $c0c3,x	Lc4db:	ldy data + $c3,x
+.c4de	88		dey				dey
+.c4df	d0 0b		bne $c4ec			bne Lc4ec
+.c4e1	9d cd c0	sta $c0cd,x			sta data + $cd,x
+.c4e4	a5 ff		lda $ff				lda $ff
+.c4e6	9d d0 c0	sta $c0d0,x			sta data + $d0,x
+.c4e9	4c 02 c5	jmp $c502			jmp Lc502
+.c4ec	88		dey		Lc4ec:	dey
+.c4ed	d0 05		bne $c4f4			bne Lc4fa
+.c4ef	9d d3 c0	sta $c0d3,x			sta data + $d3,x
+.c4f2	a5 ff		lda $ff				lda $ff
+.c4f4	9d d6 c0	sta $c0d6,x	Lc4fa:	sta data + $d6,x
+.c4f7	4c 02 c5	jmp $c502			jmp Lc502
+.c4fa	8d d9 c0	sta $c0d9			sta data + $d9
+.c4fd	a5 ff		lda $ff				lda $ff
+.c4ff	8d dc c0	sta $c0dc			sta data + $dc
+.c502	e8		inx		Lc502:	inx
+.c503	e0 03		cpx #$03			cpx #$03
+.c505	d0 b2		bne $c4b9			bne Lc4b9
+.c507	ad 00 c0	lda $c000			lda data
+.c50a	29 7f		and #$7f			and #$7f
+.c50c	8d 00 c0	sta $c000	Lc50c:	sta data
+.c50f	ad 56 c1	lda $c156			lda data + $156
+.c512	85 fb		sta $fb				sta $fb
+.c514	ad 57 c1	lda $c157			lda data + $157
+.c517	85 fc		sta $fc				sta $fc
+.c519	ad 58 c1	lda $c158			lda data + $158
+.c51c	85 fd		sta $fd				sta $fd
+.c51e	ad 59 c1	lda $c159			lda data + $159
+.c521	85 fe		sta $fe				sta $fe
+.c523	ad 5a c1	lda $c15a			lda data + $15a
+.c526	85 ff		sta $ff				sta $ff
+.c528	6c 5d c1	jmp ($c15d)			jmp (data + $15d)
+.c52b	bd 60 c0	lda $c060,x	Lc52b:	lda data + $60,x
+.c52e	d0 03		bne $c533			bne Lc533
+.c530	4c 9f c6	jmp $c69f			jmp Lc69f
+.c533	4c ba c5	jmp $c5ba	Lc533:	jmp Lc5ba
+.c536	de 30 c0	dec $c030,x	Lc536:	dec data + $30,x
+.c539	d0 03		bne $c53e			bne Lc53e
+.c53b	4c a0 c6	jmp $c6a0			jmp Lc6a0
+.c53e	bd 36 c0	lda $c036,x	Lc53e:	lda data + $36,x
+.c541	30 e8		bmi $c52b			bmi Lc52b
+.c543	d0 1a		bne $c55f			bne Lc55f
+.c545	bd 3f c0	lda $c03f,x			lda data + $3f,x
+.c548	f0 05		beq $c54f			beq Lc54f
+.c54a	de 3f c0	dec $c03f,x			dec data + $3f,x
+.c54d	d0 10		bne $c55f			bne Lc55f
+.c54f	bd 39 c0	lda $c039,x	Lc54f:	lda data + $39,x
+.c552	dd 30 c0	cmp $c030,x			cmp data + $30,x
+.c555	90 08		bcc $c55f			bcc Lc55f
+.c557	bd 1a c0	lda $c01a,x			lda data + $1a,x
+.c55a	29 fe		and #$fe			and #$fe
+.c55c	9d 1a c0	sta $c01a,x			sta data + $1a,x
+.c55f	bd 42 c0	lda $c042,x	Lc55f:	lda data + $42,x
+.c562	f0 56		beq $c5ba			beq Lc5ba
+.c564	0a		asl a				asl a
+.c565	bd 0e c0	lda $c00e,x			lda data + $0e,x
+.c568	b0 1d		bcs $c587			bcs Lc587
+.c56a	7d 45 c0	adc $c045,x			adc data + $45,x
+.c56d	9d 0e c0	sta $c00e,x			sta data + $0e,x
+.c570	a8		tay				tay
+.c571	bd 11 c0	lda $c011,x			lda data + $11,x
+.c574	7d 48 c0	adc $c048,x			adc data + $48,x
+.c577	9d 11 c0	sta $c011,x			sta data + $11,x
+.c57a	48		pha				pha
+.c57b	98		tya				tya
+.c57c	dd 8d c0	cmp $c08d,x			cmp data + $8d,x
+.c57f	68		pla				pla
+.c580	fd 90 c0	sbc $c090,x			sbc data + $90,x
+.c583	b0 1f		bcs $c5a4			bcs Lc5a4
+.c585	90 2e		bcc $c5b5			bcc Lc5b5
+.c587	fd 45 c0	sbc $c045,x	Lc587:	sbc data + $45,x
+.c58a	9d 0e c0	sta $c00e,x			sta data + $0e,x
+.c58d	bd 11 c0	lda $c011,x			lda data + $11,x
+.c590	fd 48 c0	sbc $c048,x			sbc data + $48,x
+.c593	9d 11 c0	sta $c011,x			sta data + $11,x
+.c596	bd 8d c0	lda $c08d,x			lda data + $8d,x
+.c599	dd 0e c0	cmp $c00e,x			cmp data + $0e,x
+.c59c	bd 90 c0	lda $c090,x			lda data + $90,x
+.c59f	fd 11 c0	sbc $c011,x			sbc data + $11,x
+.c5a2	90 11		bcc $c5b5			bcc Lc5b5
+.c5a4	bd 8d c0	lda $c08d,x	Lc5a4:	lda data + $8d,x
+.c5a7	9d 0e c0	sta $c00e,x			sta data + $0e,x
+.c5aa	bd 90 c0	lda $c090,x			lda data + $90,x
+.c5ad	9d 11 c0	sta $c011,x			sta data + $11,x
+.c5b0	a9 00		lda #$00			lda #$00
+.c5b2	9d 42 c0	sta $c042,x			sta data + $42,x
+.c5b5	bd 60 c0	lda $c060,x	Lc5b5:	lda data + $60,x
+.c5b8	f0 55		beq $c60f			beq Lc60f
+.c5ba	bd 4b c0	lda $c04b,x	Lc5ba:	lda data + $4b,x
+.c5bd	f0 4b		beq $c60a			beq Lc60a
+.c5bf	a0 00		ldy #$00			ldy #$00
+.c5c1	de 4e c0	dec $c04e,x			dec data + $4e,x
+.c5c4	d0 31		bne $c5f7			bne Lc5f7
+.c5c6	bd 51 c0	lda $c051,x			lda data + $51,x
+.c5c9	1d 54 c0	ora $c054,x			ora data + $54,x
+.c5cc	d0 1b		bne $c5e9			bne Lc5e9
+.c5ce	bd 5d c0	lda $c05d,x			lda data + $5d,x
+.c5d1	9d 57 c0	sta $c057,x			sta data + $57,x
+.c5d4	9d 4e c0	sta $c04e,x			sta data + $4e,x
+.c5d7	bd 4b c0	lda $c04b,x			lda data + $4b,x
+.c5da	0a		asl a				asl a
+.c5db	bd 5a c0	lda $c05a,x			lda data + $5a,x
+.c5de	90 04		bcc $c5e4			bcc Lc5e4
+.c5e0	49 ff		eor #$ff			eor #$ff
+.c5e2	69 00		adc #$00			adc #$00
+.c5e4	9d 4b c0	sta $c04b,x	Lc5e4:	sta data + $4b,x
+.c5e7	d0 10		bne $c5f9			bne Lc5f9
+.c5e9	bd 57 c0	lda $c057,x	Lc5e9:	lda data + $57,x
+.c5ec	9d 4e c0	sta $c04e,x			sta data + $4e,x
+.c5ef	98		tya				tya
+.c5f0	38		sec				sec
+.c5f1	fd 4b c0	sbc $c04b,x			sbc data + $4b,x
+.c5f4	9d 4b c0	sta $c04b,x			sta data + $4b,x
+.c5f7	c9 00		cmp #$00	Lc5f7:	cmp #$00
+.c5f9	10 01		bpl $c5fc	Lc5f9:	bpl Lc5fc
+.c5fb	88		dey				dey
+.c5fc	18		clc		Lc5fc:	clc
+.c5fd	7d 51 c0	adc $c051,x			adc data + $51,x
+.c600	9d 51 c0	sta $c051,x			sta data + $51,x
+.c603	98		tya				tya
+.c604	7d 54 c0	adc $c054,x			adc data + $54,x
+.c607	9d 54 c0	sta $c054,x			sta data + $54,x
+.c60a	bd 36 c0	lda $c036,x	Lc60a:	lda data + $36,x
+.c60d	30 15		bmi $c624			bmi Lc624
+.c60f	bd 93 c0	lda $c093,x	Lc60f:	lda data + $93,x
+.c612	f0 10		beq $c624			beq Lc624
+.c614	18		clc				clc
+.c615	7d 14 c0	adc $c014,x			adc data + $14,x
+.c618	9d 14 c0	sta $c014,x			sta data + $14,x
+.c61b	bd 96 c0	lda $c096,x			lda data + $96,x
+.c61e	7d 17 c0	adc $c017,x			adc data + $17,x
+.c621	9d 17 c0	sta $c017,x			sta data + $17,x
+.c624	bd 63 c0	lda $c063,x	Lc624:	lda data + $63,x
+.c627	f0 4b		beq $c674			beq Lc674
+.c629	a0 00		ldy #$00			ldy #$00
+.c62b	de 66 c0	dec $c066,x			dec data + $66,x
+.c62e	d0 31		bne $c661			bne Lc661
+.c630	bd 69 c0	lda $c069,x			lda data + $69,x
+.c633	1d 6c c0	ora $c06c,x			ora data + $6c,x
+.c636	d0 1b		bne $c653			bne Lc653
+.c638	bd 72 c0	lda $c072,x			lda data + $72,x
+.c63b	9d 6f c0	sta $c06f,x			sta data + $6f,x
+.c63e	9d 66 c0	sta $c066,x			sta data + $66,x
+.c641	bd 63 c0	lda $c063,x			lda data + $63,x
+.c644	0a		asl a				asl a
+.c645	bd 75 c0	lda $c075,x			lda data + $75,x
+.c648	90 04		bcc $c64e			bcc Lc64e
+.c64a	49 ff		eor #$ff			eor #$ff
+.c64c	69 00		adc #$00			adc #$00
+.c64e	9d 63 c0	sta $c063,x	Lc64e:	sta data + $63,x
+.c651	d0 10		bne $c663			bne Lc663
+.c653	bd 6f c0	lda $c06f,x	Lc653:	lda data + $6f,x
+.c656	9d 66 c0	sta $c066,x			sta data + $66,x
+.c659	98		tya				tya
+.c65a	38		sec				sec
+.c65b	fd 63 c0	sbc $c063,x			sbc data + $63,x
+.c65e	9d 63 c0	sta $c063,x			sta data + $63,x
+.c661	c9 00		cmp #$00	Lc661:	cmp #$00
+.c663	10 01		bpl $c666	Lc663:	bpl Lc666
+.c665	88		dey				dey
+.c666	18		clc		Lc666:	clc
+.c667	7d 69 c0	adc $c069,x			adc data + $69,x
+.c66a	9d 69 c0	sta $c069,x			sta data + $69,x
+.c66d	98		tya				tya
+.c66e	7d 6c c0	adc $c06c,x			adc data + $6c,x
+.c671	9d 6c c0	sta $c06c,x			sta data + $6c,x
+.c674	bd 36 c0	lda $c036,x	Lc674:	lda data + $36,x
+.c677	10 03		bpl $c67c			bpl Lc67c
+.c679	4c 9f c6	jmp $c69f			jmp Lc69f
+.c67c	a0 00		ldy #$00	Lc67c:	ldy #$00
+.c67e	bd a2 c0	lda $c0a2,x			lda data + $a2,x
+.c681	f0 1c		beq $c69f			beq Lc69f
+.c683	10 01		bpl $c686			bpl Lc686
+.c685	c8		iny				iny
+.c686	18		clc		Lc686:	clc
+.c687	6d 23 c0	adc $c023			adc data + $23
+.c68a	48		pha				pha
+.c68b	29 07		and #$07			and #$07
+.c68d	8d 23 c0	sta $c023			sta data + $23
+.c690	68		pla				pla
+.c691	6a		ror a				ror a
+.c692	4a		lsr a				lsr a
+.c693	4a		lsr a				lsr a
+.c694	18		clc				clc
+.c695	79 a6 c1	adc $c1a6,y			adc data + $1a6,y
+.c698	18		clc				clc
+.c699	6d 24 c0	adc $c024			adc data + $24
+.c69c	8d 24 c0	sta $c024			sta data + $24
+.c69f	60		rts		Lc69f:	rts
+.c6a0	bd a8 c0	lda $c0a8,x	Lc6a0:	lda data + $a8,x
+.c6a3	85 fd		sta $fd				sta $fd
+.c6a5	bd ab c0	lda $c0ab,x			lda data + $ab,x
+.c6a8	85 fe		sta $fe				sta $fe
+.c6aa	d0 04		bne $c6b0			bne Lc6b0
+.c6ac	60		rts		Lc6ac:	rts
+.c6ad	20 98 c8	jsr $c898	Lc6ad:	jsr Lc898
+.c6b0	ad 00 c0	lda $c000	Lc6b0:	lda data
+.c6b3	3d 62 c1	and $c162,x			and data + $162,x
+.c6b6	f0 f4		beq $c6ac			beq Lc6ac
+.c6b8	a0 00		ldy #$00			ldy #$00
+.c6ba	b1 fd		lda ($fd),y			lda ($fd),y
+.c6bc	85 ff		sta $ff				sta $ff
+.c6be	c8		iny				iny
+.c6bf	b1 fd		lda ($fd),y			lda ($fd),y
+.c6c1	a8		tay				tay
+.c6c2	a5 fd		lda $fd				lda $fd
+.c6c4	18		clc				clc
+.c6c5	69 02		adc #$02			adc #$02
+.c6c7	85 fd		sta $fd				sta $fd
+.c6c9	9d a8 c0	sta $c0a8,x			sta data + $a8,x
+.c6cc	a5 fe		lda $fe				lda $fe
+.c6ce	69 00		adc #$00			adc #$00
+.c6d0	85 fe		sta $fe				sta $fe
+.c6d2	9d ab c0	sta $c0ab,x			sta data + $ab,x
+.c6d5	a5 ff		lda $ff				lda $ff
+.c6d7	29 03		and #$03			and #$03
+.c6d9	d0 d2		bne $c6ad			bne Lc6ad
+.c6db	bd 8d c0	lda $c08d,x			lda data + $8d,x
+.c6de	9d 0e c0	sta $c00e,x			sta data + $0e,x
+.c6e1	bd 90 c0	lda $c090,x			lda data + $90,x
+.c6e4	9d 11 c0	sta $c011,x			sta data + $11,x
+.c6e7	a5 ff		lda $ff				lda $ff
+.c6e9	9d 05 c0	sta $c005,x			sta data + $05,x
+.c6ec	98		tya				tya
+.c6ed	9d 02 c0	sta $c002,x			sta data + $02,x
+.c6f0	29 07		and #$07			and #$07
+.c6f2	a8		tay				tay
+.c6f3	b9 67 c1	lda $c167,y			lda data + $167,y
+.c6f6	8d 6f c1	sta $c16f			sta data + $16f
+.c6f9	bd 02 c0	lda $c002,x			lda data + $02,x
+.c6fc	29 38		and #$38			and #$38
+.c6fe	4a		lsr a				lsr a
+.c6ff	4a		lsr a				lsr a
+.c700	4a		lsr a				lsr a
+.c701	7d 81 c0	adc $c081,x			adc data + $81,x
+.c704	85 fd		sta $fd				sta $fd
+.c706	bd 02 c0	lda $c002,x			lda data + $02,x
+.c709	29 c0		and #$c0			and #$c0
+.c70b	0a		asl a				asl a
+.c70c	2a		rol a				rol a
+.c70d	2a		rol a				rol a
+.c70e	a8		tay				tay
+.c70f	b9 6f c1	lda $c16f,y			lda data + $16f,y
+.c712	85 fe		sta $fe				sta $fe
+.c714	bd 02 c0	lda $c002,x			lda data + $02,x
+.c717	29 07		and #$07			and #$07
+.c719	f0 62		beq $c77d			beq Lc77d
+.c71b	a8		tay				tay
+.c71c	b9 72 c1	lda $c172,y			lda data + $172,y
+.c71f	65 fe		adc $fe				adc $fe
+.c721	18		clc				clc
+.c722	7d 84 c0	adc $c084,x			adc data + $84,x
+.c725	10 05		bpl $c72c			bpl Lc72c
+.c727	18		clc				clc
+.c728	69 0c		adc #$0c			adc #$0c
+.c72a	e6 fd		inc $fd				inc $fd
+.c72c	c9 0c		cmp #$0c	Lc72c:	cmp #$0c
+.c72e	90 04		bcc $c734			bcc Lc734
+.c730	e9 0c		sbc #$0c			sbc #$0c
+.c732	c6 fd		dec $fd				dec $fd
+.c734	85 fe		sta $fe		Lc734:	sta $fe
+.c736	a8		tay				tay
+.c737	b9 86 c1	lda $c186,y			lda data + $186,y
+.c73a	85 ff		sta $ff				sta $ff
+.c73c	b9 7a c1	lda $c17a,y			lda data + $17a,y
+.c73f	a4 fd		ldy $fd				ldy $fd
+.c741	88		dey				dey
+.c742	30 06		bmi $c74a			bmi Lc74a
+.c744	46 ff		lsr $ff		Lc744:	lsr $ff
+.c746	6a		ror a				ror a
+.c747	88		dey				dey
+.c748	10 fa		bpl $c744			bpl Lc744
+.c74a	18		clc		Lc74a:	clc
+.c74b	7d 87 c0	adc $c087,x			adc data + $87,x
+.c74e	9d 8d c0	sta $c08d,x			sta data + $8d,x
+.c751	a5 ff		lda $ff				lda $ff
+.c753	7d 8a c0	adc $c08a,x			adc data + $8a,x
+.c756	9d 90 c0	sta $c090,x			sta data + $90,x
+.c759	bd 05 c0	lda $c005,x			lda data + $05,x
+.c75c	d0 03		bne $c761			bne Lc761
+.c75e	4c a0 c6	jmp $c6a0			jmp Lc6a0
+.c761	bd 45 c0	lda $c045,x	Lc761:	lda data + $45,x
+.c764	1d 48 c0	ora $c048,x			ora data + $48,x
+.c767	f0 16		beq $c77f			beq Lc77f
+.c769	bd 0e c0	lda $c00e,x			lda data + $0e,x
+.c76c	dd 8d c0	cmp $c08d,x			cmp data + $8d,x
+.c76f	bd 11 c0	lda $c011,x			lda data + $11,x
+.c772	fd 90 c0	sbc $c090,x			sbc data + $90,x
+.c775	a9 fe		lda #$fe			lda #$fe
+.c777	6a		ror a				ror a
+.c778	9d 42 c0	sta $c042,x			sta data + $42,x
+.c77b	90 11		bcc $c78e			bcc Lc78e
+.c77d	f0 4a		beq $c7c9	Lc77d:	beq Lc7c9
+.c77f	9d 42 c0	sta $c042,x	Lc77f:	sta data + $42,x
+.c782	bd 8d c0	lda $c08d,x			lda data + $8d,x
+.c785	9d 0e c0	sta $c00e,x			sta data + $0e,x
+.c788	bd 90 c0	lda $c090,x			lda data + $90,x
+.c78b	9d 11 c0	sta $c011,x			sta data + $11,x
+.c78e	bd 36 c0	lda $c036,x	Lc78e:	lda data + $36,x
+.c791	0a		asl a				asl a
+.c792	d0 35		bne $c7c9			bne Lc7c9
+.c794	bd 93 c0	lda $c093,x			lda data + $93,x
+.c797	f0 0c		beq $c7a5			beq Lc7a5
+.c799	bd 99 c0	lda $c099,x			lda data + $99,x
+.c79c	9d 14 c0	sta $c014,x			sta data + $14,x
+.c79f	bd 9c c0	lda $c09c,x			lda data + $9c,x
+.c7a2	9d 17 c0	sta $c017,x			sta data + $17,x
+.c7a5	bd 9f c0	lda $c09f,x	Lc7a5:	lda data + $9f,x
+.c7a8	f0 0f		beq $c7b9			beq Lc7b9
+.c7aa	a4 fd		ldy $fd				ldy $fd
+.c7ac	18		clc				clc
+.c7ad	79 92 c1	adc $c192,y			adc data + $192,y
+.c7b0	a4 fe		ldy $fe				ldy $fe
+.c7b2	18		clc				clc
+.c7b3	79 9a c1	adc $c19a,y			adc data + $19a,y
+.c7b6	18		clc				clc
+.c7b7	90 08		bcc $c7c1			bcc Lc7c1
+.c7b9	bd a2 c0	lda $c0a2,x	Lc7b9:	lda data + $a2,x
+.c7bc	f0 0b		beq $c7c9			beq Lc7c9
+.c7be	bd a5 c0	lda $c0a5,x			lda data + $a5,x
+.c7c1	8d 24 c0	sta $c024	Lc7c1:	sta data + $24
+.c7c4	a9 00		lda #$00			lda #$00
+.c7c6	8d 23 c0	sta $c023			sta data + $23
+.c7c9	bd 3c c0	lda $c03c,x	Lc7c9:	lda data + $3c,x
+.c7cc	9d 3f c0	sta $c03f,x			sta data + $3f,x
+.c7cf	bd 05 c0	lda $c005,x			lda data + $05,x
+.c7d2	29 40		and #$40			and #$40
+.c7d4	9d 36 c0	sta $c036,x			sta data + $36,x
+.c7d7	bd 05 c0	lda $c005,x			lda data + $05,x
+.c7da	4a		lsr a				lsr a
+.c7db	4a		lsr a				lsr a
+.c7dc	29 07		and #$07			and #$07
+.c7de	d0 30		bne $c810			bne Lc810
+.c7e0	bd 05 c0	lda $c005,x			lda data + $05,x
+.c7e3	30 14		bmi $c7f9			bmi Lc7f9
+.c7e5	ad 27 c0	lda $c027			lda data + $27
+.c7e8	29 3c		and #$3c			and #$3c
+.c7ea	d0 1e		bne $c80a			bne Lc80a
+.c7ec	ad 27 c0	lda $c027			lda data + $27
+.c7ef	0a		asl a				asl a
+.c7f0	2a		rol a				rol a
+.c7f1	2a		rol a				rol a
+.c7f2	d0 02		bne $c7f6			bne Lc7f6
+.c7f4	a9 04		lda #$04			lda #$04
+.c7f6	4c 70 c8	jmp $c870	Lc7f6:	jmp Lc870
+.c7f9	ad 28 c0	lda $c028	Lc7f9:	lda data + $28
+.c7fc	f0 0c		beq $c80a			beq Lc80a
+.c7fe	29 3f		and #$3f			and #$3f
+.c800	d0 08		bne $c80a			bne Lc80a
+.c802	ad 28 c0	lda $c028			lda data + $28
+.c805	0a		asl a				asl a
+.c806	2a		rol a				rol a
+.c807	2a		rol a				rol a
+.c808	d0 66		bne $c870			bne Lc870
+.c80a	a9 10		lda #$10	Lc80a:	lda #$10
+.c80c	8d 00 c0	sta $c000			sta data
+.c80f	60		rts				rts
+.c810	c9 01		cmp #$01	Lc810:	cmp #$01
+.c812	d0 13		bne $c827			bne Lc827
+.c814	bd 05 c0	lda $c005,x			lda data + $05,x
+.c817	29 20		and #$20			and #$20
+.c819	d0 06		bne $c821			bne Lc821
+.c81b	ad 29 c0	lda $c029			lda data + $29
+.c81e	4c 70 c8	jmp $c870			jmp Lc870
+.c821	bd 2a c0	lda $c02a,x	Lc821:	lda data + $2a,x
+.c824	4c 70 c8	jmp $c870			jmp Lc870
+.c827	a8		tay		Lc827:	tay
+.c828	bd 05 c0	lda $c005,x			lda data + $05,x
+.c82b	29 a0		and #$a0			and #$a0
+.c82d	c9 80		cmp #$80			cmp #$80
+.c82f	f0 30		beq $c861			beq Lc861
+.c831	85 ff		sta $ff				sta $ff
+.c833	18		clc				clc
+.c834	ad 27 c0	lda $c027			lda data + $27
+.c837	d0 01		bne $c83a			bne Lc83a
+.c839	38		sec				sec
+.c83a	88		dey		Lc83a:	dey
+.c83b	88		dey				dey
+.c83c	f0 06		beq $c844			beq Lc844
+.c83e	6a		ror a		Lc83e:	ror a
+.c83f	b0 4e		bcs $c88f			bcs Lc88f
+.c841	88		dey				dey
+.c842	d0 fa		bne $c83e			bne Lc83e
+.c844	a4 ff		ldy $ff		Lc844:	ldy $ff
+.c846	85 ff		sta $ff				sta $ff
+.c848	f0 26		beq $c870			beq Lc870
+.c84a	46 ff		lsr $ff				lsr $ff
+.c84c	b0 41		bcs $c88f			bcs Lc88f
+.c84e	f0 42		beq $c892			beq Lc892
+.c850	65 ff		adc $ff				adc $ff
+.c852	b0 3e		bcs $c892			bcs Lc892
+.c854	c8		iny				iny
+.c855	10 19		bpl $c870			bpl Lc870
+.c857	46 ff		lsr $ff				lsr $ff
+.c859	b0 34		bcs $c88f			bcs Lc88f
+.c85b	65 ff		adc $ff				adc $ff
+.c85d	90 11		bcc $c870			bcc Lc870
+.c85f	b0 31		bcs $c892			bcs Lc892
+.c861	ad 28 c0	lda $c028	Lc861:	lda data + $28
+.c864	f0 29		beq $c88f			beq Lc88f
+.c866	88		dey				dey
+.c867	88		dey				dey
+.c868	f0 06		beq $c870			beq Lc870
+.c86a	4a		lsr a		Lc86a:	lsr a
+.c86b	b0 22		bcs $c88f			bcs Lc88f
+.c86d	88		dey				dey
+.c86e	d0 fa		bne $c86a			bne Lc86a
+.c870	9d 30 c0	sta $c030,x	Lc870:	sta data + $30,x
+.c873	bd 1a c0	lda $c01a,x			lda data + $1a,x
+.c876	29 f6		and #$f6			and #$f6
+.c878	9d 1a c0	sta $c01a,x			sta data + $1a,x
+.c87b	38		sec				sec
+.c87c	bd 02 c0	lda $c002,x			lda data + $02,x
+.c87f	29 07		and #$07			and #$07
+.c881	d0 03		bne $c886			bne Lc886
+.c883	7e 36 c0	ror $c036,x			ror data + $36,x
+.c886	bd 1a c0	lda $c01a,x	Lc886:	lda data + $1a,x
+.c889	69 00		adc #$00			adc #$00
+.c88b	9d 1a c0	sta $c01a,x			sta data + $1a,x
+.c88e	60		rts				rts
+.c88f	a9 10		lda #$10	Lc88f:	lda #$10
+>c891	2c						.byte $2C
+.c892	a9 18		lda #$18	Lc892:	lda #$18
+.c894	8d 00 c0	sta $c000			sta data
+.c897	60		rts				rts
+.c898	98		tya		Lc898:	tya
+.c899	48		pha				pha
+.c89a	a5 ff		lda $ff				lda $ff
+.c89c	4a		lsr a				lsr a
+.c89d	90 03		bcc $c8a2			bcc Lc8a2
+.c89f	4c 42 ca	jmp $ca42			jmp Lca42
+.c8a2	4a		lsr a		Lc8a2:	lsr a
+.c8a3	4a		lsr a				lsr a
+.c8a4	b0 1e		bcs $c8c4			bcs Lc8c4
+.c8a6	4a		lsr a				lsr a
+.c8a7	b0 0e		bcs $c8b7			bcs Lc8b7
+.c8a9	9d 9c c0	sta $c09c,x			sta data + $9c,x
+.c8ac	9d 17 c0	sta $c017,x			sta data + $17,x
+.c8af	68		pla				pla
+.c8b0	9d 99 c0	sta $c099,x			sta data + $99,x
+.c8b3	9d 14 c0	sta $c014,x			sta data + $14,x
+.c8b6	60		rts				rts
+.c8b7	4a		lsr a		Lc8b7:	lsr a
+.c8b8	90 02		bcc $c8bc			bcc Lc8bc
+.c8ba	09 f8		ora #$f8			ora #$f8
+.c8bc	9d 8a c0	sta $c08a,x	Lc8bc:	sta data + $8a,x
+.c8bf	68		pla				pla
+.c8c0	9d 87 c0	sta $c087,x			sta data + $87,x
+.c8c3	60		rts				rts
+.c8c4	4a		lsr a		Lc8c4:	lsr a
+.c8c5	b0 03		bcs $c8ca			bcs Lc8ca
+.c8c7	4c 4a c9	jmp $c94a			jmp Lc94a
+.c8ca	4a		lsr a		Lc8ca:	lsr a
+.c8cb	b0 61		bcs $c92e			bcs Lc92e
+.c8cd	4a		lsr a				lsr a
+.c8ce	b0 0f		bcs $c8df			bcs Lc8df
+.c8d0	d0 08		bne $c8da			bne Lc8da
+.c8d2	68		pla				pla
+.c8d3	9d a5 c0	sta $c0a5,x			sta data + $a5,x
+.c8d6	8d 24 c0	sta $c024			sta data + $24
+.c8d9	60		rts				rts
+.c8da	68		pla		Lc8da:	pla
+.c8db	9d 3c c0	sta $c03c,x			sta data + $3c,x
+.c8de	60		rts				rts
+.c8df	d0 48		bne $c929	Lc8df:	bne Lc929
+.c8e1	68		pla				pla
+.c8e2	9d 7e c0	sta $c07e,x			sta data + $7e,x
+.c8e5	c9 5b		cmp #$5b			cmp #$5b
+.c8e7	f0 33		beq $c91c			beq Lc91c
+.c8e9	a8		tay				tay
+.c8ea	4a		lsr a				lsr a
+.c8eb	4a		lsr a				lsr a
+.c8ec	4a		lsr a				lsr a
+.c8ed	38		sec				sec
+.c8ee	e9 0b		sbc #$0b			sbc #$0b
+.c8f0	18		clc				clc
+.c8f1	7d 84 c0	adc $c084,x			adc data + $84,x
+.c8f4	30 0c		bmi $c902			bmi Lc902
+.c8f6	c9 0c		cmp #$0c			cmp #$0c
+.c8f8	90 11		bcc $c90b			bcc Lc90b
+.c8fa	e9 0c		sbc #$0c			sbc #$0c
+.c8fc	de 81 c0	dec $c081,x			dec data + $81,x
+.c8ff	4c 0b c9	jmp $c90b			jmp Lc90b
+.c902	c9 f5		cmp #$f5	Lc902:	cmp #$f5
+.c904	b0 05		bcs $c90b			bcs Lc90b
+.c906	69 0c		adc #$0c			adc #$0c
+.c908	fe 81 c0	inc $c081,x			inc data + $81,x
+.c90b	9d 84 c0	sta $c084,x	Lc90b:	sta data + $84,x
+.c90e	98		tya				tya
+.c90f	29 07		and #$07			and #$07
+.c911	38		sec				sec
+.c912	e9 03		sbc #$03			sbc #$03
+.c914	18		clc				clc
+.c915	7d 81 c0	adc $c081,x			adc data + $81,x
+.c918	9d 81 c0	sta $c081,x			sta data + $81,x
+.c91b	60		rts				rts
+.c91c	bd 78 c0	lda $c078,x	Lc91c:	lda data + $78,x
+.c91f	9d 81 c0	sta $c081,x			sta data + $81,x
+.c922	bd 7b c0	lda $c07b,x			lda data + $7b,x
+.c925	9d 84 c0	sta $c084,x			sta data + $84,x
+.c928	60		rts				rts
+.c929	68		pla		Lc929:	pla
+.c92a	9d c6 c0	sta $c0c6,x			sta data + $c6,x
+.c92d	60		rts				rts
+.c92e	4a		lsr a		Lc92e:	lsr a
+.c92f	b0 08		bcs $c939			bcs Lc939
+.c931	9d 0b c0	sta $c00b,x			sta data + $0b,x
+.c934	68		pla				pla
+.c935	9d 08 c0	sta $c008,x			sta data + $08,x
+.c938	60		rts				rts
+.c939	4a		lsr a		Lc939:	lsr a
+.c93a	6a		ror a				ror a
+.c93b	6a		ror a				ror a
+.c93c	6d 5b c1	adc $c15b			adc data + $15b
+.c93f	8d 2d c0	sta $c02d			sta data + $2d
+.c942	68		pla				pla
+.c943	6d 5c c1	adc $c15c			adc data + $15c
+.c946	8d 2e c0	sta $c02e			sta data + $2e
+.c949	60		rts				rts
+.c94a	4a		lsr a		Lc94a:	lsr a
+.c94b	90 03		bcc $c950			bcc Lc950
+.c94d	4c d3 c9	jmp $c9d3			jmp Lc9d3
+.c950	4a		lsr a		Lc950:	lsr a
+.c951	b0 40		bcs $c993			bcs Lc993
+.c953	4a		lsr a				lsr a
+.c954	b0 17		bcs $c96d			bcs Lc96d
+.c956	4a		lsr a				lsr a
+.c957	b0 0f		bcs $c968			bcs Lc968
+.c959	68		pla				pla
+.c95a	8d 27 c0	sta $c027			sta data + $27
+.c95d	4a		lsr a				lsr a
+.c95e	4a		lsr a				lsr a
+.c95f	4a		lsr a				lsr a
+.c960	a8		tay				tay
+.c961	b9 af c1	lda $c1af,y			lda data + $1af,y
+.c964	8d 28 c0	sta $c028			sta data + $28
+.c967	60		rts				rts
+.c968					Lc968:
+.c968	68		pla				pla
+.c969	9d 5d c0	sta $c05d,x			sta data + $5d,x
+.c96c	60		rts				rts
+.c96d					Lc96d:
+.c96d	4a		lsr a				lsr a
+.c96e	b0 05		bcs $c975			bcs Lc975
+.c970	68		pla				pla
+.c971	8d 01 c0	sta $c001			sta data + $01
+.c974	60		rts				rts
+.c975	68		pla		Lc975:	pla
+.c976	f0 11		beq $c989			beq Lc989
+.c978	9d 75 c0	sta $c075,x			sta data + $75,x
+.c97b	bc 63 c0	ldy $c063,x			ldy data + $63,x
+.c97e	d0 08		bne $c988			bne Lc988
+.c980	9d 63 c0	sta $c063,x			sta data + $63,x
+.c983	a9 01		lda #$01			lda #$01
+.c985	9d 66 c0	sta $c066,x			sta data + $66,x
+.c988	60		rts		Lc988:	rts
+.c989	9d 63 c0	sta $c063,x	Lc989:	sta data + $63,x
+.c98c	9d 69 c0	sta $c069,x			sta data + $69,x
+.c98f	9d 6c c0	sta $c06c,x			sta data + $6c,x
+.c992	60		rts				rts
+.c993	4a		lsr a		Lc993:	lsr a
+.c994	b0 30		bcs $c9c6			bcs Lc9c6
+.c996	4a		lsr a				lsr a
+.c997	b0 05		bcs $c99e			bcs Lc99e
+.c999	68		pla				pla
+.c99a	9d 39 c0	sta $c039,x			sta data + $39,x
+.c99d	60		rts				rts
+.c99e	68		pla		Lc99e:	pla
+.c99f	a0 00		ldy #$00			ldy #$00
+.c9a1	4a		lsr a				lsr a
+.c9a2	90 02		bcc $c9a6			bcc Lc9a6
+.c9a4	c8		iny				iny
+.c9a5	18		clc				clc
+.c9a6	48		pha		Lc9a6:	pha
+.c9a7	29 07		and #$07			and #$07
+.c9a9	79 ac c1	adc $c1ac,y			adc data + $1ac,y
+.c9ac	9d 78 c0	sta $c078,x			sta data + $78,x
+.c9af	9d 81 c0	sta $c081,x			sta data + $81,x
+.c9b2	68		pla				pla
+.c9b3	4a		lsr a				lsr a
+.c9b4	4a		lsr a				lsr a
+.c9b5	4a		lsr a				lsr a
+.c9b6	18		clc				clc
+.c9b7	79 ad c1	adc $c1ad,y			adc data + $1ad,y
+.c9ba	9d 7b c0	sta $c07b,x			sta data + $7b,x
+.c9bd	9d 84 c0	sta $c084,x			sta data + $84,x
+.c9c0	a9 5b		lda #$5b			lda #$5b
+.c9c2	9d 7e c0	sta $c07e,x			sta data + $7e,x
+.c9c5	60		rts				rts
+.c9c6	4a		lsr a		Lc9c6:	lsr a
+.c9c7	b0 05		bcs $c9ce			bcs Lc9ce
+.c9c9	68		pla				pla
+.c9ca	9d a2 c0	sta $c0a2,x			sta data + $a2,x
+.c9cd	60		rts				rts
+.c9ce	68		pla		Lc9ce:	pla
+.c9cf	8d cc c0	sta $c0cc			sta data + $cc
+.c9d2	60		rts				rts
+.c9d3	4a		lsr a		Lc9d3:	lsr a
+.c9d4	b0 27		bcs $c9fd			bcs Lc9fd
+.c9d6	4a		lsr a				lsr a
+.c9d7	b0 0d		bcs $c9e6			bcs Lc9e6
+.c9d9	4a		lsr a				lsr a
+.c9da	b0 05		bcs $c9e1			bcs Lc9e1
+.c9dc	68		pla				pla
+.c9dd	8d 29 c0	sta $c029			sta data + $29
+.c9e0	60		rts				rts
+.c9e1	68		pla		Lc9e1:	pla
+.c9e2	9d 9f c0	sta $c09f,x			sta data + $9f,x
+.c9e5	60		rts				rts
+.c9e6	4a		lsr a		Lc9e6:	lsr a
+.c9e7	b0 0f		bcs $c9f8			bcs Lc9f8
+.c9e9	68		pla				pla
+.c9ea	9d 93 c0	sta $c093,x			sta data + $93,x
+.c9ed	a0 00		ldy #$00			ldy #$00
+.c9ef	0a		asl a				asl a
+.c9f0	90 01		bcc $c9f3			bcc Lc9f3
+.c9f2	88		dey				dey
+.c9f3	98		tya		Lc9f3:	tya
+.c9f4	9d 96 c0	sta $c096,x			sta data + $96,x
+.c9f7	60		rts				rts
+.c9f8	68		pla		Lc9f8:	pla
+.c9f9	9d 72 c0	sta $c072,x			sta data + $72,x
+.c9fc	60		rts				rts
+.c9fd	4a		lsr a		Lc9fd:	lsr a
+.c9fe	b0 1c		bcs $ca1c			bcs Lca1c
+.ca00	4a		lsr a				lsr a
+.ca01	b0 15		bcs $ca18			bcs Lca18
+.ca03	68		pla				pla
+.ca04	9d b7 c0	sta $c0b7,x			sta data + $b7,x
+.ca07	a5 fd		lda $fd				lda $fd
+.ca09	9d b1 c0	sta $c0b1,x			sta data + $b1,x
+.ca0c	a5 fe		lda $fe				lda $fe
+.ca0e	9d b4 c0	sta $c0b4,x			sta data + $b4,x
+.ca11	bd 33 c0	lda $c033,x			lda data + $33,x
+.ca14	9d ae c0	sta $c0ae,x			sta data + $ae,x
+.ca17	60		rts				rts
+.ca18	68		pla		Lca18:	pla
+.ca19	6c 5f c1	jmp ($c15f)			jmp (data + $15f)
+.ca1c	4a		lsr a		Lca1c:	lsr a
+.ca1d	b0 1e		bcs $ca3d			bcs Lca3d
+.ca1f	68		pla				pla
+.ca20	d0 0a		bne $ca2c			bne Lca2c
+.ca22	9d 4b c0	sta $c04b,x			sta data + $4b,x
+.ca25	9d 51 c0	sta $c051,x			sta data + $51,x
+.ca28	9d 54 c0	sta $c054,x			sta data + $54,x
+.ca2b	60		rts				rts
+.ca2c	9d 5a c0	sta $c05a,x	Lca2c:	sta data + $5a,x
+.ca2f	bc 4b c0	ldy $c04b,x			ldy data + $4b,x
+.ca32	d0 08		bne $ca3c			bne Lca3c
+.ca34	9d 4b c0	sta $c04b,x			sta data + $4b,x
+.ca37	a9 01		lda #$01			lda #$01
+.ca39	9d 4e c0	sta $c04e,x			sta data + $4e,x
+.ca3c	60		rts		Lca3c:	rts
+.ca3d	68		pla		Lca3d:	pla
+.ca3e	9d 2a c0	sta $c02a,x			sta data + $2a,x
+.ca41	60		rts				rts
+.ca42	4a		lsr a		Lca42:	lsr a
+.ca43	90 08		bcc $ca4d			bcc Lca4d
+.ca45	9d 48 c0	sta $c048,x			sta data + $48,x
+.ca48	68		pla				pla
+.ca49	9d 45 c0	sta $c045,x			sta data + $45,x
+.ca4c	60		rts				rts
+.ca4d	68		pla		Lca4d:	pla
+.ca4e	4a		lsr a				lsr a
+.ca4f	b0 61		bcs $cab2			bcs Lcab2
+.ca51	4a		lsr a				lsr a
+.ca52	b0 25		bcs $ca79			bcs Lca79
+.ca54	4a		lsr a				lsr a
+.ca55	b0 05		bcs $ca5c			bcs Lca5c
+.ca57	4a		lsr a				lsr a
+.ca58	a0 f0		ldy #$f0			ldy #$f0
+.ca5a	d0 06		bne $ca62			bne Lca62
+.ca5c	0a		asl a		Lca5c:	asl a
+.ca5d	0a		asl a				asl a
+.ca5e	0a		asl a				asl a
+.ca5f	0a		asl a				asl a
+.ca60	a0 0f		ldy #$0f			ldy #$0f
+.ca62	85 ff		sta $ff		Lca62:	sta $ff
+.ca64	98		tya				tya
+.ca65	b0 09		bcs $ca70			bcs Lca70
+.ca67	3d 1d c0	and $c01d,x			and data + $1d,x
+.ca6a	05 ff		ora $ff				ora $ff
+.ca6c	9d 1d c0	sta $c01d,x			sta data + $1d,x
+.ca6f	60		rts				rts
+.ca70	3d 20 c0	and $c020,x	Lca70:	and data + $20,x
+.ca73	05 ff		ora $ff				ora $ff
+.ca75	9d 20 c0	sta $c020,x			sta data + $20,x
+.ca78	60		rts				rts
+.ca79	4a		lsr a		Lca79:	lsr a
+.ca7a	b0 38		bcs $cab4			bcs Lcab4
+.ca7c	4a		lsr a				lsr a
+.ca7d	b0 64		bcs $cae3			bcs Lcae3
+.ca7f	85 ff		sta $ff		Lca7f:	sta $ff
+.ca81	bd ba c0	lda $c0ba,x			lda data + $ba,x
+.ca84	dd a9 c0	cmp $c0a9,x			cmp data + $a9,x
+.ca87	f0 54		beq $cadd			beq Lcadd
+.ca89	fe ba c0	inc $c0ba,x			inc data + $ba,x
+.ca8c	a8		tay				tay
+.ca8d	a5 fd		lda $fd				lda $fd
+.ca8f	99 e1 c0	sta $c0e1,y			sta data + $e1,y
+.ca92	a5 fe		lda $fe				lda $fe
+.ca94	99 f0 c0	sta $c0f0,y			sta data + $f0,y
+.ca97	bd 33 c0	lda $c033,x			lda data + $33,x
+.ca9a	99 2f c1	sta $c12f,y			sta data + $12f,y
+.ca9d	a4 ff		ldy $ff				ldy $ff
+.ca9f	b9 17 c1	lda $c117,y			lda data + $117,y
+.caa2	f0 36		beq $cada			beq Lcada
+.caa4	85 fe		sta $fe				sta $fe
+.caa6	b9 ff c0	lda $c0ff,y			lda data + $ff,y
+.caa9	85 fd		sta $fd				sta $fd
+.caab	b9 3e c1	lda $c13e,y			lda data + $13e,y
+.caae	9d 33 c0	sta $c033,x			sta data + $33,x
+.cab1	60		rts				rts
+.cab2	b0 4b		bcs $caff	Lcab2:	bcs Lcaff
+.cab4	4a		lsr a		Lcab4:	lsr a
+.cab5	b0 3c		bcs $caf3			bcs Lcaf3
+.cab7	a8		tay		Lcab7:	tay
+.cab8	a5 fd		lda $fd				lda $fd
+.caba	99 ff c0	sta $c0ff,y			sta data + $ff,y
+.cabd	a5 fe		lda $fe				lda $fe
+.cabf	99 17 c1	sta $c117,y			sta data + $117,y
+.cac2	bd 33 c0	lda $c033,x			lda data + $33,x
+.cac5	99 3e c1	sta $c13e,y			sta data + $13e,y
+.cac8	bd ba c0	lda $c0ba,x			lda data + $ba,x
+.cacb	dd a9 c1	cmp $c1a9,x			cmp data + $1a9,x
+.cace	f0 0d		beq $cadd			beq Lcadd
+.cad0	fe ba c0	inc $c0ba,x			inc data + $ba,x
+.cad3	a8		tay				tay
+.cad4	a9 00		lda #$00			lda #$00
+.cad6	99 f0 c0	sta $c0f0,y			sta data + $f0,y
+.cad9	60		rts				rts
+.cada	a9 30		lda #$30	Lcada:	lda #$30
+>cadc	2c						.byte $2C
+.cadd	a9 28		lda #$28	Lcadd:	lda #$28
+.cadf	8d 00 c0	sta $c000			sta data
+.cae2	60		rts				rts
+.cae3	0a		asl a		Lcae3:	asl a
+.cae4	0a		asl a				asl a
+.cae5	0a		asl a				asl a
+.cae6	0a		asl a				asl a
+.cae7	4d 25 c0	eor $c025			eor data + $25
+.caea	29 f0		and #$f0			and #$f0
+.caec	4d 25 c0	eor $c025			eor data + $25
+.caef	8d 25 c0	sta $c025			sta data + $25
+.caf2	60		rts				rts
+.caf3	4d 26 c0	eor $c026	Lcaf3:	eor data + $26
+.caf6	29 0f		and #$0f			and #$0f
+.caf8	4d 26 c0	eor $c026			eor data + $26
+.cafb	8d 26 c0	sta $c026			sta data + $26
+.cafe	60		rts				rts
+.caff	4a		lsr a		Lcaff:	lsr a
+.cb00	b0 0b		bcs $cb0d			bcs Lcb0d
+.cb02	4a		lsr a				lsr a
+.cb03	b0 04		bcs $cb09			bcs Lcb09
+.cb05	8d ca c0	sta $c0ca			sta data + $ca
+.cb08	60		rts				rts
+.cb09	8d cb c0	sta $c0cb	Lcb09:	sta data + $cb
+.cb0c	60		rts				rts
+.cb0d					Lcb0d:
+.cb0d	4a		lsr a				lsr a
+.cb0e	90 03		bcc $cb13			bcc Lcb13
+.cb10	4c a5 cb	jmp $cba5			jmp Lcba5
+.cb13	4a		lsr a		Lcb13:	lsr a
+.cb14	a8		tay				tay
+.cb15	f0 21		beq $cb38			beq Lcb38
+.cb17	88		dey				dey
+.cb18	f0 34		beq $cb4e			beq Lcb4e
+.cb1a	88		dey				dey
+.cb1b	f0 42		beq $cb5f			beq Lcb5f
+.cb1d	88		dey				dey
+.cb1e	f0 4a		beq $cb6a			beq Lcb6a
+.cb20	88		dey				dey
+.cb21	f0 52		beq $cb75			beq Lcb75
+.cb23	88		dey				dey
+.cb24	f0 5c		beq $cb82			beq Lcb82
+.cb26	88		dey				dey
+.cb27	f0 66		beq $cb8f			beq Lcb8f
+.cb29	88		dey				dey
+.cb2a	f0 73		beq $cb9f			beq Lcb9f
+.cb2c	29 07		and #$07			and #$07
+.cb2e	09 10		ora #$10			ora #$10
+.cb30	b0 03		bcs $cb35			bcs Lcb35
+.cb32	4c b7 ca	jmp $cab7			jmp Lcab7
+.cb35	4c 7f ca	jmp $ca7f	Lcb35:	jmp Lca7f
+.cb38	ac 26 c0	ldy $c026	Lcb38:	ldy data + $26
+.cb3b	b0 07		bcs $cb44			bcs Lcb44
+.cb3d	c8		iny				iny
+.cb3e	98		tya				tya
+.cb3f	29 0f		and #$0f			and #$0f
+.cb41	d0 07		bne $cb4a			bne Lcb4a
+.cb43	60		rts				rts
+.cb44	98		tya		Lcb44:	tya
+.cb45	29 0f		and #$0f			and #$0f
+.cb47	f0 04		beq $cb4d			beq Lcb4d
+.cb49	88		dey				dey
+.cb4a	8c 26 c0	sty $c026	Lcb4a:	sty data + $26
+.cb4d	60		rts		Lcb4d:	rts
+.cb4e	bd 62 c1	lda $c162,x	Lcb4e:	lda data + $162,x
+.cb51	49 ff		eor #$ff			eor #$ff
+.cb53	2d 25 c0	and $c025			and data + $25
+.cb56	90 03		bcc $cb5b			bcc Lcb5b
+.cb58	1d 62 c1	ora $c162,x			ora data + $162,x
+.cb5b	8d 25 c0	sta $c025	Lcb5b:	sta data + $25
+.cb5e	60		rts				rts
+.cb5f	bd 1a c0	lda $c01a,x	Lcb5f:	lda data + $1a,x
+.cb62	29 fb		and #$fb			and #$fb
+.cb64	90 55		bcc $cbbb			bcc Lcbbb
+.cb66	09 04		ora #$04			ora #$04
+.cb68	b0 51		bcs $cbbb			bcs Lcbbb
+.cb6a	bd 1a c0	lda $c01a,x	Lcb6a:	lda data + $1a,x
+.cb6d	29 fd		and #$fd			and #$fd
+.cb6f	90 4a		bcc $cbbb			bcc Lcbbb
+.cb71	09 02		ora #$02			ora #$02
+.cb73	b0 46		bcs $cbbb			bcs Lcbbb
+.cb75	ad 25 c0	lda $c025	Lcb75:	lda data + $25
+.cb78	29 f7		and #$f7			and #$f7
+.cb7a	90 02		bcc $cb7e			bcc Lcb7e
+.cb7c	09 08		ora #$08			ora #$08
+.cb7e	8d 25 c0	sta $c025	Lcb7e:	sta data + $25
+.cb81	60		rts				rts
+.cb82	ad 26 c0	lda $c026	Lcb82:	lda data + $26
+.cb85	29 7f		and #$7f			and #$7f
+.cb87	90 02		bcc $cb8b			bcc Lcb8b
+.cb89	09 80		ora #$80			ora #$80
+.cb8b	8d 26 c0	sta $c026	Lcb8b:	sta data + $26
+.cb8e	60		rts				rts
+.cb8f	98		tya		Lcb8f:	tya
+.cb90	8d bd c0	sta $c0bd			sta data + $bd
+.cb93	8d df c0	sta $c0df			sta data + $df
+.cb96	c8		iny				iny
+.cb97	8c e0 c0	sty $c0e0			sty data + $e0
+.cb9a	2a		rol a				rol a
+.cb9b	8d c9 c0	sta $c0c9			sta data + $c9
+.cb9e	60		rts				rts
+.cb9f	98		tya		Lcb9f:	tya
+.cba0	2a		rol a				rol a
+.cba1	9d 60 c0	sta $c060,x			sta data + $60,x
+.cba4	60		rts				rts
+.cba5	4a		lsr a		Lcba5:	lsr a
+.cba6	b0 27		bcs $cbcf			bcs Lcbcf
+.cba8	4a		lsr a				lsr a
+.cba9	b0 14		bcs $cbbf			bcs Lcbbf
+.cbab	d0 02		bne $cbaf			bne Lcbaf
+.cbad	a9 08		lda #$08			lda #$08
+.cbaf	0a		asl a		Lcbaf:	asl a
+.cbb0	0a		asl a				asl a
+.cbb1	0a		asl a				asl a
+.cbb2	0a		asl a				asl a
+.cbb3	5d 1a c0	eor $c01a,x			eor data + $1a,x
+.cbb6	29 f0		and #$f0			and #$f0
+.cbb8	5d 1a c0	eor $c01a,x			eor data + $1a,x
+.cbbb	9d 1a c0	sta $c01a,x	Lcbbb:	sta data + $1a,x
+.cbbe	60		rts				rts
+.cbbf	0a		asl a		Lcbbf:	asl a
+.cbc0	0a		asl a				asl a
+.cbc1	0a		asl a				asl a
+.cbc2	0a		asl a				asl a
+.cbc3	4d 26 c0	eor $c026			eor data + $26
+.cbc6	29 70		and #$70			and #$70
+.cbc8	4d 26 c0	eor $c026			eor data + $26
+.cbcb	8d 26 c0	sta $c026			sta data + $26
+.cbce	60		rts				rts
+.cbcf	4a		lsr a		Lcbcf:	lsr a
+.cbd0	90 04		bcc $cbd6			bcc Lcbd6
+.cbd2	9d c0 c0	sta $c0c0,x			sta data + $c0,x
+.cbd5	60		rts				rts
+.cbd6	a8		tay		Lcbd6:	tay
+.cbd7	f0 20		beq $cbf9			beq Lcbf9
+.cbd9	88		dey				dey
+.cbda	f0 40		beq $cc1c			beq Lcc1c
+.cbdc	88		dey				dey
+.cbdd	f0 63		beq $cc42			beq Lcc42
+.cbdf	29 03		and #$03			and #$03
+.cbe1	9d c3 c0	sta $c0c3,x			sta data + $c3,x
+.cbe4	a9 00		lda #$00			lda #$00
+.cbe6	9d cd c0	sta $c0cd,x			sta data + $cd,x
+.cbe9	9d d0 c0	sta $c0d0,x			sta data + $d0,x
+.cbec	9d d3 c0	sta $c0d3,x			sta data + $d3,x
+.cbef	9d d6 c0	sta $c0d6,x			sta data + $d6,x
+.cbf2	8d d9 c0	sta $c0d9			sta data + $d9
+.cbf5	8d dc c0	sta $c0dc			sta data + $dc
+.cbf8	60		rts				rts
+.cbf9	bd b7 c0	lda $c0b7,x	Lcbf9:	lda data + $b7,x
+.cbfc	f0 05		beq $cc03			beq Lcc03
+.cbfe	de b7 c0	dec $c0b7,x			dec data + $b7,x
+.cc01	f0 12		beq $cc15			beq Lcc15
+.cc03	bd 33 c0	lda $c033,x	Lcc03:	lda data + $33,x
+.cc06	dd ae c0	cmp $c0ae,x			cmp data + $ae,x
+.cc09	d0 0b		bne $cc16			bne Lcc16
+.cc0b	bd b1 c0	lda $c0b1,x			lda data + $b1,x
+.cc0e	85 fd		sta $fd				sta $fd
+.cc10	bd b4 c0	lda $c0b4,x			lda data + $b4,x
+.cc13	85 fe		sta $fe				sta $fe
+.cc15	60		rts		Lcc15:	rts
+.cc16	a9 38		lda #$38	Lcc16:	lda #$38
+.cc18	8d 00 c0	sta $c000			sta data
+.cc1b	60		rts				rts
+.cc1c	bd ba c0	lda $c0ba,x	Lcc1c:	lda data + $ba,x
+.cc1f	dd a8 c1	cmp $c1a8,x			cmp data + $1a8,x
+.cc22	f0 18		beq $cc3c			beq Lcc3c
+.cc24	de ba c0	dec $c0ba,x			dec data + $ba,x
+.cc27	a8		tay				tay
+.cc28	88		dey				dey
+.cc29	b9 f0 c0	lda $c0f0,y			lda data + $f0,y
+.cc2c	f0 0d		beq $cc3b			beq Lcc3b
+.cc2e	85 fe		sta $fe				sta $fe
+.cc30	b9 e1 c0	lda $c0e1,y			lda data + $e1,y
+.cc33	85 fd		sta $fd				sta $fd
+.cc35	b9 2f c1	lda $c12f,y			lda data + $12f,y
+.cc38	9d 33 c0	sta $c033,x			sta data + $33,x
+.cc3b	60		rts		Lcc3b:	rts
+.cc3c	a9 20		lda #$20	Lcc3c:	lda #$20
+.cc3e	8d 00 c0	sta $c000			sta data
+.cc41	60		rts				rts
+.cc42	ad 00 c0	lda $c000	Lcc42:	lda data
+.cc45	5d 62 c1	eor $c162,x			eor data + $162,x
+.cc48	8d 00 c0	sta $c000			sta data
+.cc4b	a9 01		lda #$01			lda #$01
+.cc4d	9d 30 c0	sta $c030,x			sta data + $30,x
+.cc50	60		rts				rts
+.cc51					init:
+.cc51	a9 00		lda #$00			lda #$00
+.cc53	8d 20 d0	sta $d020			sta VICII_BASE + $20
+.cc56	8d 21 d0	sta $d021			sta VICII_BASE + $21
+.cc59	a0 00		ldy #$00			ldy #$00
+.cc5b	b9 f2 cc	lda $ccf2,y	loop0:	lda inittxt,y
+.cc5e	c9 00		cmp #$00			cmp #$00
+.cc60	f0 07		beq $cc69			beq printtitle
+.cc62	20 d2 ff	jsr $ffd2			jsr CHROUT
+.cc65	c8		iny				iny
+.cc66	4c 5b cc	jmp $cc5b			jmp loop0
+.cc69					printtitle:
+.cc69	a0 00		ldy #$00			ldy #$00
+.cc6b	b9 52 cd	lda $cd52,y	loop5:	lda filename,y
+.cc6e	c9 00		cmp #$00			cmp #$00
+.cc70	f0 07		beq $cc79			beq printendtxt
+.cc72	20 d2 ff	jsr $ffd2			jsr CHROUT
+.cc75	c8		iny				iny
+.cc76	4c 6b cc	jmp $cc6b			jmp loop5
+.cc79					printendtxt:
+.cc79	a0 00		ldy #$00			ldy #$00
+.cc7b	b9 4f cd	lda $cd4f,y	loop6:	lda endtxt,y
+.cc7e	c9 00		cmp #$00			cmp #$00
+.cc80	f0 07		beq $cc89			beq playsong
+.cc82	20 d2 ff	jsr $ffd2			jsr CHROUT
+.cc85	c8		iny				iny
+.cc86	4c 7b cc	jmp $cc7b			jmp loop6
+.cc89					playsong:
+.cc89	20 cf c1	jsr $c1cf			jsr hook
+.cc8c	a9 01		lda #$01			lda #$01
+.cc8e	a2 08		ldx #$08			ldx #$08
+.cc90	a0 00		ldy #$00			ldy #$00
+.cc92	20 ba ff	jsr $ffba			jsr SETLFS
+.cc95	a0 00		ldy #$00			ldy #$00
+.cc97	b9 52 cd	lda $cd52,y	loop1:	lda filename,y
+.cc9a	c9 00		cmp #$00			cmp #$00
+.cc9c	f0 04		beq $cca2			beq done1
+.cc9e	c8		iny				iny
+.cc9f	4c 97 cc	jmp $cc97			jmp loop1
+.cca2					done1:
+.cca2	98		tya				tya				; filename length
+.cca3	a2 52		ldx #$52			ldx #<filename
+.cca5	a0 cd		ldy #$cd			ldy #>filename
+.cca7	20 bd ff	jsr $ffbd			jsr SETNAM		; SETNAM
+.ccaa	a9 00		lda #$00			lda #$00
+.ccac	a2 5e		ldx #$5e			ldx #$5e
+.ccae	a0 10		ldy #$10			ldy #$10
+.ccb0	20 d5 ff	jsr $ffd5			jsr LOAD		; LOAD
+.ccb3	a9 01		lda #$01			lda #$01
+.ccb5	20 c3 ff	jsr $ffc3			jsr CLOSE
+.ccb8	a2 5e		ldx #$5e			ldx #$5e
+.ccba	a0 10		ldy #$10			ldy #$10
+.ccbc	20 00 c2	jsr $c200			jsr set		; Setup routine
+.ccbf					disptxt:
+.ccbf	86 fb		stx $fb				stx $fb
+.ccc1	84 fc		sty $fc				sty $fc
+.ccc3	a0 00		ldy #$00			ldy #$00
+.ccc5	a9 0d		lda #$0d			lda #$0d
+.ccc7	20 d2 ff	jsr $ffd2			jsr CHROUT
+.ccca	b1 fb		lda ($fb),y	loop4	lda ($fb),y
+.cccc	c9 00		cmp #$00			cmp #$00
+.ccce	f0 07		beq $ccd7			beq startplaying
+.ccd0	20 d2 ff	jsr $ffd2			jsr CHROUT
+.ccd3	c8		iny				iny
+.ccd4	4c ca cc	jmp $ccca			jmp loop4
+.ccd7					startplaying:
+.ccd7	a9 07		lda #$07			lda #$07
+.ccd9	8d 00 c0	sta $c000			sta data
+.ccdc	20 e1 ff	jsr $ffe1	loop2:	jsr STOP
+.ccdf	d0 fb		bne $ccdc			bne loop2
+.cce1	a9 00		lda #$00			lda #$00
+.cce3	8d 00 c0	sta $c000			sta data		; silence the voices
+.cce6	20 e9 c2	jsr $c2e9			jsr stopplaying
+.cce9	20 0f c3	jsr $c30f			jsr restore
+.ccec	a9 05		lda #$05	quit:	lda #$05
+.ccee	20 d2 ff	jsr $ffd2			jsr CHROUT
+.ccf1	60		rts				rts
+.ccf2					inittxt:
+>ccf2	93						.byte $93
+>ccf3	05 20 20 2a 2a 2a 20 54				.text $05, "  *** the ultimate c-64 mus player ***", $0D
+>ccfb	48 45 20 55 4c 54 49 4d 41 54 45 20 43 2d 36 34
+>cd0b	20 4d 55 53 20 50 4c 41 59 45 52 20 2a 2a 2a 0d
+>cd1b	c3 c3 c3 c3 c3 c3 c3 c3				.fill 40, $C3
+>cd23	c3 c3 c3 c3 c3 c3 c3 c3 c3 c3 c3 c3 c3 c3 c3 c3
+>cd33	c3 c3 c3 c3 c3 c3 c3 c3 c3 c3 c3 c3 c3 c3 c3 c3
+>cd43	0d						.byte $0D
+>cd44	9e 54 49 54 4c 45 20 3a				.text $9E, "title :",$9B, " ", $00
+>cd4c	9b 20 00
+.cd4f					endtxt:
+>cd4f	0d 90						.byte $0D, $90
+>cd51	00						.byte $00
+.cd52					filename:
+>cd52	53 54 52 41 49 47 48 54				.text "straightup.mus"
+>cd5a	55 50 2e 4d 55 53
+>cd60	00						.byte 0
+
+;******  End of listing
