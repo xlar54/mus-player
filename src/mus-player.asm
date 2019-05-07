@@ -1,9 +1,12 @@
+;==============================================================
 ; COMPUTE SID PLAYER - CRAIG CHAMBERLAIN
 ;
 ; Reconstrcuted for U64 by Scott Hutter - 4/17/2019
 ;
 ; load"this file",8,1
-; sys 52305
+; sys 49152
+;==============================================================
+
 FAC1		= $61
 IRQVECT 	= $0314
 SID_BASE	= $D400
@@ -15,42 +18,117 @@ SETNAM		= $FFBD
 LOAD		= $FFD5
 CLOSE		= $FFC3
 STOP		= $FFE1
+path		= $02A7	; (72 char length)
+;filename 	= $02EF ; 02ef - 02ff (15 chars + 0)
+musicdata	= $105E
 
 *=$c000
-data:
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c00f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c01f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c02f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c03f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c04f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c05f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c06f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c07f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c08f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c09f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c0af
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c0bf
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c0cf
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c0df
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c0ef
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c0ff
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c10f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c11f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c12f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c13f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 ; c14f
-.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $61 ; c15f
-.byte $c1, $60, $01, $02, $04, $00, $07, $0e, $02, $02, $fe, $02, $02, $fe, $fe, $00 ; c16f
-.byte $01, $00, $ff, $00, $02, $04, $05, $07, $09, $0b, $1e, $18, $8b, $7e, $fa, $06 ; c17f
-.byte $ac, $f3, $e6, $8f, $f8, $2e, $86, $8e, $96, $9f, $a8, $b3, $bd, $c8, $d4, $e1 ; c18f
-.byte $ee, $fd, $8c, $78, $64, $50, $3c, $28, $14, $00, $00, $02, $03, $05, $07, $08 ; c19f
-.byte $0a, $0c, $0d, $0f, $11, $12, $00, $e0, $00, $05, $0a, $0f, $f9, $00, $f5, $00 ; c1af
-.byte $00, $00, $10, $00, $00, $20, $00, $00, $30, $00, $00, $40, $00, $00, $50, $00 ; c1bf
-.byte $00, $60, $00, $00, $70, $00, $00, $80, $00, $00, $90, $00, $00				 ; c1cc
-
-; $c1cd
+; init interface
+init:
+		lda #$00
+		sta VICII_BASE + $20
+		sta VICII_BASE + $21
+		
+		; print screen
 		ldy #$00
-Lc1cf:
+loop0:	lda inittxt,y
+		cmp #$00
+		beq printtitle
+		jsr CHROUT
+		iny
+		jmp loop0
+		
+printtitle:
+		ldy #$00
+loop5:	lda filename,y
+		cmp #$00
+		beq printendtxt
+		jsr CHROUT
+		iny
+		jmp loop5
+		
+printendtxt:
+		ldy #$00
+loop6:	lda endtxt,y
+		cmp #$00
+		beq playsong
+		jsr CHROUT
+		iny
+		jmp loop6
+		
+playsong:
+		; create irq handler
+		jsr hook		
+
+;.comment
+		; set logical file params  (OPEN 1,8,0)
+		lda #$01
+		ldx #$08
+		ldy #$00
+		jsr SETLFS	
+		
+		; get filename length
+		ldy #$00
+loop1:	lda filename,y
+		cmp #$00
+		beq done1
+		iny
+		jmp loop1
+done1:
+		tya				; filename length
+		ldx #<filename
+		ldy #>filename
+		jsr SETNAM		; SETNAM
+
+		; load into RAM
+		lda #$00
+		ldx #<musicdata
+		ldy #>musicdata
+		jsr LOAD		; LOAD
+
+		; close the file
+		lda #$01
+		jsr CLOSE
+;.endc
+
+
+; prepare to play
+		ldx #$5e
+		ldy #$10
+		jsr set		; Setup routine
+
+		; display file text
+disptxt:
+		stx $fb
+		sty $fc
+		ldy #$00
+		lda #$0d
+		jsr CHROUT
+loop4	lda ($fb),y
+		cmp #$00
+		beq startplaying
+		jsr CHROUT
+		iny
+		jmp loop4
+
+		; start playing
+startplaying:
+		lda #$07
+		sta data
+		
+		; quit if stop key is pressed
+loop2:	jsr STOP
+		bne loop2
+		lda #$00
+		sta data		; silence the voices
+		jsr stopplaying
+		jsr restore
+quit:	lda #$05
+		jsr CHROUT
+		rts
+
+
+		ldy #$00
 hook:	lda #$00
 		sta data
 		ldx #$95
@@ -66,9 +144,9 @@ Lc1e1:	stx data + $15b
 		lda IRQVECT+1
 		sta data + $15e
 		sei 
-		lda #$26
+		lda #<newirq				; set up new IRQVECT
 		sta IRQVECT
-		lda #$c3
+		lda #>newirq
 		sta IRQVECT+1
 		cli 
 		rts
@@ -214,7 +292,9 @@ restore:
 Lc31e:	lda #$08
 		sta data
 cback:	jmp (data + $15d)
-Lc326:	lda CIA1_BASE + $0d		; new interrupt
+
+newirq:
+		lda CIA1_BASE + $0d		; new interrupt
 		lda data
 		bmi Lc31e
 		ora #$80
@@ -1384,109 +1464,6 @@ Lcc42:	lda data
 		sta data + $30,x
 		rts 
 
-; init interface
-init:
-		lda #$00
-		sta VICII_BASE + $20
-		sta VICII_BASE + $21
-		
-		; print screen
-		ldy #$00
-loop0:	lda inittxt,y
-		cmp #$00
-		beq printtitle
-		jsr CHROUT
-		iny
-		jmp loop0
-		
-printtitle:
-		ldy #$00
-loop5:	lda filename,y
-		cmp #$00
-		beq printendtxt
-		jsr CHROUT
-		iny
-		jmp loop5
-		
-printendtxt:
-		ldy #$00
-loop6:	lda endtxt,y
-		cmp #$00
-		beq playsong
-		jsr CHROUT
-		iny
-		jmp loop6
-		
-; ===========================================================================
-; Main interface routines
-; ===========================================================================
-playsong:
-		; create irq handler
-		jsr hook		
-
-		; set logical file params  (OPEN 1,8,0)
-		lda #$01
-		ldx #$08
-		ldy #$00
-		jsr SETLFS	
-		
-		; get filename length
-		ldy #$00
-loop1:	lda filename,y
-		cmp #$00
-		beq done1
-		iny
-		jmp loop1
-done1:
-		tya				; filename length
-		ldx #<filename
-		ldy #>filename
-		jsr SETNAM		; SETNAM
-
-		; load into RAM
-		lda #$00
-		ldx #$5e
-		ldy #$10
-		jsr LOAD		; LOAD
-
-		; close the file
-		lda #$01
-		jsr CLOSE
-
-		; prepare to play
-		ldx #$5e
-		ldy #$10
-		jsr set		; Setup routine
-
-		; display file text
-disptxt:
-		stx $fb
-		sty $fc
-		ldy #$00
-		lda #$0d
-		jsr CHROUT
-loop4	lda ($fb),y
-		cmp #$00
-		beq startplaying
-		jsr CHROUT
-		iny
-		jmp loop4
-
-		; start playing
-startplaying:
-		lda #$07
-		sta data
-		
-		; quit if stop key is pressed
-loop2:	jsr STOP
-		bne loop2
-		lda #$00
-		sta data		; silence the voices
-		jsr stopplaying
-		jsr restore
-quit:	lda #$05
-		jsr CHROUT
-		rts
 
 inittxt:
 		.byte $93
@@ -1500,5 +1477,36 @@ endtxt:
 		.byte $00
 
 filename:
-		.text "straightup.mus"
+		.text "footloose.mus"
 		.byte 0
+
+data:
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $61
+.byte $c1, $60, $01, $02, $04, $00, $07, $0e, $02, $02, $fe, $02, $02, $fe, $fe, $00
+.byte $01, $00, $ff, $00, $02, $04, $05, $07, $09, $0b, $1e, $18, $8b, $7e, $fa, $06
+.byte $ac, $f3, $e6, $8f, $f8, $2e, $86, $8e, $96, $9f, $a8, $b3, $bd, $c8, $d4, $e1
+.byte $ee, $fd, $8c, $78, $64, $50, $3c, $28, $14, $00, $00, $02, $03, $05, $07, $08
+.byte $0a, $0c, $0d, $0f, $11, $12, $00, $e0, $00, $05, $0a, $0f, $f9, $00, $f5, $00
+.byte $00, $00, $10, $00, $00, $20, $00, $00, $30, $00, $00, $40, $00, $00, $50, $00
+.byte $00, $60, $00, $00, $70, $00, $00, $80, $00, $00, $90, $00, $00
