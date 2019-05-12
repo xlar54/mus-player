@@ -18,11 +18,19 @@ SETNAM		= $FFBD
 LOAD		= $FFD5
 CLOSE		= $FFC3
 STOP		= $FFE1
-path		= $02A7	; (72 char length)
-;filename 	= $02EF ; 02ef - 02ff (15 chars + 0)
-musicdata	= $105E
+musicdata	= $4100
+usedos		= 1
 
-*=$c000
+.if usedos == 0
+filename 	= $4000
+.fi
+
+
+* = $0801                               ; BASIC start address (#2049) 
+.byte $0d,$08,$dc,$07,$9e,$20           ; 2049 SYS
+;.byte $34,$39,$31,$35,$32,$00,$00,$00   ; 49152
+.byte $32,$30,$36,$32,$00,$00,$00		; 2062
+
 ; init interface
 init:
 		lda #$00
@@ -60,7 +68,7 @@ playsong:
 		; create irq handler
 		jsr hook		
 
-;.comment
+.if usedos == 1
 		; set logical file params  (OPEN 1,8,0)
 		lda #$01
 		ldx #$08
@@ -89,12 +97,12 @@ done1:
 		; close the file
 		lda #$01
 		jsr CLOSE
-;.endc
+.fi
 
 
 ; prepare to play
-		ldx #$5e
-		ldy #$10
+		ldx #<musicdata
+		ldy #>musicdata
 		jsr set		; Setup routine
 
 		; display file text
@@ -1467,7 +1475,7 @@ Lcc42:	lda data
 
 inittxt:
 		.byte $93
-		.text $05, "  *** the ultimate c-64 mus player ***", $0D
+		.text $05, $14, "  *** the ultimate c-64 mus player ***", $0D
 		.fill 40, $C3
 		.byte $0D
 		.text $9E, "title :",$9B, " ", $00
@@ -1476,9 +1484,11 @@ endtxt:
 		.byte $0D, $90
 		.byte $00
 
+.if usedos == 1
 filename:
 		.text "footloose.mus"
 		.byte 0
+.fi
 
 data:
 .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00 
