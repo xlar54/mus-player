@@ -1,6 +1,6 @@
 # Ultimate MUS Player
-Compute!'s Sidplayer for U64
+Compute!'s Sidplayer ML code
 
-mus player for u64 / uii+, work in progress
+".mus" player for C64.  Intended as a U64 plug in the future
 
-SYS49152 to run player
+will NOT currently work with stereo files.
