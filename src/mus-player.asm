@@ -3,8 +3,7 @@
 ;
 ; Reconstrcuted for U64 by Scott Hutter - 4/17/2019
 ;
-; load"this file",8,1
-; sys 49152
+; load"this file",8
 ;==============================================================
 
 FAC1		= $61
