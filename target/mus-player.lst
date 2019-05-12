@@ -1,7 +1,7 @@
 
 ; 64tass Turbo Assembler Macro V1.53.1515 listing file
 ; 64tass -a -l ./target/mus-player.lbl -L ./target/mus-player.lst -o ./target/mus-player ./src/mus-player.asm
-; Sun May 12 08:02:27 2019
+; Sun May 12 08:34:39 2019
 
 ;Offset	;Hex		;Monitor	;Source
 
@@ -89,11 +89,11 @@
 .0891	4c 87 08	jmp $0887			jmp loop4
 .0894					startplaying:
 .0894	a9 07		lda #$07			lda #$07
-.0896	8d 9f 13	sta $139f			sta data
+.0896	8d a5 13	sta $13a5			sta data
 .0899	20 e1 ff	jsr $ffe1	loop2:	jsr STOP
 .089c	d0 fb		bne $0899			bne loop2
 .089e	a9 00		lda #$00			lda #$00
-.08a0	8d 9f 13	sta $139f			sta data		; silence the voices
+.08a0	8d a5 13	sta $13a5			sta data		; silence the voices
 .08a3	20 cb 09	jsr $09cb			jsr stopplaying
 .08a6	20 f1 09	jsr $09f1			jsr restore
 .08a9	a9 05		lda #$05	quit:	lda #$05
@@ -101,19 +101,19 @@
 .08ae	60		rts				rts
 .08af	a0 00		ldy #$00			ldy #$00
 .08b1	a9 00		lda #$00	hook:	lda #$00
-.08b3	8d 9f 13	sta $139f			sta data
+.08b3	8d a5 13	sta $13a5			sta data
 .08b6	a2 95		ldx #$95			ldx #$95
 .08b8	a0 42		ldy #$42			ldy #$42
 .08ba	ad a6 02	lda $02a6			lda $02a6
 .08bd	f0 04		beq $08c3			beq Lc1e1
 .08bf	a2 25		ldx #$25			ldx #$25
 .08c1	a0 40		ldy #$40			ldy #$40
-.08c3	8e fa 14	stx $14fa	Lc1e1:	stx data + $15b
-.08c6	8c fb 14	sty $14fb			sty data + $15c
+.08c3	8e 00 15	stx $1500	Lc1e1:	stx data + $15b
+.08c6	8c 01 15	sty $1501			sty data + $15c
 .08c9	ad 14 03	lda $0314			lda IRQVECT
-.08cc	8d fc 14	sta $14fc			sta data + $15d
+.08cc	8d 02 15	sta $1502			sta data + $15d
 .08cf	ad 15 03	lda $0315			lda IRQVECT+1
-.08d2	8d fd 14	sta $14fd			sta data + $15e
+.08d2	8d 03 15	sta $1503			sta data + $15e
 .08d5	78		sei				sei
 .08d6	a9 08		lda #$08			lda #<newirq				; set up new IRQVECT
 .08d8	8d 14 03	sta $0314			sta IRQVECT
@@ -123,54 +123,54 @@
 .08e1	60		rts				rts
 .08e2					Lc200:
 .08e2	a9 00		lda #$00	set:	lda #$00
-.08e4	8d 9f 13	sta $139f			sta data
+.08e4	8d a5 13	sta $13a5			sta data
 .08e7	86 61		stx $61				stx FAC1
 .08e9	84 62		sty $62				sty FAC1 + 1
 .08eb	a0 bc		ldy #$bc			ldy #$bc
-.08ed	99 9f 13	sta $139f,y	Lc20b:	sta data,y
+.08ed	99 a5 13	sta $13a5,y	Lc20b:	sta data,y
 .08f0	88		dey				dey
 .08f1	d0 fa		bne $08ed			bne Lc20b
 .08f3	a0 72		ldy #$72			ldy #$72
-.08f5	99 5b 14	sta $145b,y	Lc213:	sta data + $bc,y
+.08f5	99 61 14	sta $1461,y	Lc213:	sta data + $bc,y
 .08f8	88		dey				dey
 .08f9	d0 fa		bne $08f5			bne Lc213
 .08fb	8d 15 d4	sta $d415			sta SID_BASE + $15
 .08fe	8d 16 d4	sta $d416			sta SID_BASE + $16
 .0901	a9 08		lda #$08			lda #$08
-.0903	8d c4 13	sta $13c4			sta data + $25
+.0903	8d ca 13	sta $13ca			sta data + $25
 .0906	8d 17 d4	sta $d417			sta SID_BASE + $17
-.0909	8d c5 13	sta $13c5			sta data + $26
+.0909	8d cb 13	sta $13cb			sta data + $26
 .090c	8d 18 d4	sta $d418			sta SID_BASE + $18
 .090f	a9 90		lda #$90			lda #$90
-.0911	8d c6 13	sta $13c6			sta data + $27
+.0911	8d cc 13	sta $13cc			sta data + $27
 .0914	a9 60		lda #$60			lda #$60
-.0916	8d c7 13	sta $13c7			sta data + $28
+.0916	8d cd 13	sta $13cd			sta data + $28
 .0919	a9 0c		lda #$0c			lda #$0c
-.091b	8d c8 13	sta $13c8			sta data + $29
-.091e	ad fa 14	lda $14fa			lda data + $15b
-.0921	8d cc 13	sta $13cc			sta data + $2d
-.0924	ad fb 14	lda $14fb			lda data + $15c
-.0927	8d cd 13	sta $13cd			sta data + $2e
+.091b	8d ce 13	sta $13ce			sta data + $29
+.091e	ad 00 15	lda $1500			lda data + $15b
+.0921	8d d2 13	sta $13d2			sta data + $2d
+.0924	ad 01 15	lda $1501			lda data + $15c
+.0927	8d d3 13	sta $13d3			sta data + $2e
 .092a	a9 ff		lda #$ff			lda #$ff
-.092c	8d 6b 14	sta $146b			sta data + $cc
+.092c	8d 71 14	sta $1471			sta data + $cc
 .092f	a9 d4		lda #$d4			lda #$d4
 .0931	85 64		sta $64				sta FAC1+3
 .0933	a2 02		ldx #$02			ldx #$02
 .0935	a9 ff		lda #$ff	Lc253:	lda #$ff
-.0937	9d aa 13	sta $13aa,x			sta data + $0b,x
+.0937	9d b0 13	sta $13b0,x			sta data + $0b,x
 .093a	a9 01		lda #$01			lda #$01
-.093c	9d cf 13	sta $13cf,x			sta data + $30,x
-.093f	9d c9 13	sta $13c9,x			sta data + $2a,x
+.093c	9d d5 13	sta $13d5,x			sta data + $30,x
+.093f	9d cf 13	sta $13cf,x			sta data + $2a,x
 .0942	8a		txa				txa
-.0943	9d d2 13	sta $13d2,x			sta data + $33,x
-.0946	9d 4d 14	sta $144d,x			sta data + $ae,x
+.0943	9d d8 13	sta $13d8,x			sta data + $33,x
+.0946	9d 53 14	sta $1453,x			sta data + $ae,x
 .0949	a9 04		lda #$04			lda #$04
-.094b	9d d8 13	sta $13d8,x			sta data + $39,x
-.094e	bd 47 15	lda $1547,x			lda data + $1a8,x
-.0951	9d 59 14	sta $1459,x			sta data + $ba,x
+.094b	9d de 13	sta $13de,x			sta data + $39,x
+.094e	bd 4d 15	lda $154d,x			lda data + $1a8,x
+.0951	9d 5f 14	sta $145f,x			sta data + $ba,x
 .0954	a9 5b		lda #$5b			lda #$5b
-.0956	9d 1d 14	sta $141d,x			sta data + $7e,x
-.0959	bd 04 15	lda $1504,x			lda data + $165,x
+.0956	9d 23 14	sta $1423,x			sta data + $7e,x
+.0959	bd 0a 15	lda $150a,x			lda data + $165,x
 .095c	85 63		sta $63				sta FAC1+2
 .095e	a9 00		lda #$00			lda #$00
 .0960	a8		tay				tay
@@ -180,28 +180,28 @@
 .0966	c8		iny				iny
 .0967	91 63		sta ($63),y			sta (FAC1+2),y
 .0969	a9 08		lda #$08			lda #$08
-.096b	9d b6 13	sta $13b6,x			sta data + $17,x
-.096e	9d 3b 14	sta $143b,x			sta data + $9c,x
+.096b	9d bc 13	sta $13bc,x			sta data + $17,x
+.096e	9d 41 14	sta $1441,x			sta data + $9c,x
 .0971	c8		iny				iny
 .0972	91 63		sta ($63),y			sta (FAC1+2),y
 .0974	c8		iny				iny
 .0975	91 63		sta ($63),y			sta (FAC1+2),y
 .0977	a9 40		lda #$40			lda #$40
-.0979	9d b9 13	sta $13b9,x			sta data + $1a,x
+.0979	9d bf 13	sta $13bf,x			sta data + $1a,x
 .097c	91 63		sta ($63),y			sta (FAC1+2),y
 .097e	a9 20		lda #$20			lda #$20
-.0980	9d bc 13	sta $13bc,x			sta data + $1d,x
+.0980	9d c2 13	sta $13c2,x			sta data + $1d,x
 .0983	c8		iny				iny
 .0984	91 63		sta ($63),y			sta (FAC1+2),y
 .0986	a9 f5		lda #$f5			lda #$f5
-.0988	9d bf 13	sta $13bf,x			sta data + $20,x
+.0988	9d c5 13	sta $13c5,x			sta data + $20,x
 .098b	c8		iny				iny
 .098c	91 63		sta ($63),y			sta (FAC1+2),y
 .098e	ca		dex				dex
 .098f	10 a4		bpl $0935			bpl Lc253
 .0991	8a		txa				txa
 .0992	a2 17		ldx #$17			ldx #$17
-.0994	9d dd 14	sta $14dd,x	Lc2b2:	sta data + $13e,x
+.0994	9d e3 14	sta $14e3,x	Lc2b2:	sta data + $13e,x
 .0997	ca		dex				dex
 .0998	10 fa		bpl $0994			bpl Lc2b2
 .099a	a5 61		lda $61				lda FAC1
@@ -213,11 +213,11 @@
 .09a4	a8		tay				tay
 .09a5	65 62		adc $62				adc FAC1+1
 .09a7	85 64		sta $64		Lc2c5:	sta FAC1+3
-.09a9	9d 4a 14	sta $144a,x			sta data + $ab,x
-.09ac	9d 53 14	sta $1453,x			sta data + $b4,x
+.09a9	9d 50 14	sta $1450,x			sta data + $ab,x
+.09ac	9d 59 14	sta $1459,x			sta data + $b4,x
 .09af	a5 63		lda $63				lda FAC1+2
-.09b1	9d 47 14	sta $1447,x			sta data + $a8,x
-.09b4	9d 50 14	sta $1450,x			sta data + $b1,x
+.09b1	9d 4d 14	sta $144d,x			sta data + $a8,x
+.09b4	9d 56 14	sta $1456,x			sta data + $b1,x
 .09b7	18		clc				clc
 .09b8	71 61		adc ($61),y			adc (FAC1),y
 .09ba	85 63		sta $63				sta FAC1+2
@@ -241,50 +241,50 @@
 .09dc	8d 0f d4	sta $d40f			sta SID_BASE + $0f
 .09df	a9 08		lda #$08			lda #$08
 .09e1	8d 17 d4	sta $d417			sta SID_BASE + $17
-.09e4	ad fa 14	lda $14fa			lda data + $15b
+.09e4	ad 00 15	lda $1500			lda data + $15b
 .09e7	8d 04 dc	sta $dc04			sta CIA1_BASE + $04
-.09ea	ad fb 14	lda $14fb			lda data + $15c
+.09ea	ad 01 15	lda $1501			lda data + $15c
 .09ed	8d 05 dc	sta $dc05			sta CIA1_BASE + $05
 .09f0	60		rts				rts
 .09f1					restore:
 .09f1	78		sei				sei
-.09f2	ad fc 14	lda $14fc			lda data + $15d
+.09f2	ad 02 15	lda $1502			lda data + $15d
 .09f5	8d 14 03	sta $0314			sta IRQVECT
-.09f8	ad fd 14	lda $14fd			lda data + $15e
+.09f8	ad 03 15	lda $1503			lda data + $15e
 .09fb	8d 15 03	sta $0315			sta IRQVECT + 1
 .09fe	58		cli				cli
 .09ff	60		rts				rts
 .0a00	a9 08		lda #$08	Lc31e:	lda #$08
-.0a02	8d 9f 13	sta $139f			sta data
-.0a05	6c fc 14	jmp ($14fc)	cback:	jmp (data + $15d)
+.0a02	8d a5 13	sta $13a5			sta data
+.0a05	6c 02 15	jmp ($1502)	cback:	jmp (data + $15d)
 .0a08					newirq:
 .0a08	ad 0d dc	lda $dc0d			lda CIA1_BASE + $0d		; new interrupt
-.0a0b	ad 9f 13	lda $139f			lda data
+.0a0b	ad a5 13	lda $13a5			lda data
 .0a0e	30 f0		bmi $0a00			bmi Lc31e
 .0a10	09 80		ora #$80			ora #$80
 .0a12	a8		tay				tay
 .0a13	29 07		and #$07			and #$07
 .0a15	f0 ee		beq $0a05			beq cback
 .0a17	d8		cld				cld
-.0a18	8c 9f 13	sty $139f			sty data
+.0a18	8c a5 13	sty $13a5			sty data
 .0a1b	58		cli				cli
 .0a1c	a5 fb		lda $fb				lda $fb
-.0a1e	8d f5 14	sta $14f5			sta data + $156
+.0a1e	8d fb 14	sta $14fb			sta data + $156
 .0a21	a5 fc		lda $fc				lda $fc
-.0a23	8d f6 14	sta $14f6			sta data + $157
+.0a23	8d fc 14	sta $14fc			sta data + $157
 .0a26	a5 fd		lda $fd				lda $fd
-.0a28	8d f7 14	sta $14f7			sta data + $158
+.0a28	8d fd 14	sta $14fd			sta data + $158
 .0a2b	a5 fe		lda $fe				lda $fe
-.0a2d	8d f8 14	sta $14f8			sta data + $159
+.0a2d	8d fe 14	sta $14fe			sta data + $159
 .0a30	a5 ff		lda $ff				lda $ff
-.0a32	8d f9 14	sta $14f9			sta data + $15a
-.0a35	ad c2 13	lda $13c2			lda data + $23
+.0a32	8d ff 14	sta $14ff			sta data + $15a
+.0a35	ad c8 13	lda $13c8			lda data + $23
 .0a38	18		clc				clc
-.0a39	6d 78 14	adc $1478			adc data + $d9
+.0a39	6d 7e 14	adc $147e			adc data + $d9
 .0a3c	48		pha				pha
 .0a3d	29 07		and #$07			and #$07
 .0a3f	a8		tay				tay
-.0a40	ad 7b 14	lda $147b			lda data + $dc
+.0a40	ad 81 14	lda $1481			lda data + $dc
 .0a43	69 00		adc #$00			adc #$00
 .0a45	85 ff		sta $ff				sta $ff
 .0a47	68		pla				pla
@@ -295,151 +295,151 @@
 .0a4e	46 ff		lsr $ff				lsr $ff
 .0a50	6a		ror a				ror a
 .0a51	18		clc				clc
-.0a52	6d c3 13	adc $13c3			adc data + $24
+.0a52	6d c9 13	adc $13c9			adc data + $24
 .0a55	8c 15 d4	sty $d415			sty SID_BASE + $15
 .0a58	8d 16 d4	sta $d416			sta SID_BASE + $16
-.0a5b	ad c4 13	lda $13c4			lda data + $25
+.0a5b	ad ca 13	lda $13ca			lda data + $25
 .0a5e	8d 17 d4	sta $d417			sta SID_BASE + $17
-.0a61	ad c5 13	lda $13c5			lda data + $26
+.0a61	ad cb 13	lda $13cb			lda data + $26
 .0a64	8d 18 d4	sta $d418			sta SID_BASE + $18
 .0a67	a9 d4		lda #$d4			lda #$d4
 .0a69	85 fc		sta $fc				sta $fc
 .0a6b	a2 00		ldx #$00			ldx #$00
-.0a6d	ad 9f 13	lda $139f	Lc38b:	lda data
-.0a70	3d 01 15	and $1501,x			and data + $162,x
+.0a6d	ad a5 13	lda $13a5	Lc38b:	lda data
+.0a70	3d 07 15	and $1507,x			and data + $162,x
 .0a73	f0 51		beq $0ac6			beq Lc3e4
-.0a75	bd 04 15	lda $1504,x			lda data + $165,x
+.0a75	bd 0a 15	lda $150a,x			lda data + $165,x
 .0a78	85 fb		sta $fb				sta $fb
-.0a7a	bd ad 13	lda $13ad,x			lda data + $0e,x
+.0a7a	bd b3 13	lda $13b3,x			lda data + $0e,x
 .0a7d	18		clc				clc
-.0a7e	7d f0 13	adc $13f0,x			adc data + $51,x
+.0a7e	7d f6 13	adc $13f6,x			adc data + $51,x
 .0a81	a8		tay				tay
-.0a82	bd b0 13	lda $13b0,x			lda data + $11,x
-.0a85	7d f3 13	adc $13f3,x			adc data + $54,x
+.0a82	bd b6 13	lda $13b6,x			lda data + $11,x
+.0a85	7d f9 13	adc $13f9,x			adc data + $54,x
 .0a88	48		pha				pha
 .0a89	98		tya				tya
 .0a8a	18		clc				clc
-.0a8b	7d 6c 14	adc $146c,x			adc data + $cd,x
+.0a8b	7d 72 14	adc $1472,x			adc data + $cd,x
 .0a8e	a0 00		ldy #$00			ldy #$00
 .0a90	91 fb		sta ($fb),y			sta ($fb),y
 .0a92	68		pla				pla
-.0a93	7d 6f 14	adc $146f,x			adc data + $d0,x
+.0a93	7d 75 14	adc $1475,x			adc data + $d0,x
 .0a96	c8		iny				iny
 .0a97	91 fb		sta ($fb),y			sta ($fb),y
-.0a99	bd b3 13	lda $13b3,x			lda data + $14,x
+.0a99	bd b9 13	lda $13b9,x			lda data + $14,x
 .0a9c	18		clc				clc
-.0a9d	7d 08 14	adc $1408,x			adc data + $69,x
+.0a9d	7d 0e 14	adc $140e,x			adc data + $69,x
 .0aa0	85 ff		sta $ff				sta $ff
-.0aa2	bd b6 13	lda $13b6,x			lda data + $17,x
-.0aa5	7d 0b 14	adc $140b,x			adc data + $6c,x
+.0aa2	bd bc 13	lda $13bc,x			lda data + $17,x
+.0aa5	7d 11 14	adc $1411,x			adc data + $6c,x
 .0aa8	48		pha				pha
 .0aa9	a5 ff		lda $ff				lda $ff
 .0aab	18		clc				clc
-.0aac	7d 72 14	adc $1472,x			adc data + $d3,x
+.0aac	7d 78 14	adc $1478,x			adc data + $d3,x
 .0aaf	c8		iny				iny
 .0ab0	91 fb		sta ($fb),y			sta ($fb),y
 .0ab2	68		pla				pla
-.0ab3	7d 75 14	adc $1475,x			adc data + $d6,x
+.0ab3	7d 7b 14	adc $147b,x			adc data + $d6,x
 .0ab6	c8		iny				iny
 .0ab7	91 fb		sta ($fb),y			sta ($fb),y
-.0ab9	bd bc 13	lda $13bc,x			lda data + $1d,x
+.0ab9	bd c2 13	lda $13c2,x			lda data + $1d,x
 .0abc	c8		iny				iny
 .0abd	c8		iny				iny
 .0abe	91 fb		sta ($fb),y			sta ($fb),y
-.0ac0	bd bf 13	lda $13bf,x			lda data + $20,x
+.0ac0	bd c5 13	lda $13c5,x			lda data + $20,x
 .0ac3	c8		iny				iny
 .0ac4	91 fb		sta ($fb),y			sta ($fb),y
 .0ac6	e8		inx		Lc3e4:	inx
 .0ac7	e0 03		cpx #$03			cpx #$03
 .0ac9	d0 a2		bne $0a6d			bne Lc38b
-.0acb	ac b9 13	ldy $13b9			ldy data + $1a
-.0ace	ae ba 13	ldx $13ba			ldx data + $1b
-.0ad1	ad bb 13	lda $13bb			lda data + $1c
+.0acb	ac bf 13	ldy $13bf			ldy data + $1a
+.0ace	ae c0 13	ldx $13c0			ldx data + $1b
+.0ad1	ad c1 13	lda $13c1			lda data + $1c
 .0ad4	8c 04 d4	sty $d404			sty SID_BASE + $04
 .0ad7	8e 0b d4	stx $d40b			stx SID_BASE + $0b
 .0ada	8d 12 d4	sta $d412			sta SID_BASE + $12
-.0add	ae cc 13	ldx $13cc			ldx data + $2d
-.0ae0	ac cd 13	ldy $13cd			ldy data + $2e
+.0add	ae d2 13	ldx $13d2			ldx data + $2d
+.0ae0	ac d3 13	ldy $13d3			ldy data + $2e
 .0ae3	8e 04 dc	stx $dc04			stx CIA1_BASE + $04
 .0ae6	8c 05 dc	sty $dc05			sty CIA1_BASE + $05
 .0ae9	ad 1b d4	lda $d41b			lda SID_BASE + $1b
-.0aec	8d 5d 14	sta $145d			sta data + $be
+.0aec	8d 63 14	sta $1463			sta data + $be
 .0aef	ad 1c d4	lda $d41c			lda SID_BASE + $1c
-.0af2	8d 5e 14	sta $145e			sta data + $bf
+.0af2	8d 64 14	sta $1464			sta data + $bf
 .0af5	a2 00		ldx #$00			ldx #$00
-.0af7	ad 9f 13	lda $139f	Lc415:	lda data
-.0afa	3d 01 15	and $1501,x			and data + $162,x
+.0af7	ad a5 13	lda $13a5	Lc415:	lda data
+.0afa	3d 07 15	and $1507,x			and data + $162,x
 .0afd	f0 10		beq $0b0f			beq Lc42d
-.0aff	8e ce 13	stx $13ce			stx data + $2f
+.0aff	8e d4 13	stx $13d4			stx data + $2f
 .0b02	20 18 0c	jsr $0c18			jsr Lc536
-.0b05	ad 9f 13	lda $139f			lda data
+.0b05	ad a5 13	lda $13a5			lda data
 .0b08	29 78		and #$78			and #$78
 .0b0a	f0 03		beq $0b0f			beq Lc42d
 .0b0c	4c ee 0b	jmp $0bee			jmp Lc50c
 .0b0f	e8		inx		Lc42d:	inx
 .0b10	e0 03		cpx #$03			cpx #$03
 .0b12	d0 e3		bne $0af7			bne Lc415
-.0b14	ad 68 14	lda $1468			lda data + $c9
+.0b14	ad 6e 14	lda $146e			lda data + $c9
 .0b17	d0 52		bne $0b6b			bne Lc489
-.0b19	ad 69 14	lda $1469			lda data + $ca
-.0b1c	0d 6a 14	ora $146a			ora data + $cb
+.0b19	ad 6f 14	lda $146f			lda data + $ca
+.0b1c	0d 70 14	ora $1470			ora data + $cb
 .0b1f	f0 78		beq $0b99			beq Lc4b7
-.0b21	ad 7e 14	lda $147e			lda data + $df
+.0b21	ad 84 14	lda $1484			lda data + $df
 .0b24	d0 28		bne $0b4e			bne Lc46c
-.0b26	ad 69 14	lda $1469	Lc444:	lda data + $ca
+.0b26	ad 6f 14	lda $146f	Lc444:	lda data + $ca
 .0b29	f0 28		beq $0b53			beq Lc471
 .0b2b	18		clc				clc
-.0b2c	6d 5c 14	adc $145c			adc data + $bd
+.0b2c	6d 62 14	adc $1462			adc data + $bd
 .0b2f	b0 07		bcs $0b38			bcs Lc456
-.0b31	cd 6b 14	cmp $146b			cmp data + $cc
+.0b31	cd 71 14	cmp $1471			cmp data + $cc
 .0b34	90 60		bcc $0b96			bcc Lc4b4
 .0b36	f0 5e		beq $0b96			beq Lc4b4
 .0b38	a9 00		lda #$00	Lc456:	lda #$00
-.0b3a	8d 7e 14	sta $147e			sta data + $df
-.0b3d	ad 6a 14	lda $146a			lda data + $cb
+.0b3a	8d 84 14	sta $1484			sta data + $df
+.0b3d	ad 70 14	lda $1470			lda data + $cb
 .0b40	f0 54		beq $0b96			beq Lc4b4
-.0b42	ee 7e 14	inc $147e			inc data + $df
-.0b45	ad 5c 14	lda $145c			lda data + $bd
-.0b48	ed 6a 14	sbc $146a			sbc data + $cb
+.0b42	ee 84 14	inc $1484			inc data + $df
+.0b45	ad 62 14	lda $1462			lda data + $bd
+.0b48	ed 70 14	sbc $1470			sbc data + $cb
 .0b4b	4c 96 0b	jmp $0b96			jmp Lc4b4
-.0b4e	ad 6a 14	lda $146a	Lc46c:	lda data + $cb
+.0b4e	ad 70 14	lda $1470	Lc46c:	lda data + $cb
 .0b51	f0 d3		beq $0b26			beq Lc444
-.0b53	ad 5c 14	lda $145c	Lc471:	lda data + $bd
+.0b53	ad 62 14	lda $1462	Lc471:	lda data + $bd
 .0b56	38		sec				sec
-.0b57	ed 6a 14	sbc $146a			sbc data + $cb
+.0b57	ed 70 14	sbc $1470			sbc data + $cb
 .0b5a	b0 3a		bcs $0b96			bcs Lc4b4
 .0b5c	a9 00		lda #$00			lda #$00
-.0b5e	8d 7e 14	sta $147e			sta data + $df
-.0b61	ad 69 14	lda $1469			lda data + $ca
+.0b5e	8d 84 14	sta $1484			sta data + $df
+.0b61	ad 6f 14	lda $146f			lda data + $ca
 .0b64	d0 30		bne $0b96			bne Lc4b4
-.0b66	ee 7e 14	inc $147e			inc data + $df
+.0b66	ee 84 14	inc $1484			inc data + $df
 .0b69	d0 28		bne $0b93			bne Lc4b1
-.0b6b	ce 7f 14	dec $147f	Lc489:	dec data + $e0
+.0b6b	ce 85 14	dec $1485	Lc489:	dec data + $e0
 .0b6e	d0 29		bne $0b99			bne Lc4b7
-.0b70	ad 7e 14	lda $147e			lda data + $df
+.0b70	ad 84 14	lda $1484			lda data + $df
 .0b73	d0 11		bne $0b86			bne Lc4a4
-.0b75	ee 7e 14	inc $147e			inc data + $df
-.0b78	ad 6a 14	lda $146a			lda data + $cb
+.0b75	ee 84 14	inc $1484			inc data + $df
+.0b78	ad 70 14	lda $1470			lda data + $cb
 .0b7b	d0 02		bne $0b7f			bne Lc49d
 .0b7d	a9 20		lda #$20			lda #$20
-.0b7f	8d 7f 14	sta $147f	Lc49d:	sta data + $e0
+.0b7f	8d 85 14	sta $1485	Lc49d:	sta data + $e0
 .0b82	a9 00		lda #$00			lda #$00
 .0b84	f0 10		beq $0b96			beq Lc4b4
-.0b86	ce 7e 14	dec $147e	Lc4a4:	dec data + $df
-.0b89	ad 69 14	lda $1469			lda data + $ca
+.0b86	ce 84 14	dec $1484	Lc4a4:	dec data + $df
+.0b89	ad 6f 14	lda $146f			lda data + $ca
 .0b8c	d0 02		bne $0b90			bne Lc4ae
 .0b8e	a9 20		lda #$20			lda #$20
-.0b90	8d 7f 14	sta $147f	Lc4ae:	sta data + $e0
-.0b93	ad 6b 14	lda $146b	Lc4b1:	lda data + $cc
-.0b96	8d 5c 14	sta $145c	Lc4b4:	sta data + $bd
+.0b90	8d 85 14	sta $1485	Lc4ae:	sta data + $e0
+.0b93	ad 71 14	lda $1471	Lc4b1:	lda data + $cc
+.0b96	8d 62 14	sta $1462	Lc4b4:	sta data + $bd
 .0b99	a2 00		ldx #$00	Lc4b7:	ldx #$00
-.0b9b	bd 62 14	lda $1462,x	Lc4b9:	lda data + $c3,x
+.0b9b	bd 68 14	lda $1468,x	Lc4b9:	lda data + $c3,x
 .0b9e	f0 44		beq $0be4			beq Lc502
 .0ba0	a9 00		lda #$00			lda #$00
 .0ba2	85 ff		sta $ff				sta $ff
-.0ba4	bc 5f 14	ldy $145f,x			ldy data + $c0,x
-.0ba7	b9 5c 14	lda $145c,y			lda data + $bd,y
-.0baa	bc 65 14	ldy $1465,x			ldy data + $c6,x
+.0ba4	bc 65 14	ldy $1465,x			ldy data + $c0,x
+.0ba7	b9 62 14	lda $1462,y			lda data + $bd,y
+.0baa	bc 6b 14	ldy $146b,x			ldy data + $c6,x
 .0bad	f0 0e		beq $0bbd			beq Lc4db
 .0baf	30 08		bmi $0bb9			bmi Lc4d7
 .0bb1	0a		asl a		Lc4cf:	asl a
@@ -450,205 +450,205 @@
 .0bb9	4a		lsr a		Lc4d7:	lsr a
 .0bba	c8		iny				iny
 .0bbb	d0 fc		bne $0bb9			bne Lc4d7
-.0bbd	bc 62 14	ldy $1462,x	Lc4db:	ldy data + $c3,x
+.0bbd	bc 68 14	ldy $1468,x	Lc4db:	ldy data + $c3,x
 .0bc0	88		dey				dey
 .0bc1	d0 0b		bne $0bce			bne Lc4ec
-.0bc3	9d 6c 14	sta $146c,x			sta data + $cd,x
+.0bc3	9d 72 14	sta $1472,x			sta data + $cd,x
 .0bc6	a5 ff		lda $ff				lda $ff
-.0bc8	9d 6f 14	sta $146f,x			sta data + $d0,x
+.0bc8	9d 75 14	sta $1475,x			sta data + $d0,x
 .0bcb	4c e4 0b	jmp $0be4			jmp Lc502
 .0bce	88		dey		Lc4ec:	dey
 .0bcf	d0 05		bne $0bd6			bne Lc4fa
-.0bd1	9d 72 14	sta $1472,x			sta data + $d3,x
+.0bd1	9d 78 14	sta $1478,x			sta data + $d3,x
 .0bd4	a5 ff		lda $ff				lda $ff
-.0bd6	9d 75 14	sta $1475,x	Lc4fa:	sta data + $d6,x
+.0bd6	9d 7b 14	sta $147b,x	Lc4fa:	sta data + $d6,x
 .0bd9	4c e4 0b	jmp $0be4			jmp Lc502
-.0bdc	8d 78 14	sta $1478			sta data + $d9
+.0bdc	8d 7e 14	sta $147e			sta data + $d9
 .0bdf	a5 ff		lda $ff				lda $ff
-.0be1	8d 7b 14	sta $147b			sta data + $dc
+.0be1	8d 81 14	sta $1481			sta data + $dc
 .0be4	e8		inx		Lc502:	inx
 .0be5	e0 03		cpx #$03			cpx #$03
 .0be7	d0 b2		bne $0b9b			bne Lc4b9
-.0be9	ad 9f 13	lda $139f			lda data
+.0be9	ad a5 13	lda $13a5			lda data
 .0bec	29 7f		and #$7f			and #$7f
-.0bee	8d 9f 13	sta $139f	Lc50c:	sta data
-.0bf1	ad f5 14	lda $14f5			lda data + $156
+.0bee	8d a5 13	sta $13a5	Lc50c:	sta data
+.0bf1	ad fb 14	lda $14fb			lda data + $156
 .0bf4	85 fb		sta $fb				sta $fb
-.0bf6	ad f6 14	lda $14f6			lda data + $157
+.0bf6	ad fc 14	lda $14fc			lda data + $157
 .0bf9	85 fc		sta $fc				sta $fc
-.0bfb	ad f7 14	lda $14f7			lda data + $158
+.0bfb	ad fd 14	lda $14fd			lda data + $158
 .0bfe	85 fd		sta $fd				sta $fd
-.0c00	ad f8 14	lda $14f8			lda data + $159
+.0c00	ad fe 14	lda $14fe			lda data + $159
 .0c03	85 fe		sta $fe				sta $fe
-.0c05	ad f9 14	lda $14f9			lda data + $15a
+.0c05	ad ff 14	lda $14ff			lda data + $15a
 .0c08	85 ff		sta $ff				sta $ff
-.0c0a	6c fc 14	jmp ($14fc)			jmp (data + $15d)
-.0c0d	bd ff 13	lda $13ff,x	Lc52b:	lda data + $60,x
+.0c0a	6c 02 15	jmp ($1502)			jmp (data + $15d)
+.0c0d	bd 05 14	lda $1405,x	Lc52b:	lda data + $60,x
 .0c10	d0 03		bne $0c15			bne Lc533
 .0c12	4c 81 0d	jmp $0d81			jmp Lc69f
 .0c15	4c 9c 0c	jmp $0c9c	Lc533:	jmp Lc5ba
-.0c18	de cf 13	dec $13cf,x	Lc536:	dec data + $30,x
+.0c18	de d5 13	dec $13d5,x	Lc536:	dec data + $30,x
 .0c1b	d0 03		bne $0c20			bne Lc53e
 .0c1d	4c 82 0d	jmp $0d82			jmp Lc6a0
-.0c20	bd d5 13	lda $13d5,x	Lc53e:	lda data + $36,x
+.0c20	bd db 13	lda $13db,x	Lc53e:	lda data + $36,x
 .0c23	30 e8		bmi $0c0d			bmi Lc52b
 .0c25	d0 1a		bne $0c41			bne Lc55f
-.0c27	bd de 13	lda $13de,x			lda data + $3f,x
+.0c27	bd e4 13	lda $13e4,x			lda data + $3f,x
 .0c2a	f0 05		beq $0c31			beq Lc54f
-.0c2c	de de 13	dec $13de,x			dec data + $3f,x
+.0c2c	de e4 13	dec $13e4,x			dec data + $3f,x
 .0c2f	d0 10		bne $0c41			bne Lc55f
-.0c31	bd d8 13	lda $13d8,x	Lc54f:	lda data + $39,x
-.0c34	dd cf 13	cmp $13cf,x			cmp data + $30,x
+.0c31	bd de 13	lda $13de,x	Lc54f:	lda data + $39,x
+.0c34	dd d5 13	cmp $13d5,x			cmp data + $30,x
 .0c37	90 08		bcc $0c41			bcc Lc55f
-.0c39	bd b9 13	lda $13b9,x			lda data + $1a,x
+.0c39	bd bf 13	lda $13bf,x			lda data + $1a,x
 .0c3c	29 fe		and #$fe			and #$fe
-.0c3e	9d b9 13	sta $13b9,x			sta data + $1a,x
-.0c41	bd e1 13	lda $13e1,x	Lc55f:	lda data + $42,x
+.0c3e	9d bf 13	sta $13bf,x			sta data + $1a,x
+.0c41	bd e7 13	lda $13e7,x	Lc55f:	lda data + $42,x
 .0c44	f0 56		beq $0c9c			beq Lc5ba
 .0c46	0a		asl a				asl a
-.0c47	bd ad 13	lda $13ad,x			lda data + $0e,x
+.0c47	bd b3 13	lda $13b3,x			lda data + $0e,x
 .0c4a	b0 1d		bcs $0c69			bcs Lc587
-.0c4c	7d e4 13	adc $13e4,x			adc data + $45,x
-.0c4f	9d ad 13	sta $13ad,x			sta data + $0e,x
+.0c4c	7d ea 13	adc $13ea,x			adc data + $45,x
+.0c4f	9d b3 13	sta $13b3,x			sta data + $0e,x
 .0c52	a8		tay				tay
-.0c53	bd b0 13	lda $13b0,x			lda data + $11,x
-.0c56	7d e7 13	adc $13e7,x			adc data + $48,x
-.0c59	9d b0 13	sta $13b0,x			sta data + $11,x
+.0c53	bd b6 13	lda $13b6,x			lda data + $11,x
+.0c56	7d ed 13	adc $13ed,x			adc data + $48,x
+.0c59	9d b6 13	sta $13b6,x			sta data + $11,x
 .0c5c	48		pha				pha
 .0c5d	98		tya				tya
-.0c5e	dd 2c 14	cmp $142c,x			cmp data + $8d,x
+.0c5e	dd 32 14	cmp $1432,x			cmp data + $8d,x
 .0c61	68		pla				pla
-.0c62	fd 2f 14	sbc $142f,x			sbc data + $90,x
+.0c62	fd 35 14	sbc $1435,x			sbc data + $90,x
 .0c65	b0 1f		bcs $0c86			bcs Lc5a4
 .0c67	90 2e		bcc $0c97			bcc Lc5b5
-.0c69	fd e4 13	sbc $13e4,x	Lc587:	sbc data + $45,x
-.0c6c	9d ad 13	sta $13ad,x			sta data + $0e,x
-.0c6f	bd b0 13	lda $13b0,x			lda data + $11,x
-.0c72	fd e7 13	sbc $13e7,x			sbc data + $48,x
-.0c75	9d b0 13	sta $13b0,x			sta data + $11,x
-.0c78	bd 2c 14	lda $142c,x			lda data + $8d,x
-.0c7b	dd ad 13	cmp $13ad,x			cmp data + $0e,x
-.0c7e	bd 2f 14	lda $142f,x			lda data + $90,x
-.0c81	fd b0 13	sbc $13b0,x			sbc data + $11,x
+.0c69	fd ea 13	sbc $13ea,x	Lc587:	sbc data + $45,x
+.0c6c	9d b3 13	sta $13b3,x			sta data + $0e,x
+.0c6f	bd b6 13	lda $13b6,x			lda data + $11,x
+.0c72	fd ed 13	sbc $13ed,x			sbc data + $48,x
+.0c75	9d b6 13	sta $13b6,x			sta data + $11,x
+.0c78	bd 32 14	lda $1432,x			lda data + $8d,x
+.0c7b	dd b3 13	cmp $13b3,x			cmp data + $0e,x
+.0c7e	bd 35 14	lda $1435,x			lda data + $90,x
+.0c81	fd b6 13	sbc $13b6,x			sbc data + $11,x
 .0c84	90 11		bcc $0c97			bcc Lc5b5
-.0c86	bd 2c 14	lda $142c,x	Lc5a4:	lda data + $8d,x
-.0c89	9d ad 13	sta $13ad,x			sta data + $0e,x
-.0c8c	bd 2f 14	lda $142f,x			lda data + $90,x
-.0c8f	9d b0 13	sta $13b0,x			sta data + $11,x
+.0c86	bd 32 14	lda $1432,x	Lc5a4:	lda data + $8d,x
+.0c89	9d b3 13	sta $13b3,x			sta data + $0e,x
+.0c8c	bd 35 14	lda $1435,x			lda data + $90,x
+.0c8f	9d b6 13	sta $13b6,x			sta data + $11,x
 .0c92	a9 00		lda #$00			lda #$00
-.0c94	9d e1 13	sta $13e1,x			sta data + $42,x
-.0c97	bd ff 13	lda $13ff,x	Lc5b5:	lda data + $60,x
+.0c94	9d e7 13	sta $13e7,x			sta data + $42,x
+.0c97	bd 05 14	lda $1405,x	Lc5b5:	lda data + $60,x
 .0c9a	f0 55		beq $0cf1			beq Lc60f
-.0c9c	bd ea 13	lda $13ea,x	Lc5ba:	lda data + $4b,x
+.0c9c	bd f0 13	lda $13f0,x	Lc5ba:	lda data + $4b,x
 .0c9f	f0 4b		beq $0cec			beq Lc60a
 .0ca1	a0 00		ldy #$00			ldy #$00
-.0ca3	de ed 13	dec $13ed,x			dec data + $4e,x
+.0ca3	de f3 13	dec $13f3,x			dec data + $4e,x
 .0ca6	d0 31		bne $0cd9			bne Lc5f7
-.0ca8	bd f0 13	lda $13f0,x			lda data + $51,x
-.0cab	1d f3 13	ora $13f3,x			ora data + $54,x
+.0ca8	bd f6 13	lda $13f6,x			lda data + $51,x
+.0cab	1d f9 13	ora $13f9,x			ora data + $54,x
 .0cae	d0 1b		bne $0ccb			bne Lc5e9
-.0cb0	bd fc 13	lda $13fc,x			lda data + $5d,x
-.0cb3	9d f6 13	sta $13f6,x			sta data + $57,x
-.0cb6	9d ed 13	sta $13ed,x			sta data + $4e,x
-.0cb9	bd ea 13	lda $13ea,x			lda data + $4b,x
+.0cb0	bd 02 14	lda $1402,x			lda data + $5d,x
+.0cb3	9d fc 13	sta $13fc,x			sta data + $57,x
+.0cb6	9d f3 13	sta $13f3,x			sta data + $4e,x
+.0cb9	bd f0 13	lda $13f0,x			lda data + $4b,x
 .0cbc	0a		asl a				asl a
-.0cbd	bd f9 13	lda $13f9,x			lda data + $5a,x
+.0cbd	bd ff 13	lda $13ff,x			lda data + $5a,x
 .0cc0	90 04		bcc $0cc6			bcc Lc5e4
 .0cc2	49 ff		eor #$ff			eor #$ff
 .0cc4	69 00		adc #$00			adc #$00
-.0cc6	9d ea 13	sta $13ea,x	Lc5e4:	sta data + $4b,x
+.0cc6	9d f0 13	sta $13f0,x	Lc5e4:	sta data + $4b,x
 .0cc9	d0 10		bne $0cdb			bne Lc5f9
-.0ccb	bd f6 13	lda $13f6,x	Lc5e9:	lda data + $57,x
-.0cce	9d ed 13	sta $13ed,x			sta data + $4e,x
+.0ccb	bd fc 13	lda $13fc,x	Lc5e9:	lda data + $57,x
+.0cce	9d f3 13	sta $13f3,x			sta data + $4e,x
 .0cd1	98		tya				tya
 .0cd2	38		sec				sec
-.0cd3	fd ea 13	sbc $13ea,x			sbc data + $4b,x
-.0cd6	9d ea 13	sta $13ea,x			sta data + $4b,x
+.0cd3	fd f0 13	sbc $13f0,x			sbc data + $4b,x
+.0cd6	9d f0 13	sta $13f0,x			sta data + $4b,x
 .0cd9	c9 00		cmp #$00	Lc5f7:	cmp #$00
 .0cdb	10 01		bpl $0cde	Lc5f9:	bpl Lc5fc
 .0cdd	88		dey				dey
 .0cde	18		clc		Lc5fc:	clc
-.0cdf	7d f0 13	adc $13f0,x			adc data + $51,x
-.0ce2	9d f0 13	sta $13f0,x			sta data + $51,x
+.0cdf	7d f6 13	adc $13f6,x			adc data + $51,x
+.0ce2	9d f6 13	sta $13f6,x			sta data + $51,x
 .0ce5	98		tya				tya
-.0ce6	7d f3 13	adc $13f3,x			adc data + $54,x
-.0ce9	9d f3 13	sta $13f3,x			sta data + $54,x
-.0cec	bd d5 13	lda $13d5,x	Lc60a:	lda data + $36,x
+.0ce6	7d f9 13	adc $13f9,x			adc data + $54,x
+.0ce9	9d f9 13	sta $13f9,x			sta data + $54,x
+.0cec	bd db 13	lda $13db,x	Lc60a:	lda data + $36,x
 .0cef	30 15		bmi $0d06			bmi Lc624
-.0cf1	bd 32 14	lda $1432,x	Lc60f:	lda data + $93,x
+.0cf1	bd 38 14	lda $1438,x	Lc60f:	lda data + $93,x
 .0cf4	f0 10		beq $0d06			beq Lc624
 .0cf6	18		clc				clc
-.0cf7	7d b3 13	adc $13b3,x			adc data + $14,x
-.0cfa	9d b3 13	sta $13b3,x			sta data + $14,x
-.0cfd	bd 35 14	lda $1435,x			lda data + $96,x
-.0d00	7d b6 13	adc $13b6,x			adc data + $17,x
-.0d03	9d b6 13	sta $13b6,x			sta data + $17,x
-.0d06	bd 02 14	lda $1402,x	Lc624:	lda data + $63,x
+.0cf7	7d b9 13	adc $13b9,x			adc data + $14,x
+.0cfa	9d b9 13	sta $13b9,x			sta data + $14,x
+.0cfd	bd 3b 14	lda $143b,x			lda data + $96,x
+.0d00	7d bc 13	adc $13bc,x			adc data + $17,x
+.0d03	9d bc 13	sta $13bc,x			sta data + $17,x
+.0d06	bd 08 14	lda $1408,x	Lc624:	lda data + $63,x
 .0d09	f0 4b		beq $0d56			beq Lc674
 .0d0b	a0 00		ldy #$00			ldy #$00
-.0d0d	de 05 14	dec $1405,x			dec data + $66,x
+.0d0d	de 0b 14	dec $140b,x			dec data + $66,x
 .0d10	d0 31		bne $0d43			bne Lc661
-.0d12	bd 08 14	lda $1408,x			lda data + $69,x
-.0d15	1d 0b 14	ora $140b,x			ora data + $6c,x
+.0d12	bd 0e 14	lda $140e,x			lda data + $69,x
+.0d15	1d 11 14	ora $1411,x			ora data + $6c,x
 .0d18	d0 1b		bne $0d35			bne Lc653
-.0d1a	bd 11 14	lda $1411,x			lda data + $72,x
-.0d1d	9d 0e 14	sta $140e,x			sta data + $6f,x
-.0d20	9d 05 14	sta $1405,x			sta data + $66,x
-.0d23	bd 02 14	lda $1402,x			lda data + $63,x
+.0d1a	bd 17 14	lda $1417,x			lda data + $72,x
+.0d1d	9d 14 14	sta $1414,x			sta data + $6f,x
+.0d20	9d 0b 14	sta $140b,x			sta data + $66,x
+.0d23	bd 08 14	lda $1408,x			lda data + $63,x
 .0d26	0a		asl a				asl a
-.0d27	bd 14 14	lda $1414,x			lda data + $75,x
+.0d27	bd 1a 14	lda $141a,x			lda data + $75,x
 .0d2a	90 04		bcc $0d30			bcc Lc64e
 .0d2c	49 ff		eor #$ff			eor #$ff
 .0d2e	69 00		adc #$00			adc #$00
-.0d30	9d 02 14	sta $1402,x	Lc64e:	sta data + $63,x
+.0d30	9d 08 14	sta $1408,x	Lc64e:	sta data + $63,x
 .0d33	d0 10		bne $0d45			bne Lc663
-.0d35	bd 0e 14	lda $140e,x	Lc653:	lda data + $6f,x
-.0d38	9d 05 14	sta $1405,x			sta data + $66,x
+.0d35	bd 14 14	lda $1414,x	Lc653:	lda data + $6f,x
+.0d38	9d 0b 14	sta $140b,x			sta data + $66,x
 .0d3b	98		tya				tya
 .0d3c	38		sec				sec
-.0d3d	fd 02 14	sbc $1402,x			sbc data + $63,x
-.0d40	9d 02 14	sta $1402,x			sta data + $63,x
+.0d3d	fd 08 14	sbc $1408,x			sbc data + $63,x
+.0d40	9d 08 14	sta $1408,x			sta data + $63,x
 .0d43	c9 00		cmp #$00	Lc661:	cmp #$00
 .0d45	10 01		bpl $0d48	Lc663:	bpl Lc666
 .0d47	88		dey				dey
 .0d48	18		clc		Lc666:	clc
-.0d49	7d 08 14	adc $1408,x			adc data + $69,x
-.0d4c	9d 08 14	sta $1408,x			sta data + $69,x
+.0d49	7d 0e 14	adc $140e,x			adc data + $69,x
+.0d4c	9d 0e 14	sta $140e,x			sta data + $69,x
 .0d4f	98		tya				tya
-.0d50	7d 0b 14	adc $140b,x			adc data + $6c,x
-.0d53	9d 0b 14	sta $140b,x			sta data + $6c,x
-.0d56	bd d5 13	lda $13d5,x	Lc674:	lda data + $36,x
+.0d50	7d 11 14	adc $1411,x			adc data + $6c,x
+.0d53	9d 11 14	sta $1411,x			sta data + $6c,x
+.0d56	bd db 13	lda $13db,x	Lc674:	lda data + $36,x
 .0d59	10 03		bpl $0d5e			bpl Lc67c
 .0d5b	4c 81 0d	jmp $0d81			jmp Lc69f
 .0d5e	a0 00		ldy #$00	Lc67c:	ldy #$00
-.0d60	bd 41 14	lda $1441,x			lda data + $a2,x
+.0d60	bd 47 14	lda $1447,x			lda data + $a2,x
 .0d63	f0 1c		beq $0d81			beq Lc69f
 .0d65	10 01		bpl $0d68			bpl Lc686
 .0d67	c8		iny				iny
 .0d68	18		clc		Lc686:	clc
-.0d69	6d c2 13	adc $13c2			adc data + $23
+.0d69	6d c8 13	adc $13c8			adc data + $23
 .0d6c	48		pha				pha
 .0d6d	29 07		and #$07			and #$07
-.0d6f	8d c2 13	sta $13c2			sta data + $23
+.0d6f	8d c8 13	sta $13c8			sta data + $23
 .0d72	68		pla				pla
 .0d73	6a		ror a				ror a
 .0d74	4a		lsr a				lsr a
 .0d75	4a		lsr a				lsr a
 .0d76	18		clc				clc
-.0d77	79 45 15	adc $1545,y			adc data + $1a6,y
+.0d77	79 4b 15	adc $154b,y			adc data + $1a6,y
 .0d7a	18		clc				clc
-.0d7b	6d c3 13	adc $13c3			adc data + $24
-.0d7e	8d c3 13	sta $13c3			sta data + $24
+.0d7b	6d c9 13	adc $13c9			adc data + $24
+.0d7e	8d c9 13	sta $13c9			sta data + $24
 .0d81	60		rts		Lc69f:	rts
-.0d82	bd 47 14	lda $1447,x	Lc6a0:	lda data + $a8,x
+.0d82	bd 4d 14	lda $144d,x	Lc6a0:	lda data + $a8,x
 .0d85	85 fd		sta $fd				sta $fd
-.0d87	bd 4a 14	lda $144a,x			lda data + $ab,x
+.0d87	bd 50 14	lda $1450,x			lda data + $ab,x
 .0d8a	85 fe		sta $fe				sta $fe
 .0d8c	d0 04		bne $0d92			bne Lc6b0
 .0d8e	60		rts		Lc6ac:	rts
 .0d8f	20 7a 0f	jsr $0f7a	Lc6ad:	jsr Lc898
-.0d92	ad 9f 13	lda $139f	Lc6b0:	lda data
-.0d95	3d 01 15	and $1501,x			and data + $162,x
+.0d92	ad a5 13	lda $13a5	Lc6b0:	lda data
+.0d95	3d 07 15	and $1507,x			and data + $162,x
 .0d98	f0 f4		beq $0d8e			beq Lc6ac
 .0d9a	a0 00		ldy #$00			ldy #$00
 .0d9c	b1 fd		lda ($fd),y			lda ($fd),y
@@ -660,49 +660,49 @@
 .0da6	18		clc				clc
 .0da7	69 02		adc #$02			adc #$02
 .0da9	85 fd		sta $fd				sta $fd
-.0dab	9d 47 14	sta $1447,x			sta data + $a8,x
+.0dab	9d 4d 14	sta $144d,x			sta data + $a8,x
 .0dae	a5 fe		lda $fe				lda $fe
 .0db0	69 00		adc #$00			adc #$00
 .0db2	85 fe		sta $fe				sta $fe
-.0db4	9d 4a 14	sta $144a,x			sta data + $ab,x
+.0db4	9d 50 14	sta $1450,x			sta data + $ab,x
 .0db7	a5 ff		lda $ff				lda $ff
 .0db9	29 03		and #$03			and #$03
 .0dbb	d0 d2		bne $0d8f			bne Lc6ad
-.0dbd	bd 2c 14	lda $142c,x			lda data + $8d,x
-.0dc0	9d ad 13	sta $13ad,x			sta data + $0e,x
-.0dc3	bd 2f 14	lda $142f,x			lda data + $90,x
-.0dc6	9d b0 13	sta $13b0,x			sta data + $11,x
+.0dbd	bd 32 14	lda $1432,x			lda data + $8d,x
+.0dc0	9d b3 13	sta $13b3,x			sta data + $0e,x
+.0dc3	bd 35 14	lda $1435,x			lda data + $90,x
+.0dc6	9d b6 13	sta $13b6,x			sta data + $11,x
 .0dc9	a5 ff		lda $ff				lda $ff
-.0dcb	9d a4 13	sta $13a4,x			sta data + $05,x
+.0dcb	9d aa 13	sta $13aa,x			sta data + $05,x
 .0dce	98		tya				tya
-.0dcf	9d a1 13	sta $13a1,x			sta data + $02,x
+.0dcf	9d a7 13	sta $13a7,x			sta data + $02,x
 .0dd2	29 07		and #$07			and #$07
 .0dd4	a8		tay				tay
-.0dd5	b9 06 15	lda $1506,y			lda data + $167,y
-.0dd8	8d 0e 15	sta $150e			sta data + $16f
-.0ddb	bd a1 13	lda $13a1,x			lda data + $02,x
+.0dd5	b9 0c 15	lda $150c,y			lda data + $167,y
+.0dd8	8d 14 15	sta $1514			sta data + $16f
+.0ddb	bd a7 13	lda $13a7,x			lda data + $02,x
 .0dde	29 38		and #$38			and #$38
 .0de0	4a		lsr a				lsr a
 .0de1	4a		lsr a				lsr a
 .0de2	4a		lsr a				lsr a
-.0de3	7d 20 14	adc $1420,x			adc data + $81,x
+.0de3	7d 26 14	adc $1426,x			adc data + $81,x
 .0de6	85 fd		sta $fd				sta $fd
-.0de8	bd a1 13	lda $13a1,x			lda data + $02,x
+.0de8	bd a7 13	lda $13a7,x			lda data + $02,x
 .0deb	29 c0		and #$c0			and #$c0
 .0ded	0a		asl a				asl a
 .0dee	2a		rol a				rol a
 .0def	2a		rol a				rol a
 .0df0	a8		tay				tay
-.0df1	b9 0e 15	lda $150e,y			lda data + $16f,y
+.0df1	b9 14 15	lda $1514,y			lda data + $16f,y
 .0df4	85 fe		sta $fe				sta $fe
-.0df6	bd a1 13	lda $13a1,x			lda data + $02,x
+.0df6	bd a7 13	lda $13a7,x			lda data + $02,x
 .0df9	29 07		and #$07			and #$07
 .0dfb	f0 62		beq $0e5f			beq Lc77d
 .0dfd	a8		tay				tay
-.0dfe	b9 11 15	lda $1511,y			lda data + $172,y
+.0dfe	b9 17 15	lda $1517,y			lda data + $172,y
 .0e01	65 fe		adc $fe				adc $fe
 .0e03	18		clc				clc
-.0e04	7d 23 14	adc $1423,x			adc data + $84,x
+.0e04	7d 29 14	adc $1429,x			adc data + $84,x
 .0e07	10 05		bpl $0e0e			bpl Lc72c
 .0e09	18		clc				clc
 .0e0a	69 0c		adc #$0c			adc #$0c
@@ -713,9 +713,9 @@
 .0e14	c6 fd		dec $fd				dec $fd
 .0e16	85 fe		sta $fe		Lc734:	sta $fe
 .0e18	a8		tay				tay
-.0e19	b9 25 15	lda $1525,y			lda data + $186,y
+.0e19	b9 2b 15	lda $152b,y			lda data + $186,y
 .0e1c	85 ff		sta $ff				sta $ff
-.0e1e	b9 19 15	lda $1519,y			lda data + $17a,y
+.0e1e	b9 1f 15	lda $151f,y			lda data + $17a,y
 .0e21	a4 fd		ldy $fd				ldy $fd
 .0e23	88		dey				dey
 .0e24	30 06		bmi $0e2c			bmi Lc74a
@@ -724,107 +724,107 @@
 .0e29	88		dey				dey
 .0e2a	10 fa		bpl $0e26			bpl Lc744
 .0e2c	18		clc		Lc74a:	clc
-.0e2d	7d 26 14	adc $1426,x			adc data + $87,x
-.0e30	9d 2c 14	sta $142c,x			sta data + $8d,x
+.0e2d	7d 2c 14	adc $142c,x			adc data + $87,x
+.0e30	9d 32 14	sta $1432,x			sta data + $8d,x
 .0e33	a5 ff		lda $ff				lda $ff
-.0e35	7d 29 14	adc $1429,x			adc data + $8a,x
-.0e38	9d 2f 14	sta $142f,x			sta data + $90,x
-.0e3b	bd a4 13	lda $13a4,x			lda data + $05,x
+.0e35	7d 2f 14	adc $142f,x			adc data + $8a,x
+.0e38	9d 35 14	sta $1435,x			sta data + $90,x
+.0e3b	bd aa 13	lda $13aa,x			lda data + $05,x
 .0e3e	d0 03		bne $0e43			bne Lc761
 .0e40	4c 82 0d	jmp $0d82			jmp Lc6a0
-.0e43	bd e4 13	lda $13e4,x	Lc761:	lda data + $45,x
-.0e46	1d e7 13	ora $13e7,x			ora data + $48,x
+.0e43	bd ea 13	lda $13ea,x	Lc761:	lda data + $45,x
+.0e46	1d ed 13	ora $13ed,x			ora data + $48,x
 .0e49	f0 16		beq $0e61			beq Lc77f
-.0e4b	bd ad 13	lda $13ad,x			lda data + $0e,x
-.0e4e	dd 2c 14	cmp $142c,x			cmp data + $8d,x
-.0e51	bd b0 13	lda $13b0,x			lda data + $11,x
-.0e54	fd 2f 14	sbc $142f,x			sbc data + $90,x
+.0e4b	bd b3 13	lda $13b3,x			lda data + $0e,x
+.0e4e	dd 32 14	cmp $1432,x			cmp data + $8d,x
+.0e51	bd b6 13	lda $13b6,x			lda data + $11,x
+.0e54	fd 35 14	sbc $1435,x			sbc data + $90,x
 .0e57	a9 fe		lda #$fe			lda #$fe
 .0e59	6a		ror a				ror a
-.0e5a	9d e1 13	sta $13e1,x			sta data + $42,x
+.0e5a	9d e7 13	sta $13e7,x			sta data + $42,x
 .0e5d	90 11		bcc $0e70			bcc Lc78e
 .0e5f	f0 4a		beq $0eab	Lc77d:	beq Lc7c9
-.0e61	9d e1 13	sta $13e1,x	Lc77f:	sta data + $42,x
-.0e64	bd 2c 14	lda $142c,x			lda data + $8d,x
-.0e67	9d ad 13	sta $13ad,x			sta data + $0e,x
-.0e6a	bd 2f 14	lda $142f,x			lda data + $90,x
-.0e6d	9d b0 13	sta $13b0,x			sta data + $11,x
-.0e70	bd d5 13	lda $13d5,x	Lc78e:	lda data + $36,x
+.0e61	9d e7 13	sta $13e7,x	Lc77f:	sta data + $42,x
+.0e64	bd 32 14	lda $1432,x			lda data + $8d,x
+.0e67	9d b3 13	sta $13b3,x			sta data + $0e,x
+.0e6a	bd 35 14	lda $1435,x			lda data + $90,x
+.0e6d	9d b6 13	sta $13b6,x			sta data + $11,x
+.0e70	bd db 13	lda $13db,x	Lc78e:	lda data + $36,x
 .0e73	0a		asl a				asl a
 .0e74	d0 35		bne $0eab			bne Lc7c9
-.0e76	bd 32 14	lda $1432,x			lda data + $93,x
+.0e76	bd 38 14	lda $1438,x			lda data + $93,x
 .0e79	f0 0c		beq $0e87			beq Lc7a5
-.0e7b	bd 38 14	lda $1438,x			lda data + $99,x
-.0e7e	9d b3 13	sta $13b3,x			sta data + $14,x
-.0e81	bd 3b 14	lda $143b,x			lda data + $9c,x
-.0e84	9d b6 13	sta $13b6,x			sta data + $17,x
-.0e87	bd 3e 14	lda $143e,x	Lc7a5:	lda data + $9f,x
+.0e7b	bd 3e 14	lda $143e,x			lda data + $99,x
+.0e7e	9d b9 13	sta $13b9,x			sta data + $14,x
+.0e81	bd 41 14	lda $1441,x			lda data + $9c,x
+.0e84	9d bc 13	sta $13bc,x			sta data + $17,x
+.0e87	bd 44 14	lda $1444,x	Lc7a5:	lda data + $9f,x
 .0e8a	f0 0f		beq $0e9b			beq Lc7b9
 .0e8c	a4 fd		ldy $fd				ldy $fd
 .0e8e	18		clc				clc
-.0e8f	79 31 15	adc $1531,y			adc data + $192,y
+.0e8f	79 37 15	adc $1537,y			adc data + $192,y
 .0e92	a4 fe		ldy $fe				ldy $fe
 .0e94	18		clc				clc
-.0e95	79 39 15	adc $1539,y			adc data + $19a,y
+.0e95	79 3f 15	adc $153f,y			adc data + $19a,y
 .0e98	18		clc				clc
 .0e99	90 08		bcc $0ea3			bcc Lc7c1
-.0e9b	bd 41 14	lda $1441,x	Lc7b9:	lda data + $a2,x
+.0e9b	bd 47 14	lda $1447,x	Lc7b9:	lda data + $a2,x
 .0e9e	f0 0b		beq $0eab			beq Lc7c9
-.0ea0	bd 44 14	lda $1444,x			lda data + $a5,x
-.0ea3	8d c3 13	sta $13c3	Lc7c1:	sta data + $24
+.0ea0	bd 4a 14	lda $144a,x			lda data + $a5,x
+.0ea3	8d c9 13	sta $13c9	Lc7c1:	sta data + $24
 .0ea6	a9 00		lda #$00			lda #$00
-.0ea8	8d c2 13	sta $13c2			sta data + $23
-.0eab	bd db 13	lda $13db,x	Lc7c9:	lda data + $3c,x
-.0eae	9d de 13	sta $13de,x			sta data + $3f,x
-.0eb1	bd a4 13	lda $13a4,x			lda data + $05,x
+.0ea8	8d c8 13	sta $13c8			sta data + $23
+.0eab	bd e1 13	lda $13e1,x	Lc7c9:	lda data + $3c,x
+.0eae	9d e4 13	sta $13e4,x			sta data + $3f,x
+.0eb1	bd aa 13	lda $13aa,x			lda data + $05,x
 .0eb4	29 40		and #$40			and #$40
-.0eb6	9d d5 13	sta $13d5,x			sta data + $36,x
-.0eb9	bd a4 13	lda $13a4,x			lda data + $05,x
+.0eb6	9d db 13	sta $13db,x			sta data + $36,x
+.0eb9	bd aa 13	lda $13aa,x			lda data + $05,x
 .0ebc	4a		lsr a				lsr a
 .0ebd	4a		lsr a				lsr a
 .0ebe	29 07		and #$07			and #$07
 .0ec0	d0 30		bne $0ef2			bne Lc810
-.0ec2	bd a4 13	lda $13a4,x			lda data + $05,x
+.0ec2	bd aa 13	lda $13aa,x			lda data + $05,x
 .0ec5	30 14		bmi $0edb			bmi Lc7f9
-.0ec7	ad c6 13	lda $13c6			lda data + $27
+.0ec7	ad cc 13	lda $13cc			lda data + $27
 .0eca	29 3c		and #$3c			and #$3c
 .0ecc	d0 1e		bne $0eec			bne Lc80a
-.0ece	ad c6 13	lda $13c6			lda data + $27
+.0ece	ad cc 13	lda $13cc			lda data + $27
 .0ed1	0a		asl a				asl a
 .0ed2	2a		rol a				rol a
 .0ed3	2a		rol a				rol a
 .0ed4	d0 02		bne $0ed8			bne Lc7f6
 .0ed6	a9 04		lda #$04			lda #$04
 .0ed8	4c 52 0f	jmp $0f52	Lc7f6:	jmp Lc870
-.0edb	ad c7 13	lda $13c7	Lc7f9:	lda data + $28
+.0edb	ad cd 13	lda $13cd	Lc7f9:	lda data + $28
 .0ede	f0 0c		beq $0eec			beq Lc80a
 .0ee0	29 3f		and #$3f			and #$3f
 .0ee2	d0 08		bne $0eec			bne Lc80a
-.0ee4	ad c7 13	lda $13c7			lda data + $28
+.0ee4	ad cd 13	lda $13cd			lda data + $28
 .0ee7	0a		asl a				asl a
 .0ee8	2a		rol a				rol a
 .0ee9	2a		rol a				rol a
 .0eea	d0 66		bne $0f52			bne Lc870
 .0eec	a9 10		lda #$10	Lc80a:	lda #$10
-.0eee	8d 9f 13	sta $139f			sta data
+.0eee	8d a5 13	sta $13a5			sta data
 .0ef1	60		rts				rts
 .0ef2	c9 01		cmp #$01	Lc810:	cmp #$01
 .0ef4	d0 13		bne $0f09			bne Lc827
-.0ef6	bd a4 13	lda $13a4,x			lda data + $05,x
+.0ef6	bd aa 13	lda $13aa,x			lda data + $05,x
 .0ef9	29 20		and #$20			and #$20
 .0efb	d0 06		bne $0f03			bne Lc821
-.0efd	ad c8 13	lda $13c8			lda data + $29
+.0efd	ad ce 13	lda $13ce			lda data + $29
 .0f00	4c 52 0f	jmp $0f52			jmp Lc870
-.0f03	bd c9 13	lda $13c9,x	Lc821:	lda data + $2a,x
+.0f03	bd cf 13	lda $13cf,x	Lc821:	lda data + $2a,x
 .0f06	4c 52 0f	jmp $0f52			jmp Lc870
 .0f09	a8		tay		Lc827:	tay
-.0f0a	bd a4 13	lda $13a4,x			lda data + $05,x
+.0f0a	bd aa 13	lda $13aa,x			lda data + $05,x
 .0f0d	29 a0		and #$a0			and #$a0
 .0f0f	c9 80		cmp #$80			cmp #$80
 .0f11	f0 30		beq $0f43			beq Lc861
 .0f13	85 ff		sta $ff				sta $ff
 .0f15	18		clc				clc
-.0f16	ad c6 13	lda $13c6			lda data + $27
+.0f16	ad cc 13	lda $13cc			lda data + $27
 .0f19	d0 01		bne $0f1c			bne Lc83a
 .0f1b	38		sec				sec
 .0f1c	88		dey		Lc83a:	dey
@@ -849,7 +849,7 @@
 .0f3d	65 ff		adc $ff				adc $ff
 .0f3f	90 11		bcc $0f52			bcc Lc870
 .0f41	b0 31		bcs $0f74			bcs Lc892
-.0f43	ad c7 13	lda $13c7	Lc861:	lda data + $28
+.0f43	ad cd 13	lda $13cd	Lc861:	lda data + $28
 .0f46	f0 29		beq $0f71			beq Lc88f
 .0f48	88		dey				dey
 .0f49	88		dey				dey
@@ -858,23 +858,23 @@
 .0f4d	b0 22		bcs $0f71			bcs Lc88f
 .0f4f	88		dey				dey
 .0f50	d0 fa		bne $0f4c			bne Lc86a
-.0f52	9d cf 13	sta $13cf,x	Lc870:	sta data + $30,x
-.0f55	bd b9 13	lda $13b9,x			lda data + $1a,x
+.0f52	9d d5 13	sta $13d5,x	Lc870:	sta data + $30,x
+.0f55	bd bf 13	lda $13bf,x			lda data + $1a,x
 .0f58	29 f6		and #$f6			and #$f6
-.0f5a	9d b9 13	sta $13b9,x			sta data + $1a,x
+.0f5a	9d bf 13	sta $13bf,x			sta data + $1a,x
 .0f5d	38		sec				sec
-.0f5e	bd a1 13	lda $13a1,x			lda data + $02,x
+.0f5e	bd a7 13	lda $13a7,x			lda data + $02,x
 .0f61	29 07		and #$07			and #$07
 .0f63	d0 03		bne $0f68			bne Lc886
-.0f65	7e d5 13	ror $13d5,x			ror data + $36,x
-.0f68	bd b9 13	lda $13b9,x	Lc886:	lda data + $1a,x
+.0f65	7e db 13	ror $13db,x			ror data + $36,x
+.0f68	bd bf 13	lda $13bf,x	Lc886:	lda data + $1a,x
 .0f6b	69 00		adc #$00			adc #$00
-.0f6d	9d b9 13	sta $13b9,x			sta data + $1a,x
+.0f6d	9d bf 13	sta $13bf,x			sta data + $1a,x
 .0f70	60		rts				rts
 .0f71	a9 10		lda #$10	Lc88f:	lda #$10
 >0f73	2c						.byte $2C
 .0f74	a9 18		lda #$18	Lc892:	lda #$18
-.0f76	8d 9f 13	sta $139f			sta data
+.0f76	8d a5 13	sta $13a5			sta data
 .0f79	60		rts				rts
 .0f7a	98		tya		Lc898:	tya
 .0f7b	48		pha				pha
@@ -887,18 +887,18 @@
 .0f86	b0 1e		bcs $0fa6			bcs Lc8c4
 .0f88	4a		lsr a				lsr a
 .0f89	b0 0e		bcs $0f99			bcs Lc8b7
-.0f8b	9d 3b 14	sta $143b,x			sta data + $9c,x
-.0f8e	9d b6 13	sta $13b6,x			sta data + $17,x
+.0f8b	9d 41 14	sta $1441,x			sta data + $9c,x
+.0f8e	9d bc 13	sta $13bc,x			sta data + $17,x
 .0f91	68		pla				pla
-.0f92	9d 38 14	sta $1438,x			sta data + $99,x
-.0f95	9d b3 13	sta $13b3,x			sta data + $14,x
+.0f92	9d 3e 14	sta $143e,x			sta data + $99,x
+.0f95	9d b9 13	sta $13b9,x			sta data + $14,x
 .0f98	60		rts				rts
 .0f99	4a		lsr a		Lc8b7:	lsr a
 .0f9a	90 02		bcc $0f9e			bcc Lc8bc
 .0f9c	09 f8		ora #$f8			ora #$f8
-.0f9e	9d 29 14	sta $1429,x	Lc8bc:	sta data + $8a,x
+.0f9e	9d 2f 14	sta $142f,x	Lc8bc:	sta data + $8a,x
 .0fa1	68		pla				pla
-.0fa2	9d 26 14	sta $1426,x			sta data + $87,x
+.0fa2	9d 2c 14	sta $142c,x			sta data + $87,x
 .0fa5	60		rts				rts
 .0fa6	4a		lsr a		Lc8c4:	lsr a
 .0fa7	b0 03		bcs $0fac			bcs Lc8ca
@@ -909,15 +909,15 @@
 .0fb0	b0 0f		bcs $0fc1			bcs Lc8df
 .0fb2	d0 08		bne $0fbc			bne Lc8da
 .0fb4	68		pla				pla
-.0fb5	9d 44 14	sta $1444,x			sta data + $a5,x
-.0fb8	8d c3 13	sta $13c3			sta data + $24
+.0fb5	9d 4a 14	sta $144a,x			sta data + $a5,x
+.0fb8	8d c9 13	sta $13c9			sta data + $24
 .0fbb	60		rts				rts
 .0fbc	68		pla		Lc8da:	pla
-.0fbd	9d db 13	sta $13db,x			sta data + $3c,x
+.0fbd	9d e1 13	sta $13e1,x			sta data + $3c,x
 .0fc0	60		rts				rts
 .0fc1	d0 48		bne $100b	Lc8df:	bne Lc929
 .0fc3	68		pla				pla
-.0fc4	9d 1d 14	sta $141d,x			sta data + $7e,x
+.0fc4	9d 23 14	sta $1423,x			sta data + $7e,x
 .0fc7	c9 5b		cmp #$5b			cmp #$5b
 .0fc9	f0 33		beq $0ffe			beq Lc91c
 .0fcb	a8		tay				tay
@@ -927,48 +927,48 @@
 .0fcf	38		sec				sec
 .0fd0	e9 0b		sbc #$0b			sbc #$0b
 .0fd2	18		clc				clc
-.0fd3	7d 23 14	adc $1423,x			adc data + $84,x
+.0fd3	7d 29 14	adc $1429,x			adc data + $84,x
 .0fd6	30 0c		bmi $0fe4			bmi Lc902
 .0fd8	c9 0c		cmp #$0c			cmp #$0c
 .0fda	90 11		bcc $0fed			bcc Lc90b
 .0fdc	e9 0c		sbc #$0c			sbc #$0c
-.0fde	de 20 14	dec $1420,x			dec data + $81,x
+.0fde	de 26 14	dec $1426,x			dec data + $81,x
 .0fe1	4c ed 0f	jmp $0fed			jmp Lc90b
 .0fe4	c9 f5		cmp #$f5	Lc902:	cmp #$f5
 .0fe6	b0 05		bcs $0fed			bcs Lc90b
 .0fe8	69 0c		adc #$0c			adc #$0c
-.0fea	fe 20 14	inc $1420,x			inc data + $81,x
-.0fed	9d 23 14	sta $1423,x	Lc90b:	sta data + $84,x
+.0fea	fe 26 14	inc $1426,x			inc data + $81,x
+.0fed	9d 29 14	sta $1429,x	Lc90b:	sta data + $84,x
 .0ff0	98		tya				tya
 .0ff1	29 07		and #$07			and #$07
 .0ff3	38		sec				sec
 .0ff4	e9 03		sbc #$03			sbc #$03
 .0ff6	18		clc				clc
-.0ff7	7d 20 14	adc $1420,x			adc data + $81,x
-.0ffa	9d 20 14	sta $1420,x			sta data + $81,x
+.0ff7	7d 26 14	adc $1426,x			adc data + $81,x
+.0ffa	9d 26 14	sta $1426,x			sta data + $81,x
 .0ffd	60		rts				rts
-.0ffe	bd 17 14	lda $1417,x	Lc91c:	lda data + $78,x
-.1001	9d 20 14	sta $1420,x			sta data + $81,x
-.1004	bd 1a 14	lda $141a,x			lda data + $7b,x
-.1007	9d 23 14	sta $1423,x			sta data + $84,x
+.0ffe	bd 1d 14	lda $141d,x	Lc91c:	lda data + $78,x
+.1001	9d 26 14	sta $1426,x			sta data + $81,x
+.1004	bd 20 14	lda $1420,x			lda data + $7b,x
+.1007	9d 29 14	sta $1429,x			sta data + $84,x
 .100a	60		rts				rts
 .100b	68		pla		Lc929:	pla
-.100c	9d 65 14	sta $1465,x			sta data + $c6,x
+.100c	9d 6b 14	sta $146b,x			sta data + $c6,x
 .100f	60		rts				rts
 .1010	4a		lsr a		Lc92e:	lsr a
 .1011	b0 08		bcs $101b			bcs Lc939
-.1013	9d aa 13	sta $13aa,x			sta data + $0b,x
+.1013	9d b0 13	sta $13b0,x			sta data + $0b,x
 .1016	68		pla				pla
-.1017	9d a7 13	sta $13a7,x			sta data + $08,x
+.1017	9d ad 13	sta $13ad,x			sta data + $08,x
 .101a	60		rts				rts
 .101b	4a		lsr a		Lc939:	lsr a
 .101c	6a		ror a				ror a
 .101d	6a		ror a				ror a
-.101e	6d fa 14	adc $14fa			adc data + $15b
-.1021	8d cc 13	sta $13cc			sta data + $2d
+.101e	6d 00 15	adc $1500			adc data + $15b
+.1021	8d d2 13	sta $13d2			sta data + $2d
 .1024	68		pla				pla
-.1025	6d fb 14	adc $14fb			adc data + $15c
-.1028	8d cd 13	sta $13cd			sta data + $2e
+.1025	6d 01 15	adc $1501			adc data + $15c
+.1028	8d d3 13	sta $13d3			sta data + $2e
 .102b	60		rts				rts
 .102c	4a		lsr a		Lc94a:	lsr a
 .102d	90 03		bcc $1032			bcc Lc950
@@ -980,43 +980,43 @@
 .1038	4a		lsr a				lsr a
 .1039	b0 0f		bcs $104a			bcs Lc968
 .103b	68		pla				pla
-.103c	8d c6 13	sta $13c6			sta data + $27
+.103c	8d cc 13	sta $13cc			sta data + $27
 .103f	4a		lsr a				lsr a
 .1040	4a		lsr a				lsr a
 .1041	4a		lsr a				lsr a
 .1042	a8		tay				tay
-.1043	b9 4e 15	lda $154e,y			lda data + $1af,y
-.1046	8d c7 13	sta $13c7			sta data + $28
+.1043	b9 54 15	lda $1554,y			lda data + $1af,y
+.1046	8d cd 13	sta $13cd			sta data + $28
 .1049	60		rts				rts
 .104a					Lc968:
 .104a	68		pla				pla
-.104b	9d fc 13	sta $13fc,x			sta data + $5d,x
+.104b	9d 02 14	sta $1402,x			sta data + $5d,x
 .104e	60		rts				rts
 .104f					Lc96d:
 .104f	4a		lsr a				lsr a
 .1050	b0 05		bcs $1057			bcs Lc975
 .1052	68		pla				pla
-.1053	8d a0 13	sta $13a0			sta data + $01
+.1053	8d a6 13	sta $13a6			sta data + $01
 .1056	60		rts				rts
 .1057	68		pla		Lc975:	pla
 .1058	f0 11		beq $106b			beq Lc989
-.105a	9d 14 14	sta $1414,x			sta data + $75,x
-.105d	bc 02 14	ldy $1402,x			ldy data + $63,x
+.105a	9d 1a 14	sta $141a,x			sta data + $75,x
+.105d	bc 08 14	ldy $1408,x			ldy data + $63,x
 .1060	d0 08		bne $106a			bne Lc988
-.1062	9d 02 14	sta $1402,x			sta data + $63,x
+.1062	9d 08 14	sta $1408,x			sta data + $63,x
 .1065	a9 01		lda #$01			lda #$01
-.1067	9d 05 14	sta $1405,x			sta data + $66,x
+.1067	9d 0b 14	sta $140b,x			sta data + $66,x
 .106a	60		rts		Lc988:	rts
-.106b	9d 02 14	sta $1402,x	Lc989:	sta data + $63,x
-.106e	9d 08 14	sta $1408,x			sta data + $69,x
-.1071	9d 0b 14	sta $140b,x			sta data + $6c,x
+.106b	9d 08 14	sta $1408,x	Lc989:	sta data + $63,x
+.106e	9d 0e 14	sta $140e,x			sta data + $69,x
+.1071	9d 11 14	sta $1411,x			sta data + $6c,x
 .1074	60		rts				rts
 .1075	4a		lsr a		Lc993:	lsr a
 .1076	b0 30		bcs $10a8			bcs Lc9c6
 .1078	4a		lsr a				lsr a
 .1079	b0 05		bcs $1080			bcs Lc99e
 .107b	68		pla				pla
-.107c	9d d8 13	sta $13d8,x			sta data + $39,x
+.107c	9d de 13	sta $13de,x			sta data + $39,x
 .107f	60		rts				rts
 .1080	68		pla		Lc99e:	pla
 .1081	a0 00		ldy #$00			ldy #$00
@@ -1026,27 +1026,27 @@
 .1087	18		clc				clc
 .1088	48		pha		Lc9a6:	pha
 .1089	29 07		and #$07			and #$07
-.108b	79 4b 15	adc $154b,y			adc data + $1ac,y
-.108e	9d 17 14	sta $1417,x			sta data + $78,x
-.1091	9d 20 14	sta $1420,x			sta data + $81,x
+.108b	79 51 15	adc $1551,y			adc data + $1ac,y
+.108e	9d 1d 14	sta $141d,x			sta data + $78,x
+.1091	9d 26 14	sta $1426,x			sta data + $81,x
 .1094	68		pla				pla
 .1095	4a		lsr a				lsr a
 .1096	4a		lsr a				lsr a
 .1097	4a		lsr a				lsr a
 .1098	18		clc				clc
-.1099	79 4c 15	adc $154c,y			adc data + $1ad,y
-.109c	9d 1a 14	sta $141a,x			sta data + $7b,x
-.109f	9d 23 14	sta $1423,x			sta data + $84,x
+.1099	79 52 15	adc $1552,y			adc data + $1ad,y
+.109c	9d 20 14	sta $1420,x			sta data + $7b,x
+.109f	9d 29 14	sta $1429,x			sta data + $84,x
 .10a2	a9 5b		lda #$5b			lda #$5b
-.10a4	9d 1d 14	sta $141d,x			sta data + $7e,x
+.10a4	9d 23 14	sta $1423,x			sta data + $7e,x
 .10a7	60		rts				rts
 .10a8	4a		lsr a		Lc9c6:	lsr a
 .10a9	b0 05		bcs $10b0			bcs Lc9ce
 .10ab	68		pla				pla
-.10ac	9d 41 14	sta $1441,x			sta data + $a2,x
+.10ac	9d 47 14	sta $1447,x			sta data + $a2,x
 .10af	60		rts				rts
 .10b0	68		pla		Lc9ce:	pla
-.10b1	8d 6b 14	sta $146b			sta data + $cc
+.10b1	8d 71 14	sta $1471			sta data + $cc
 .10b4	60		rts				rts
 .10b5	4a		lsr a		Lc9d3:	lsr a
 .10b6	b0 27		bcs $10df			bcs Lc9fd
@@ -1055,63 +1055,63 @@
 .10bb	4a		lsr a				lsr a
 .10bc	b0 05		bcs $10c3			bcs Lc9e1
 .10be	68		pla				pla
-.10bf	8d c8 13	sta $13c8			sta data + $29
+.10bf	8d ce 13	sta $13ce			sta data + $29
 .10c2	60		rts				rts
 .10c3	68		pla		Lc9e1:	pla
-.10c4	9d 3e 14	sta $143e,x			sta data + $9f,x
+.10c4	9d 44 14	sta $1444,x			sta data + $9f,x
 .10c7	60		rts				rts
 .10c8	4a		lsr a		Lc9e6:	lsr a
 .10c9	b0 0f		bcs $10da			bcs Lc9f8
 .10cb	68		pla				pla
-.10cc	9d 32 14	sta $1432,x			sta data + $93,x
+.10cc	9d 38 14	sta $1438,x			sta data + $93,x
 .10cf	a0 00		ldy #$00			ldy #$00
 .10d1	0a		asl a				asl a
 .10d2	90 01		bcc $10d5			bcc Lc9f3
 .10d4	88		dey				dey
 .10d5	98		tya		Lc9f3:	tya
-.10d6	9d 35 14	sta $1435,x			sta data + $96,x
+.10d6	9d 3b 14	sta $143b,x			sta data + $96,x
 .10d9	60		rts				rts
 .10da	68		pla		Lc9f8:	pla
-.10db	9d 11 14	sta $1411,x			sta data + $72,x
+.10db	9d 17 14	sta $1417,x			sta data + $72,x
 .10de	60		rts				rts
 .10df	4a		lsr a		Lc9fd:	lsr a
 .10e0	b0 1c		bcs $10fe			bcs Lca1c
 .10e2	4a		lsr a				lsr a
 .10e3	b0 15		bcs $10fa			bcs Lca18
 .10e5	68		pla				pla
-.10e6	9d 56 14	sta $1456,x			sta data + $b7,x
+.10e6	9d 5c 14	sta $145c,x			sta data + $b7,x
 .10e9	a5 fd		lda $fd				lda $fd
-.10eb	9d 50 14	sta $1450,x			sta data + $b1,x
+.10eb	9d 56 14	sta $1456,x			sta data + $b1,x
 .10ee	a5 fe		lda $fe				lda $fe
-.10f0	9d 53 14	sta $1453,x			sta data + $b4,x
-.10f3	bd d2 13	lda $13d2,x			lda data + $33,x
-.10f6	9d 4d 14	sta $144d,x			sta data + $ae,x
+.10f0	9d 59 14	sta $1459,x			sta data + $b4,x
+.10f3	bd d8 13	lda $13d8,x			lda data + $33,x
+.10f6	9d 53 14	sta $1453,x			sta data + $ae,x
 .10f9	60		rts				rts
 .10fa	68		pla		Lca18:	pla
-.10fb	6c fe 14	jmp ($14fe)			jmp (data + $15f)
+.10fb	6c 04 15	jmp ($1504)			jmp (data + $15f)
 .10fe	4a		lsr a		Lca1c:	lsr a
 .10ff	b0 1e		bcs $111f			bcs Lca3d
 .1101	68		pla				pla
 .1102	d0 0a		bne $110e			bne Lca2c
-.1104	9d ea 13	sta $13ea,x			sta data + $4b,x
-.1107	9d f0 13	sta $13f0,x			sta data + $51,x
-.110a	9d f3 13	sta $13f3,x			sta data + $54,x
+.1104	9d f0 13	sta $13f0,x			sta data + $4b,x
+.1107	9d f6 13	sta $13f6,x			sta data + $51,x
+.110a	9d f9 13	sta $13f9,x			sta data + $54,x
 .110d	60		rts				rts
-.110e	9d f9 13	sta $13f9,x	Lca2c:	sta data + $5a,x
-.1111	bc ea 13	ldy $13ea,x			ldy data + $4b,x
+.110e	9d ff 13	sta $13ff,x	Lca2c:	sta data + $5a,x
+.1111	bc f0 13	ldy $13f0,x			ldy data + $4b,x
 .1114	d0 08		bne $111e			bne Lca3c
-.1116	9d ea 13	sta $13ea,x			sta data + $4b,x
+.1116	9d f0 13	sta $13f0,x			sta data + $4b,x
 .1119	a9 01		lda #$01			lda #$01
-.111b	9d ed 13	sta $13ed,x			sta data + $4e,x
+.111b	9d f3 13	sta $13f3,x			sta data + $4e,x
 .111e	60		rts		Lca3c:	rts
 .111f	68		pla		Lca3d:	pla
-.1120	9d c9 13	sta $13c9,x			sta data + $2a,x
+.1120	9d cf 13	sta $13cf,x			sta data + $2a,x
 .1123	60		rts				rts
 .1124	4a		lsr a		Lca42:	lsr a
 .1125	90 08		bcc $112f			bcc Lca4d
-.1127	9d e7 13	sta $13e7,x			sta data + $48,x
+.1127	9d ed 13	sta $13ed,x			sta data + $48,x
 .112a	68		pla				pla
-.112b	9d e4 13	sta $13e4,x			sta data + $45,x
+.112b	9d ea 13	sta $13ea,x			sta data + $45,x
 .112e	60		rts				rts
 .112f	68		pla		Lca4d:	pla
 .1130	4a		lsr a				lsr a
@@ -1131,83 +1131,83 @@
 .1144	85 ff		sta $ff		Lca62:	sta $ff
 .1146	98		tya				tya
 .1147	b0 09		bcs $1152			bcs Lca70
-.1149	3d bc 13	and $13bc,x			and data + $1d,x
+.1149	3d c2 13	and $13c2,x			and data + $1d,x
 .114c	05 ff		ora $ff				ora $ff
-.114e	9d bc 13	sta $13bc,x			sta data + $1d,x
+.114e	9d c2 13	sta $13c2,x			sta data + $1d,x
 .1151	60		rts				rts
-.1152	3d bf 13	and $13bf,x	Lca70:	and data + $20,x
+.1152	3d c5 13	and $13c5,x	Lca70:	and data + $20,x
 .1155	05 ff		ora $ff				ora $ff
-.1157	9d bf 13	sta $13bf,x			sta data + $20,x
+.1157	9d c5 13	sta $13c5,x			sta data + $20,x
 .115a	60		rts				rts
 .115b	4a		lsr a		Lca79:	lsr a
 .115c	b0 38		bcs $1196			bcs Lcab4
 .115e	4a		lsr a				lsr a
 .115f	b0 64		bcs $11c5			bcs Lcae3
 .1161	85 ff		sta $ff		Lca7f:	sta $ff
-.1163	bd 59 14	lda $1459,x			lda data + $ba,x
-.1166	dd 48 14	cmp $1448,x			cmp data + $a9,x
+.1163	bd 5f 14	lda $145f,x			lda data + $ba,x
+.1166	dd 4e 14	cmp $144e,x			cmp data + $a9,x
 .1169	f0 54		beq $11bf			beq Lcadd
-.116b	fe 59 14	inc $1459,x			inc data + $ba,x
+.116b	fe 5f 14	inc $145f,x			inc data + $ba,x
 .116e	a8		tay				tay
 .116f	a5 fd		lda $fd				lda $fd
-.1171	99 80 14	sta $1480,y			sta data + $e1,y
+.1171	99 86 14	sta $1486,y			sta data + $e1,y
 .1174	a5 fe		lda $fe				lda $fe
-.1176	99 8f 14	sta $148f,y			sta data + $f0,y
-.1179	bd d2 13	lda $13d2,x			lda data + $33,x
-.117c	99 ce 14	sta $14ce,y			sta data + $12f,y
+.1176	99 95 14	sta $1495,y			sta data + $f0,y
+.1179	bd d8 13	lda $13d8,x			lda data + $33,x
+.117c	99 d4 14	sta $14d4,y			sta data + $12f,y
 .117f	a4 ff		ldy $ff				ldy $ff
-.1181	b9 b6 14	lda $14b6,y			lda data + $117,y
+.1181	b9 bc 14	lda $14bc,y			lda data + $117,y
 .1184	f0 36		beq $11bc			beq Lcada
 .1186	85 fe		sta $fe				sta $fe
-.1188	b9 9e 14	lda $149e,y			lda data + $ff,y
+.1188	b9 a4 14	lda $14a4,y			lda data + $ff,y
 .118b	85 fd		sta $fd				sta $fd
-.118d	b9 dd 14	lda $14dd,y			lda data + $13e,y
-.1190	9d d2 13	sta $13d2,x			sta data + $33,x
+.118d	b9 e3 14	lda $14e3,y			lda data + $13e,y
+.1190	9d d8 13	sta $13d8,x			sta data + $33,x
 .1193	60		rts				rts
 .1194	b0 4b		bcs $11e1	Lcab2:	bcs Lcaff
 .1196	4a		lsr a		Lcab4:	lsr a
 .1197	b0 3c		bcs $11d5			bcs Lcaf3
 .1199	a8		tay		Lcab7:	tay
 .119a	a5 fd		lda $fd				lda $fd
-.119c	99 9e 14	sta $149e,y			sta data + $ff,y
+.119c	99 a4 14	sta $14a4,y			sta data + $ff,y
 .119f	a5 fe		lda $fe				lda $fe
-.11a1	99 b6 14	sta $14b6,y			sta data + $117,y
-.11a4	bd d2 13	lda $13d2,x			lda data + $33,x
-.11a7	99 dd 14	sta $14dd,y			sta data + $13e,y
-.11aa	bd 59 14	lda $1459,x			lda data + $ba,x
-.11ad	dd 48 15	cmp $1548,x			cmp data + $1a9,x
+.11a1	99 bc 14	sta $14bc,y			sta data + $117,y
+.11a4	bd d8 13	lda $13d8,x			lda data + $33,x
+.11a7	99 e3 14	sta $14e3,y			sta data + $13e,y
+.11aa	bd 5f 14	lda $145f,x			lda data + $ba,x
+.11ad	dd 4e 15	cmp $154e,x			cmp data + $1a9,x
 .11b0	f0 0d		beq $11bf			beq Lcadd
-.11b2	fe 59 14	inc $1459,x			inc data + $ba,x
+.11b2	fe 5f 14	inc $145f,x			inc data + $ba,x
 .11b5	a8		tay				tay
 .11b6	a9 00		lda #$00			lda #$00
-.11b8	99 8f 14	sta $148f,y			sta data + $f0,y
+.11b8	99 95 14	sta $1495,y			sta data + $f0,y
 .11bb	60		rts				rts
 .11bc	a9 30		lda #$30	Lcada:	lda #$30
 >11be	2c						.byte $2C
 .11bf	a9 28		lda #$28	Lcadd:	lda #$28
-.11c1	8d 9f 13	sta $139f			sta data
+.11c1	8d a5 13	sta $13a5			sta data
 .11c4	60		rts				rts
 .11c5	0a		asl a		Lcae3:	asl a
 .11c6	0a		asl a				asl a
 .11c7	0a		asl a				asl a
 .11c8	0a		asl a				asl a
-.11c9	4d c4 13	eor $13c4			eor data + $25
+.11c9	4d ca 13	eor $13ca			eor data + $25
 .11cc	29 f0		and #$f0			and #$f0
-.11ce	4d c4 13	eor $13c4			eor data + $25
-.11d1	8d c4 13	sta $13c4			sta data + $25
+.11ce	4d ca 13	eor $13ca			eor data + $25
+.11d1	8d ca 13	sta $13ca			sta data + $25
 .11d4	60		rts				rts
-.11d5	4d c5 13	eor $13c5	Lcaf3:	eor data + $26
+.11d5	4d cb 13	eor $13cb	Lcaf3:	eor data + $26
 .11d8	29 0f		and #$0f			and #$0f
-.11da	4d c5 13	eor $13c5			eor data + $26
-.11dd	8d c5 13	sta $13c5			sta data + $26
+.11da	4d cb 13	eor $13cb			eor data + $26
+.11dd	8d cb 13	sta $13cb			sta data + $26
 .11e0	60		rts				rts
 .11e1	4a		lsr a		Lcaff:	lsr a
 .11e2	b0 0b		bcs $11ef			bcs Lcb0d
 .11e4	4a		lsr a				lsr a
 .11e5	b0 04		bcs $11eb			bcs Lcb09
-.11e7	8d 69 14	sta $1469			sta data + $ca
+.11e7	8d 6f 14	sta $146f			sta data + $ca
 .11ea	60		rts				rts
-.11eb	8d 6a 14	sta $146a	Lcb09:	sta data + $cb
+.11eb	8d 70 14	sta $1470	Lcb09:	sta data + $cb
 .11ee	60		rts				rts
 .11ef					Lcb0d:
 .11ef	4a		lsr a				lsr a
@@ -1235,7 +1235,7 @@
 .1212	b0 03		bcs $1217			bcs Lcb35
 .1214	4c 99 11	jmp $1199			jmp Lcab7
 .1217	4c 61 11	jmp $1161	Lcb35:	jmp Lca7f
-.121a	ac c5 13	ldy $13c5	Lcb38:	ldy data + $26
+.121a	ac cb 13	ldy $13cb	Lcb38:	ldy data + $26
 .121d	b0 07		bcs $1226			bcs Lcb44
 .121f	c8		iny				iny
 .1220	98		tya				tya
@@ -1246,48 +1246,48 @@
 .1227	29 0f		and #$0f			and #$0f
 .1229	f0 04		beq $122f			beq Lcb4d
 .122b	88		dey				dey
-.122c	8c c5 13	sty $13c5	Lcb4a:	sty data + $26
+.122c	8c cb 13	sty $13cb	Lcb4a:	sty data + $26
 .122f	60		rts		Lcb4d:	rts
-.1230	bd 01 15	lda $1501,x	Lcb4e:	lda data + $162,x
+.1230	bd 07 15	lda $1507,x	Lcb4e:	lda data + $162,x
 .1233	49 ff		eor #$ff			eor #$ff
-.1235	2d c4 13	and $13c4			and data + $25
+.1235	2d ca 13	and $13ca			and data + $25
 .1238	90 03		bcc $123d			bcc Lcb5b
-.123a	1d 01 15	ora $1501,x			ora data + $162,x
-.123d	8d c4 13	sta $13c4	Lcb5b:	sta data + $25
+.123a	1d 07 15	ora $1507,x			ora data + $162,x
+.123d	8d ca 13	sta $13ca	Lcb5b:	sta data + $25
 .1240	60		rts				rts
-.1241	bd b9 13	lda $13b9,x	Lcb5f:	lda data + $1a,x
+.1241	bd bf 13	lda $13bf,x	Lcb5f:	lda data + $1a,x
 .1244	29 fb		and #$fb			and #$fb
 .1246	90 55		bcc $129d			bcc Lcbbb
 .1248	09 04		ora #$04			ora #$04
 .124a	b0 51		bcs $129d			bcs Lcbbb
-.124c	bd b9 13	lda $13b9,x	Lcb6a:	lda data + $1a,x
+.124c	bd bf 13	lda $13bf,x	Lcb6a:	lda data + $1a,x
 .124f	29 fd		and #$fd			and #$fd
 .1251	90 4a		bcc $129d			bcc Lcbbb
 .1253	09 02		ora #$02			ora #$02
 .1255	b0 46		bcs $129d			bcs Lcbbb
-.1257	ad c4 13	lda $13c4	Lcb75:	lda data + $25
+.1257	ad ca 13	lda $13ca	Lcb75:	lda data + $25
 .125a	29 f7		and #$f7			and #$f7
 .125c	90 02		bcc $1260			bcc Lcb7e
 .125e	09 08		ora #$08			ora #$08
-.1260	8d c4 13	sta $13c4	Lcb7e:	sta data + $25
+.1260	8d ca 13	sta $13ca	Lcb7e:	sta data + $25
 .1263	60		rts				rts
-.1264	ad c5 13	lda $13c5	Lcb82:	lda data + $26
+.1264	ad cb 13	lda $13cb	Lcb82:	lda data + $26
 .1267	29 7f		and #$7f			and #$7f
 .1269	90 02		bcc $126d			bcc Lcb8b
 .126b	09 80		ora #$80			ora #$80
-.126d	8d c5 13	sta $13c5	Lcb8b:	sta data + $26
+.126d	8d cb 13	sta $13cb	Lcb8b:	sta data + $26
 .1270	60		rts				rts
 .1271	98		tya		Lcb8f:	tya
-.1272	8d 5c 14	sta $145c			sta data + $bd
-.1275	8d 7e 14	sta $147e			sta data + $df
+.1272	8d 62 14	sta $1462			sta data + $bd
+.1275	8d 84 14	sta $1484			sta data + $df
 .1278	c8		iny				iny
-.1279	8c 7f 14	sty $147f			sty data + $e0
+.1279	8c 85 14	sty $1485			sty data + $e0
 .127c	2a		rol a				rol a
-.127d	8d 68 14	sta $1468			sta data + $c9
+.127d	8d 6e 14	sta $146e			sta data + $c9
 .1280	60		rts				rts
 .1281	98		tya		Lcb9f:	tya
 .1282	2a		rol a				rol a
-.1283	9d ff 13	sta $13ff,x			sta data + $60,x
+.1283	9d 05 14	sta $1405,x			sta data + $60,x
 .1286	60		rts				rts
 .1287	4a		lsr a		Lcba5:	lsr a
 .1288	b0 27		bcs $12b1			bcs Lcbcf
@@ -1299,23 +1299,23 @@
 .1292	0a		asl a				asl a
 .1293	0a		asl a				asl a
 .1294	0a		asl a				asl a
-.1295	5d b9 13	eor $13b9,x			eor data + $1a,x
+.1295	5d bf 13	eor $13bf,x			eor data + $1a,x
 .1298	29 f0		and #$f0			and #$f0
-.129a	5d b9 13	eor $13b9,x			eor data + $1a,x
-.129d	9d b9 13	sta $13b9,x	Lcbbb:	sta data + $1a,x
+.129a	5d bf 13	eor $13bf,x			eor data + $1a,x
+.129d	9d bf 13	sta $13bf,x	Lcbbb:	sta data + $1a,x
 .12a0	60		rts				rts
 .12a1	0a		asl a		Lcbbf:	asl a
 .12a2	0a		asl a				asl a
 .12a3	0a		asl a				asl a
 .12a4	0a		asl a				asl a
-.12a5	4d c5 13	eor $13c5			eor data + $26
+.12a5	4d cb 13	eor $13cb			eor data + $26
 .12a8	29 70		and #$70			and #$70
-.12aa	4d c5 13	eor $13c5			eor data + $26
-.12ad	8d c5 13	sta $13c5			sta data + $26
+.12aa	4d cb 13	eor $13cb			eor data + $26
+.12ad	8d cb 13	sta $13cb			sta data + $26
 .12b0	60		rts				rts
 .12b1	4a		lsr a		Lcbcf:	lsr a
 .12b2	90 04		bcc $12b8			bcc Lcbd6
-.12b4	9d 5f 14	sta $145f,x			sta data + $c0,x
+.12b4	9d 65 14	sta $1465,x			sta data + $c0,x
 .12b7	60		rts				rts
 .12b8	a8		tay		Lcbd6:	tay
 .12b9	f0 20		beq $12db			beq Lcbf9
@@ -1324,52 +1324,52 @@
 .12be	88		dey				dey
 .12bf	f0 63		beq $1324			beq Lcc42
 .12c1	29 03		and #$03			and #$03
-.12c3	9d 62 14	sta $1462,x			sta data + $c3,x
+.12c3	9d 68 14	sta $1468,x			sta data + $c3,x
 .12c6	a9 00		lda #$00			lda #$00
-.12c8	9d 6c 14	sta $146c,x			sta data + $cd,x
-.12cb	9d 6f 14	sta $146f,x			sta data + $d0,x
-.12ce	9d 72 14	sta $1472,x			sta data + $d3,x
-.12d1	9d 75 14	sta $1475,x			sta data + $d6,x
-.12d4	8d 78 14	sta $1478			sta data + $d9
-.12d7	8d 7b 14	sta $147b			sta data + $dc
+.12c8	9d 72 14	sta $1472,x			sta data + $cd,x
+.12cb	9d 75 14	sta $1475,x			sta data + $d0,x
+.12ce	9d 78 14	sta $1478,x			sta data + $d3,x
+.12d1	9d 7b 14	sta $147b,x			sta data + $d6,x
+.12d4	8d 7e 14	sta $147e			sta data + $d9
+.12d7	8d 81 14	sta $1481			sta data + $dc
 .12da	60		rts				rts
-.12db	bd 56 14	lda $1456,x	Lcbf9:	lda data + $b7,x
+.12db	bd 5c 14	lda $145c,x	Lcbf9:	lda data + $b7,x
 .12de	f0 05		beq $12e5			beq Lcc03
-.12e0	de 56 14	dec $1456,x			dec data + $b7,x
+.12e0	de 5c 14	dec $145c,x			dec data + $b7,x
 .12e3	f0 12		beq $12f7			beq Lcc15
-.12e5	bd d2 13	lda $13d2,x	Lcc03:	lda data + $33,x
-.12e8	dd 4d 14	cmp $144d,x			cmp data + $ae,x
+.12e5	bd d8 13	lda $13d8,x	Lcc03:	lda data + $33,x
+.12e8	dd 53 14	cmp $1453,x			cmp data + $ae,x
 .12eb	d0 0b		bne $12f8			bne Lcc16
-.12ed	bd 50 14	lda $1450,x			lda data + $b1,x
+.12ed	bd 56 14	lda $1456,x			lda data + $b1,x
 .12f0	85 fd		sta $fd				sta $fd
-.12f2	bd 53 14	lda $1453,x			lda data + $b4,x
+.12f2	bd 59 14	lda $1459,x			lda data + $b4,x
 .12f5	85 fe		sta $fe				sta $fe
 .12f7	60		rts		Lcc15:	rts
 .12f8	a9 38		lda #$38	Lcc16:	lda #$38
-.12fa	8d 9f 13	sta $139f			sta data
+.12fa	8d a5 13	sta $13a5			sta data
 .12fd	60		rts				rts
-.12fe	bd 59 14	lda $1459,x	Lcc1c:	lda data + $ba,x
-.1301	dd 47 15	cmp $1547,x			cmp data + $1a8,x
+.12fe	bd 5f 14	lda $145f,x	Lcc1c:	lda data + $ba,x
+.1301	dd 4d 15	cmp $154d,x			cmp data + $1a8,x
 .1304	f0 18		beq $131e			beq Lcc3c
-.1306	de 59 14	dec $1459,x			dec data + $ba,x
+.1306	de 5f 14	dec $145f,x			dec data + $ba,x
 .1309	a8		tay				tay
 .130a	88		dey				dey
-.130b	b9 8f 14	lda $148f,y			lda data + $f0,y
+.130b	b9 95 14	lda $1495,y			lda data + $f0,y
 .130e	f0 0d		beq $131d			beq Lcc3b
 .1310	85 fe		sta $fe				sta $fe
-.1312	b9 80 14	lda $1480,y			lda data + $e1,y
+.1312	b9 86 14	lda $1486,y			lda data + $e1,y
 .1315	85 fd		sta $fd				sta $fd
-.1317	b9 ce 14	lda $14ce,y			lda data + $12f,y
-.131a	9d d2 13	sta $13d2,x			sta data + $33,x
+.1317	b9 d4 14	lda $14d4,y			lda data + $12f,y
+.131a	9d d8 13	sta $13d8,x			sta data + $33,x
 .131d	60		rts		Lcc3b:	rts
 .131e	a9 20		lda #$20	Lcc3c:	lda #$20
-.1320	8d 9f 13	sta $139f			sta data
+.1320	8d a5 13	sta $13a5			sta data
 .1323	60		rts				rts
-.1324	ad 9f 13	lda $139f	Lcc42:	lda data
-.1327	5d 01 15	eor $1501,x			eor data + $162,x
-.132a	8d 9f 13	sta $139f			sta data
+.1324	ad a5 13	lda $13a5	Lcc42:	lda data
+.1327	5d 07 15	eor $1507,x			eor data + $162,x
+.132a	8d a5 13	sta $13a5			sta data
 .132d	a9 01		lda #$01			lda #$01
-.132f	9d cf 13	sta $13cf,x			sta data + $30,x
+.132f	9d d5 13	sta $13d5,x			sta data + $30,x
 .1332	60		rts				rts
 .1333					inittxt:
 >1333	93						.byte $93
@@ -1387,67 +1387,67 @@
 >1391	0d 90						.byte $0D, $90
 >1393	00						.byte $00
 .1394					filename:
->1394	41 46 52 49 43 41 2e 4d				.text "africa.mus"
->139c	55 53
->139e	00						.byte 0
-.139f					data:
->139f	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->13a7	00 00 00 00 00 00 00 00
->13af	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->13b7	00 00 00 00 00 00 00 00
->13bf	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->13c7	00 00 00 00 00 00 00 00
->13cf	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->13d7	00 00 00 00 00 00 00 00
->13df	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->13e7	00 00 00 00 00 00 00 00
->13ef	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->13f7	00 00 00 00 00 00 00 00
->13ff	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->1407	00 00 00 00 00 00 00 00
->140f	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->1417	00 00 00 00 00 00 00 00
->141f	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->1427	00 00 00 00 00 00 00 00
->142f	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->1437	00 00 00 00 00 00 00 00
->143f	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->1447	00 00 00 00 00 00 00 00
->144f	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->1457	00 00 00 00 00 00 00 00
->145f	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->1467	00 00 00 00 00 00 00 00
->146f	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->1477	00 00 00 00 00 00 00 00
->147f	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->1487	00 00 00 00 00 00 00 00
->148f	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->1497	00 00 00 00 00 00 00 00
->149f	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->14a7	00 00 00 00 00 00 00 00
->14af	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->14b7	00 00 00 00 00 00 00 00
->14bf	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->14c7	00 00 00 00 00 00 00 00
->14cf	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->14d7	00 00 00 00 00 00 00 00
->14df	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
->14e7	00 00 00 00 00 00 00 00
->14ef	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $61
->14f7	00 00 00 00 00 00 00 61
->14ff	c1 60 01 02 04 00 07 0e		.byte $c1, $60, $01, $02, $04, $00, $07, $0e, $02, $02, $fe, $02, $02, $fe, $fe, $00
->1507	02 02 fe 02 02 fe fe 00
->150f	01 00 ff 00 02 04 05 07		.byte $01, $00, $ff, $00, $02, $04, $05, $07, $09, $0b, $1e, $18, $8b, $7e, $fa, $06
->1517	09 0b 1e 18 8b 7e fa 06
->151f	ac f3 e6 8f f8 2e 86 8e		.byte $ac, $f3, $e6, $8f, $f8, $2e, $86, $8e, $96, $9f, $a8, $b3, $bd, $c8, $d4, $e1
->1527	96 9f a8 b3 bd c8 d4 e1
->152f	ee fd 8c 78 64 50 3c 28		.byte $ee, $fd, $8c, $78, $64, $50, $3c, $28, $14, $00, $00, $02, $03, $05, $07, $08
->1537	14 00 00 02 03 05 07 08
->153f	0a 0c 0d 0f 11 12 00 e0		.byte $0a, $0c, $0d, $0f, $11, $12, $00, $e0, $00, $05, $0a, $0f, $f9, $00, $f5, $00
->1547	00 05 0a 0f f9 00 f5 00
->154f	00 00 10 00 00 20 00 00		.byte $00, $00, $10, $00, $00, $20, $00, $00, $30, $00, $00, $40, $00, $00, $50, $00
->1557	30 00 00 40 00 00 50 00
->155f	00 60 00 00 70 00 00 80		.byte $00, $60, $00, $00, $70, $00, $00, $80, $00, $00, $90, $00, $00
->1567	00 00 90 00 00
+>1394	47 48 4f 53 54 42 55 53				.text "ghostbusters.mus"
+>139c	54 45 52 53 2e 4d 55 53
+>13a4	00						.byte 0
+.13a5					data:
+>13a5	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>13ad	00 00 00 00 00 00 00 00
+>13b5	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>13bd	00 00 00 00 00 00 00 00
+>13c5	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>13cd	00 00 00 00 00 00 00 00
+>13d5	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>13dd	00 00 00 00 00 00 00 00
+>13e5	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>13ed	00 00 00 00 00 00 00 00
+>13f5	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>13fd	00 00 00 00 00 00 00 00
+>1405	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>140d	00 00 00 00 00 00 00 00
+>1415	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>141d	00 00 00 00 00 00 00 00
+>1425	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>142d	00 00 00 00 00 00 00 00
+>1435	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>143d	00 00 00 00 00 00 00 00
+>1445	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>144d	00 00 00 00 00 00 00 00
+>1455	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>145d	00 00 00 00 00 00 00 00
+>1465	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>146d	00 00 00 00 00 00 00 00
+>1475	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>147d	00 00 00 00 00 00 00 00
+>1485	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>148d	00 00 00 00 00 00 00 00
+>1495	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>149d	00 00 00 00 00 00 00 00
+>14a5	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>14ad	00 00 00 00 00 00 00 00
+>14b5	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>14bd	00 00 00 00 00 00 00 00
+>14c5	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>14cd	00 00 00 00 00 00 00 00
+>14d5	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>14dd	00 00 00 00 00 00 00 00
+>14e5	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+>14ed	00 00 00 00 00 00 00 00
+>14f5	00 00 00 00 00 00 00 00		.byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $61
+>14fd	00 00 00 00 00 00 00 61
+>1505	c1 60 01 02 04 00 07 0e		.byte $c1, $60, $01, $02, $04, $00, $07, $0e, $02, $02, $fe, $02, $02, $fe, $fe, $00
+>150d	02 02 fe 02 02 fe fe 00
+>1515	01 00 ff 00 02 04 05 07		.byte $01, $00, $ff, $00, $02, $04, $05, $07, $09, $0b, $1e, $18, $8b, $7e, $fa, $06
+>151d	09 0b 1e 18 8b 7e fa 06
+>1525	ac f3 e6 8f f8 2e 86 8e		.byte $ac, $f3, $e6, $8f, $f8, $2e, $86, $8e, $96, $9f, $a8, $b3, $bd, $c8, $d4, $e1
+>152d	96 9f a8 b3 bd c8 d4 e1
+>1535	ee fd 8c 78 64 50 3c 28		.byte $ee, $fd, $8c, $78, $64, $50, $3c, $28, $14, $00, $00, $02, $03, $05, $07, $08
+>153d	14 00 00 02 03 05 07 08
+>1545	0a 0c 0d 0f 11 12 00 e0		.byte $0a, $0c, $0d, $0f, $11, $12, $00, $e0, $00, $05, $0a, $0f, $f9, $00, $f5, $00
+>154d	00 05 0a 0f f9 00 f5 00
+>1555	00 00 10 00 00 20 00 00		.byte $00, $00, $10, $00, $00, $20, $00, $00, $30, $00, $00, $40, $00, $00, $50, $00
+>155d	30 00 00 40 00 00 50 00
+>1565	00 60 00 00 70 00 00 80		.byte $00, $60, $00, $00, $70, $00, $00, $80, $00, $00, $90, $00, $00
+>156d	00 00 90 00 00
 
 ;******  End of listing

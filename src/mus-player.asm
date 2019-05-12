@@ -1486,7 +1486,7 @@ endtxt:
 
 .if usedos == 1
 filename:
-		.text "footloose.mus"
+		.text "ghostbusters.mus"
 		.byte 0
 .fi
 
