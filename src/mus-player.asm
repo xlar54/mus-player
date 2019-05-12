@@ -1,7 +1,7 @@
 ;==============================================================
 ; COMPUTE SID PLAYER - CRAIG CHAMBERLAIN
 ;
-; Reconstrcuted for U64 by Scott Hutter - 4/17/2019
+; Reconstructed by Scott Hutter - 4/17/2019
 ;
 ; load"this file",8
 ;==============================================================
